@@ -22,9 +22,11 @@ public class DungeonsandMinecraft implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		Registry.register(Registries.ITEM, new Identifier("dungeons", "testblock"), TestBlock);// This code runs as soon as Minecraft is in a mod-load-ready state.
+		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
+		Registry.register(Registries.ITEM, new Identifier("dungeons", "testblock"), TestBlock); //created a TestBlock. Works!
+
 
 		LOGGER.info("Hello Fabric world!");
 	}
