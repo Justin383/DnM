@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DungeonsandMinecraft implements ModInitializer {
-	public static final String MOD_ID = "dungeons_and_minecraft"; //important String. DON'T EDIT :3
+	public static final String MOD_ID = "dungeons_and_minecraft"; //important String. DON'T EDIT
 
 	public static final Item TestBlock = new Item(new FabricItemSettings());
 
