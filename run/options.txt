@@ -8,7 +8,7 @@ chatLinksPrompt:true
 enableVsync:true
 entityShadows:true
 forceUnicodeFont:false
-discrete_mouse_scroll:false
+discrete_mouse_scroll:true
 invertYMouse:false
 realmsNotifications:true
 reducedDebugInfo:false
