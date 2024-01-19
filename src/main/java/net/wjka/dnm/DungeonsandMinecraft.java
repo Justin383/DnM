@@ -31,7 +31,7 @@ public class DungeonsandMinecraft implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		Registry.register(Registries.ITEM, new Identifier("dungeons", "testblock"), new BlockItem(TestBlock, new FabricItemSettings()));
-
+		//ich war hier
 		Registry.register(Registries.BLOCK, new Identifier("dungeons", "testblock"), TestBlock); //created a TestBlock. Works!
 
 
