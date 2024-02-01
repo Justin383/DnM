@@ -10,8 +10,8 @@ public class Dice {
     }
 
     public void rollDice(){
-        diceNum = ThreadLocalRandom.current().nextInt(0, 20);
-        DungeonsandMinecraft.LOGGER.info("testoutput");
+        diceNum = ThreadLocalRandom.current().nextInt(0, 21);
+        DungeonsandMinecraft.LOGGER.info(String.valueOf(diceNum));
 
     }
 }
