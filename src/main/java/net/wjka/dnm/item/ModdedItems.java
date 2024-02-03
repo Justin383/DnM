@@ -35,7 +35,7 @@ public class ModdedItems {
         DungeonsandMinecraft.LOGGER.info("Registring of Items Started for: " + DungeonsandMinecraft.MOD_ID); //Logging for the console...
 
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ModdedItems::addItemsToCreativeInv);//should be last piece of code to be run in order to add all items
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(ModdedItems::addItemsToCreativeInv);//should be last piece of code to be run in order to add all items
         //were initialised before!
     }
     //add item to itemgroup ingredients
