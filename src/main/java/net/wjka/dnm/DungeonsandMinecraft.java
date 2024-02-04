@@ -35,7 +35,6 @@ public class DungeonsandMinecraft implements ModInitializer {
 		Registry.register(Registries.BLOCK, new Identifier("dungeons", "testblock"), TestBlock); //created a TestBlock. Works!
 
 
-
 		LOGGER.info("Hello Fabric world!");
 	}
 }
