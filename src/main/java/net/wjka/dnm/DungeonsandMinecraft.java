@@ -25,7 +25,6 @@ public class DungeonsandMinecraft implements ModInitializer {
 
 
 
-
 		LOGGER.info("Hello Fabric world!");
 	}
 }
