@@ -15,7 +15,7 @@ public class DiceEventGen {
     }
 
 
-    //all events that might happen will be listed as methods in here. methods will be implemented in many other classes!
+    //all events that might happen will be listed as methods in here. methods will be implemented in many other classes
     private void NegaticeDiceEvent(){
 
     }

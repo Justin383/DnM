@@ -31,7 +31,7 @@ public class DiceRoll {
                 break;
         }
 
-        deg.DecideEvent(diceNum, type); //gives the DiceEventGen the data in order for it to decide what should apply
+        deg.DecideEvent(diceNum, type); //gives the DiceEventGen the data in order for it to decide what should apply!
 
         //add popup code here pls!
 
