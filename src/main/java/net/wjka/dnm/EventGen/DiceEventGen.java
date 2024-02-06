@@ -10,7 +10,9 @@ public class DiceEventGen {
     this.DiceNum = pDiceNum;
     this.DiceType = pDiceType;
 
-
+    //TEMP FOR TESTING
+        ModifyingTerrain mt = new ModifyingTerrain();
+        mt.GatherPlayerPositionData();
 
     }
 
