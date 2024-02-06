@@ -20,7 +20,8 @@ public class NeutralDice extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        if (!world.isClient) { //need to check that this is only called serverside to ensure that it wont be called twice in SP worlds
+        if (world.isClient) { //need to check that this is only called serverside to ensure that it wont be called twice in SP worlds
+            //grab serverworld from here
             dR.RollDice("neutral"); //calls the function to roll a dice
         }
 
