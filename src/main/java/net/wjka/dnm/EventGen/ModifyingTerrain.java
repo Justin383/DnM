@@ -74,7 +74,7 @@ public class ModifyingTerrain {
                         for (rZ = -radius; rZ <= radius; rZ++){
                             ArrayList<BlockPos> list = Lists.newArrayList();
                             BlockPos targetBlock = new BlockPos(playerPos.getX() + rX, rY, playerPos.getZ() + rZ);
-                            world.setBlockState(targetBlock, Blocks.AIR.getDefaultState()); //replace block with AIR on current area!
+                            world.setBlockState(targetBlock, Blocks.AIR.getDefaultState()); //replace block with AIR on current area
                             world.updateNeighbors(targetBlock, Blocks.AIR);
 
                             }
