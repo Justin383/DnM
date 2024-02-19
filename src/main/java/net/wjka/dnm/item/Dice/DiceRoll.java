@@ -1,6 +1,8 @@
 package net.wjka.dnm.item.Dice;
 import java.util.concurrent.ThreadLocalRandom;
 
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.wjka.dnm.DungeonsandMinecraft;
 import net.wjka.dnm.EventGen.DiceEventGen;
 
@@ -11,7 +13,7 @@ public class DiceRoll {
 
     DiceEventGen deg = new DiceEventGen();
 
-    public void RollDice(String type){
+    public void RollDice(String type, ServerWorld serverWorld, PlayerEntity player){
         this.type = type;
         switch(type){
             case "negative":
@@ -31,7 +33,7 @@ public class DiceRoll {
                 break;
         }
 
-        deg.DecideEvent(diceNum, type); //gives the DiceEventGen the data in order for it to decide what should apply!
+        deg.DecideEvent(diceNum, type, serverWorld, player); //gives the DiceEventGen the data in order for it to decide what should apply!
 
         //add popup code here pls!
 
