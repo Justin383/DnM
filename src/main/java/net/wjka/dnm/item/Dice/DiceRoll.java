@@ -1,8 +1,12 @@
 package net.wjka.dnm.item.Dice;
-import java.util.concurrent.ThreadLocalRandom;
 
+import net.minecraft.client.MinecraftClient;
 import net.wjka.dnm.DungeonsandMinecraft;
 import net.wjka.dnm.EventGen.DiceEventGen;
+import net.wjka.dnm.GUI.Gui;
+import net.wjka.dnm.GUI.Screen;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class DiceRoll {
 
@@ -35,6 +39,9 @@ public class DiceRoll {
 
         //add popup code here pls!
 
-        DungeonsandMinecraft.LOGGER.info(type + ": " + String.valueOf(diceNum)); //Logging for the console...
+        //opens GUI upon right-click:
+        MinecraftClient.getInstance().setScreen(new Screen(new Gui()));
+
+        DungeonsandMinecraft.LOGGER.info(type + ": " + diceNum); //Logging for the console...
     }
 }
