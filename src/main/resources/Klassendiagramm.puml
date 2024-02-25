@@ -1,25 +1,32 @@
 @startuml
 skinparam classAttributeIconSize 0
+skinparam groupInheritance 3
+
 class DiceRoll {
 + diceNum : Int
+==
 + RollDice(type: String): void
 }
 
 abstract class Item <<abstract>> {
+==
 + {abstract} TypedActionResult<ItemStack> use(world: World, user: PlayerEntity, hand: Hand) <<abstract>>
 }
 
 class NegativeDice {
+==
 + NegativeDice(settings: Settings) <<constructor>>
 + {abstract} TypedActionResult<ItemStack> use(world: World, user: PlayerEntity, hand: Hand)
 }
 
 class PositiveDice {
+==
 + PositiveDice(settings: Settings) <<constructor>>
 + {abstract} TypedActionResult<ItemStack> use(world: World, user: PlayerEntity, hand: Hand)
 }
 
 class NeutralDice {
+==
 + NegativeDice(settings: Settings) <<constructor>>
 + {abstract} TypedActionResult<ItemStack> use(world: World, user: PlayerEntity, hand: Hand)
 
@@ -29,37 +36,97 @@ class ModdedItems {
 + {field} {static} NEUTRALDICE: Item = registerItems("neutral_dice", new NeutralDice(new FabricItemSettings())) {readOnly}
 + {field} {static} NEGATIVEDICE: Item = registerItems("neutral_dice", new NeutralDice(new FabricItemSettings())) {readOnly}
 + {field} {static} POSITIVEDICE: Item = registerItems("neutral_dice", new NeutralDice(new FabricItemSettings())) {readOnly}
+==
 - {static} registerItems(name: String, item: Item): Item
 - {static} addItemsToCreativeInv(entries: FabricItemGroupEntries): void
 + {static} InitRegisterItems(): void
 }
 
 interface ModInitializer <<interface>> {
+==
 + onInitialize(): void
 }
 
 class DungeonsandMinecraft {
 + {field} {static} MOD_ID: String = "dungeons_and_minecraft"
 + {field} {static} LOGGER: Logger = LoggerFactory.getLogger(MOD_ID)
+==
 + onInitialize(): void
 }
 
 interface DataGeneratorEntrypoint <<interface>> {
+==
 + onInitializeDataGenerator(fabricDataGenerator: FabricDataGenerator): void
 }
 
 class DungeonsandMinecraftDataGenerator {
+==
 + onInitializeDataGenerator(fabricDataGenerator: FabricDataGenerator): void
 }
 
-Item "0..*" <|-- "0..*" NegativeDice
-Item "0..*     " <|-- "0..*" PositiveDice
-Item "0..*" <|-- "0..*      " NeutralDice
-Item "0..*" <--> " 0..*" ModdedItems
+class ModifyingTerrain {
+- {field} playerX: Int, playerY: Int, playerZ: Int
+- {field} radius: Int
+- {field} rX: Int, rY: Int, rZ: Int
+{field} player: PlayerEntity
+==
++ ModifyingTerrain() <<constructor>>
++ GatherPlayerPositionData(): void
+- GatherAreaData(): void
+- GenerateBlockArena(playerX: Int, playerY: Int, playerZ: Int, radius: Int): BlockBox
+- RemoveBlocks(world: World, playerPos: BlockPos): void
+}
 
-DiceRoll <-- Item
+class DiceEventGen {
+{field} DiceNum: Int
+{field} DiceType: String
+==
++ DiceEvent(pDiceNum: Int, pDiceType: Int): void
+- NegativeDiceEvent(): void
+- NeutralDiceEvent(): void
+- PositiveDiceEvent(): void
+}
+
+Item "0..*                          "   <|-- "0..*" NegativeDice
+Item "0..*"                             <|-- "0..*" PositiveDice
+Item "                          0..*"   <|-- "0..*" NeutralDice
+
+Item "0..*" <-right-> " 0..*" ModdedItems
+
+DiceRoll "1  " <-- "0..*" Item
 
 DungeonsandMinecraft "1  " ..|> "1  " ModInitializer
 
 DungeonsandMinecraftDataGenerator "1  " ..|> "1  " DataGeneratorEntrypoint
+
+DiceEventGen "1 " --> "1 " DiceRoll
+
+class DiceRoll
+note left: This class generates a random number between 0-20.
+
+class Item
+note left: This class is an abstract class \n that stems directly from Minecraft.
+
+note bottom of PositiveDice: This is our custom dice class, which represents our the main function of our game. \n They inherit the attributes and functions of Minecraft items.
+note bottom of NegativeDice: This is our custom dice class, which represents our the main function of our game. \n They inherit the attributes and functions of Minecraft items.
+note bottom of NeutralDice: This is our custom dice class, which represents our the main function of our game. \n They inherit the attributes and functions of Minecraft items.
+
+class ModdedItems
+note right: This class registers our custom items \n as Minecraft items.
+
+interface ModInitializer
+note left: This is a functional interface \n It is a part of Fabric.
+
+class DungeonsandMinecraft
+note left: This logger is used to write text to the console and the log file. \n It runs as soon as Minecraft is in a mod-load-ready state.
+
+interface DataGeneratorEntrypoint
+note right: It is an entry point for data generation.
+
+class ModifyingTerrain
+note right: This class´ job is to modify the Minecraft world. \n Right now it deletes a whole chunk \n upon the use of dice.
+
+class DiceEventGen
+note left: Generates random events /*like chunk-deletion*/ \n according to the dice type and number.
+
 @enduml
