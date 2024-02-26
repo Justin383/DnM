@@ -81,7 +81,7 @@ class DiceEventGen {
 {field} DiceNum: Int
 {field} DiceType: String
 ==
-+ DiceEvent(pDiceNum: Int, pDiceType: Int): void
++ DecideEvent(pDiceNum: Int, pDiceType: String): void
 - NegativeDiceEvent(): void
 - NeutralDiceEvent(): void
 - PositiveDiceEvent(): void

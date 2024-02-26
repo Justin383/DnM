@@ -1,11 +1,47 @@
 @startuml
-'https://plantuml.com/sequence-diagram
 
-autonumber
+skinparam sequenceMessageAlign center
+skinparam style strictuml
+title UML-Sequenzdiagramm presents: \n __"Chunk be gone"__
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+actor Player
+participant Minecraft
+participant NegativeDice
+participant DiceRoll
+participant DiceEventGen
+participant ModifyingTerrain
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+activate Minecraft
+
+Player -> Minecraft: rightClick
+note left: Player presses \n the right button on the mouse...
+
+Minecraft -> NegativeDice: rightClick()
+note left: ...followed by rightClick() function \n for a negative dice.
+activate NegativeDice
+
+NegativeDice -> DiceRoll: TypedActionResult<ItemStack> use(world, user, hand)
+note left: This method translates our secondary click,\nin a way, that minecraft is able to understand.\nThe game already knows,\nwhich item is used or held in the hand.
+activate DiceRoll
+deactivate NegativeDice
+
+DiceRoll -> DiceEventGen: RollDice("negative")
+note left: DiceRoll class decides what number was "thrown" \nby player, according to a specific dice being used.\nRollDice() gives information with a number \nand a dice name to next sequence.
+activate DiceEventGen
+deactivate DiceRoll
+
+alt randomNumber == 2
+    DiceEventGen -> ModifyingTerrain: DecideEvent(2, "negative")
+    activate ModifyingTerrain
+
+    ModifyingTerrain -> Minecraft: RemoveBlocks(world, serverWorld, playerPos)
+    deactivate ModifyingTerrain
+    note left: If the random generated number is 2,\nthe chunk will be deleted with RemoveBlocks() function \nand then updated in our minecraft world.
+
+else randomNumber
+    DiceEventGen -> Minecraft: DecideEvent(pDiceNum, "negative")
+    note left: Every other random number (pDiceNum) \nmeans that another event will be "rolled" \nwith the negative dice.
+    deactivate DiceEventGen
+end
+
 @enduml
