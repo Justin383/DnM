@@ -16,7 +16,7 @@ import net.wjka.dnm.item.Dice.PositiveDice;
 
 public class ModdedItems {
         //declarations of Items :3
-//    public static final Item NEUTRALDICE = registerItems("neutral_dice", new Item(new FabricItemSettings()));
+    //this type (public static final item ...) is neccesary for fabric(minecraft) to know we create a new item
     public static final Item NEUTRALDICE = registerItems("neutral_dice", new NeutralDice(new FabricItemSettings()));
 
     public static final Item NEGATIVEDICE = registerItems("negative_dice", new NegativeDice(new FabricItemSettings()));
@@ -28,15 +28,16 @@ public class ModdedItems {
     }
 
     private static void addItemsToCreativeInv(FabricItemGroupEntries entries){ //is used to add them to the player (creative) inventory
+       //make items available for the creative player inventory
         entries.add(NEUTRALDICE); entries.add(NEGATIVEDICE); entries.add(POSITIVEDICE);
-    } //as said... add items to creative inventory :3
+    }
 
     public static void InitRegisterItems(){
         DungeonsandMinecraft.LOGGER.info("Registring of Items Started for: " + DungeonsandMinecraft.MOD_ID); //Logging for the console...
 
-
+        //Add Items which are being registered here to the specified ItemGroup
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(ModdedItems::addItemsToCreativeInv);//should be last piece of code to be run in order to add all items
-        //were initialised before!
+
     }
     //add item to itemgroup ingredients
 
