@@ -38,7 +38,7 @@ alt randomNumber == 2
     deactivate ModifyingTerrain
     note left: If the random generated number is 2,\nthe chunk will be deleted with RemoveBlocks() function \nand then updated in our minecraft world.
 
-else randomNumber
+else else
     DiceEventGen -> Minecraft: DecideEvent(pDiceNum, "negative")
     note left: Every other random number (pDiceNum) \nmeans that another event will be "rolled" \nwith the negative dice.
     deactivate DiceEventGen
