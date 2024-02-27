@@ -23,6 +23,8 @@ public class DungeonsandMinecraft implements ModInitializer {
 		   Proceed with mild caution.*/
 		ModdedItems.InitRegisterItems(); //Registring of all Items will be done via this method!
 
+		MiningListener.register(); //registering the method which handles the identification of blocks being mined
+
 
 		LOGGER.info("Hello Fabric world!");
 	}

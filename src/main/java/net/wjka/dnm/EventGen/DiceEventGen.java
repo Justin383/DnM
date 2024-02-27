@@ -1,7 +1,9 @@
 package net.wjka.dnm.EventGen;
 
+import net.minecraft.entity.passive.PandaEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.wjka.dnm.DungeonsandMinecraft;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -11,16 +13,18 @@ public class DiceEventGen {
     int DiceNum;
     String DiceType;
 
+
     public void DecideEvent(int pDiceNum, String pDiceType, ServerWorld serverWorld, PlayerEntity player) {
         this.DiceNum = pDiceNum;
+        //GenerateRandomNumberAlgorythm(1);
         // Now pass serverWorld and player to the event methods
-        if (pDiceType == "neutral"){
+        if (pDiceType == "dice_neutral"){
             NeutralDiceEvent(serverWorld, player);
         }
-        else if (pDiceType == "positive") {
+        else if (pDiceType == "dice_positive") {
             PositiveDiceEvent(serverWorld, player);
         }
-        else if (pDiceType == "negative") {
+        else if (pDiceType == "dice_negative") {
             NegativeDiceEvent(serverWorld, player);
         }
         else{
@@ -29,9 +33,13 @@ public class DiceEventGen {
     }
 
 
-    private void GenerateRandomNumberAlgorythm(){
-         int random = ThreadLocalRandom.current().nextInt( 0, 20 + 1);
+    private void GenerateRandomNumberAlgorythm(int pDiceNum){
+        //int diceNum exists too, which is being calculated somewhere else
+         int randomNumber = ThreadLocalRandom.current().nextInt( 0, 20 + 1);
 
+
+
+         //int lastStoredNumber = randomOutNumber;
     }
 
 

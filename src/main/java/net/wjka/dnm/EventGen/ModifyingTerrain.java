@@ -30,7 +30,6 @@ public class ModifyingTerrain {
         radius = 8;
     }
 
-    //is this uploaded?
 
 
     public void GatherPlayerPositionData(ServerWorld serverWorld, PlayerEntity player) {
@@ -39,21 +38,6 @@ public class ModifyingTerrain {
         RemoveBlocks(serverWorld, playerPos);
     }
 
-    //not needed... maybe ill delete it or optimise this code!
-
-//    private BlockBox GenerateBlockArea(int playerX, int playerY, int playerZ, int radius){
-//        int rMin = radius * (-1);
-//        int rMax = radius;
-//        int X = playerX;
-//        int Y = playerY;
-//        int Z = playerZ;
-//        int height = 0;
-//
-//        ArrayList<BlockPos> list = Lists.newArrayList();
-//        BlockBox bp = new BlockBox(playerX + rMax, height, playerZ + rMin, playerX + rMin, height + 1, playerZ + rMax);
-//
-//        return bp;
-//    }
 
     private void RemoveBlocks(ServerWorld serverWorld, BlockPos playerPos) {
         for (int height = -64; height <= 320; height += 5) {
@@ -68,5 +52,4 @@ public class ModifyingTerrain {
             }
         }
     }
-
 }

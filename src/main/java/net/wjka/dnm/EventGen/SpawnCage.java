@@ -3,6 +3,7 @@ package net.wjka.dnm.EventGen;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerInteractionManager;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 
@@ -16,6 +17,7 @@ public class SpawnCage {
     }
 
     public void GatherPlayerPositionData(ServerWorld serverWorld, PlayerEntity player) {
+
         BlockPos playerPos = player.getBlockPos();
         // Now pass the ServerWorld to the RemoveBlocks method
 //        RemoveBlocks(serverWorld, playerPos);
