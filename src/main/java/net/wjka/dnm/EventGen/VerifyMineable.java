@@ -15,8 +15,8 @@ public class VerifyMineable {
         this.handItem = handItem;
         this.block = minedBlock;
 
-        if (handItem.getItem() instanceof AxeItem && block(AXE_MINEABLE)){
-        //doesnt work
+        if (handItem.getItem() instanceof AxeItem && block()){
+
         }
 
 
