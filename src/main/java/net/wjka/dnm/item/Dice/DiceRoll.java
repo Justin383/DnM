@@ -1,5 +1,7 @@
 package net.wjka.dnm.item.Dice;
 
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.wjka.dnm.DungeonsandMinecraft;
 import net.wjka.dnm.EventGen.DiceEventGen;
 
@@ -9,32 +11,45 @@ public class DiceRoll {
 
     public int diceNum;
     String type;
+    boolean hasRightTool;
 
     DiceEventGen deg = new DiceEventGen();
 
-    public void RollDice(String type){
+    public void RollDice(String type, ServerWorld serverWorld, PlayerEntity player){
         this.type = type;
         switch(type){
-            case "negative":
+            case "dice_negative":
                 diceNum = ThreadLocalRandom.current().nextInt( -5, 15 + 1);
-                if(diceNum < 0){
-                    diceNum = 0;
-                }
                 break;
-            case "neutral":
+            case "dice_neutral":
                 diceNum = ThreadLocalRandom.current().nextInt( 0, 20 + 1);
                 break;
-            case "positive":
+            case "dice_positive":
                 diceNum = ThreadLocalRandom.current().nextInt( 5, 25 + 1);
-                if(diceNum > 20){
-                    diceNum = 20;
+                break;
+            case "normal_block":
+                if (hasRightTool){
+                    diceNum = ThreadLocalRandom.current().nextInt(5, 25 + 1);
                 }
+                break;
+            case "m_block":
+                //code
+                break;
+            default:
+                DungeonsandMinecraft.LOGGER.info("ERROR: UNKNOWN DICE PARAMETER");
                 break;
         }
 
-        deg.DecideEvent(diceNum, type); //gives the DiceEventGen the data in order for it to decide what should apply!
+        //reset diceNum if too high or too low
+        if(diceNum > 20){
+            diceNum = 20;
+        } else if (diceNum < 0) {
+            diceNum = 0;
+        }
 
-        //add popup code here pls!
+        deg.DecideEvent(diceNum, type, serverWorld, player); //gives the DiceEventGen the data in order for it to decide what should apply!
+
+        //add popup code here pwease :3
 
         //opens GUI upon right-click:
         //MinecraftClient.getInstance().setScreen(new Screen(new Gui()));   ----> doesn't work rn 3: Caused by: java.lang.UnsupportedOperationException
