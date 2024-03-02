@@ -28,7 +28,7 @@ public class DiceEventGen {
             NegativeDiceEvent(serverWorld, player);
         }
         else{
-            //do nothing
+            //do nothing c:
         }
     }
 
