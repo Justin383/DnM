@@ -1,6 +1,6 @@
 @startuml
 skinparam classAttributeIconSize 0
-skinparam groupInheritance 3
+skinparam groupInheritance 1
 
 class DiceRoll {
 + diceNum : Int
@@ -87,9 +87,9 @@ class DiceEventGen {
 - PositiveDiceEvent(): void
 }
 
-Item "0..*                          "   <|-- "0..*" NegativeDice
-Item "0..*"                             <|-- "0..*" PositiveDice
-Item "                          0..*"   <|-- "0..*" NeutralDice
+Item "0..*               "              <|-- "0..*"         NegativeDice
+Item "0..*  "                           <|-- "0..*"         PositiveDice
+Item "                       0..*"      <|-- "0..*        " NeutralDice
 
 Item "0..*" <-right-> " 0..*" ModdedItems
 
@@ -99,34 +99,33 @@ DungeonsandMinecraft "1  " ..|> "1  " ModInitializer
 
 DungeonsandMinecraftDataGenerator "1  " ..|> "1  " DataGeneratorEntrypoint
 
-DiceEventGen "1 " --> "1 " DiceRoll
+DiceEventGen "1 " <--> "1 " DiceRoll
+
+DiceEventGen "1   " --> "1 " ModifyingTerrain
 
 class DiceRoll
-note left: This class generates a random number between 0-20.
+note left: Diese Klasse erzeugt \neine Zufallszahl zwischen 0-20.
 
 class Item
-note left: This class is an abstract class \n that stems directly from Minecraft.
+note left: Diese Klasse ist eine abstrakte Klasse, \ndie direkt aus Minecraft stammt.
 
-note bottom of PositiveDice: This is our custom dice class, which represents our the main function of our game. \n They inherit the attributes and functions of Minecraft items.
-note bottom of NegativeDice: This is our custom dice class, which represents our the main function of our game. \n They inherit the attributes and functions of Minecraft items.
-note bottom of NeutralDice: This is our custom dice class, which represents our the main function of our game. \n They inherit the attributes and functions of Minecraft items.
+note bottom of PositiveDice: Dies ist unsere benutzerdefinierte Würfel Klasse, \ndie unsere die Hauptfunktion unseres Spiels darstellt. \nSie erben die Attribute und Funktionen von Minecraft-Items.
 
 class ModdedItems
-note right: This class registers our custom items \n as Minecraft items.
+note bottom: Diese Klasse registriert unsere \nbenutzerdefinierten Items als Minecraft-Items.
 
 interface ModInitializer
-note left: This is a functional interface \n It is a part of Fabric.
+note left: Dies ist eine funktionale Schnittstelle. \nEs ist ein Teil von Fabric.
 
 class DungeonsandMinecraft
-note left: This logger is used to write text to the console and the log file. \n It runs as soon as Minecraft is in a mod-load-ready state.
+note left: Dieser Logger wird verwendet, um Text in die Konsole \nund die Protokolldatei zu schreiben. Es läuft, sobald Minecraft \nin einem mod-load-ready Zustand ist.
 
 interface DataGeneratorEntrypoint
-note right: It is an entry point for data generation.
+note bottom: Es ist ein Einstiegspunkt \nfür die Datengenerierung.
 
 class ModifyingTerrain
-note right: This class´ job is to modify the Minecraft world. \n Right now it deletes a whole chunk \n upon the use of dice.
-
+note left: Die Aufgabe dieser Klasse ist es, die Minecraft-Welt zu verändern. \nIm Moment löscht sie ein ganzes Stück bei der Verwendung von Würfeln.
 class DiceEventGen
-note left: Generates random events /*like chunk-deletion*/ \n according to the dice type and number.
+note left: Erzeugt zufällige Ereignisse /*wie Chunk-Löschung*/ \nentsprechend der Würfelart und -zahl.
 
 @enduml

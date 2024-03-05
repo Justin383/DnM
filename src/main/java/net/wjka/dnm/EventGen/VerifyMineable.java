@@ -1,10 +1,7 @@
 package net.wjka.dnm.EventGen;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
-
-import static net.minecraft.registry.tag.BlockTags.*;
 
 public class VerifyMineable {
 
@@ -15,9 +12,9 @@ public class VerifyMineable {
         this.handItem = handItem;
         this.block = minedBlock;
 
-        if (handItem.getItem() instanceof AxeItem && block()){
+       // if (handItem.getItem() instanceof AxeItem && block()){
 
-        }
+        //}
 
 
 
