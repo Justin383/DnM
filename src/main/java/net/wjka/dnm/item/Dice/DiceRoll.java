@@ -18,17 +18,17 @@ public class DiceRoll {
         this.type = type;
         switch(type){
             case "dice_negative":
-                diceNum = ThreadLocalRandom.current().nextInt( -5, 15 + 1);
+                diceNum = ThreadLocalRandom.current().nextInt( -5, 20 + 1);
                 break;
             case "dice_neutral":
                 diceNum = ThreadLocalRandom.current().nextInt( 0, 20 + 1);
                 break;
             case "dice_positive":
-                diceNum = ThreadLocalRandom.current().nextInt( 5, 25 + 1);
+                diceNum = ThreadLocalRandom.current().nextInt( 0, 25 + 1);
                 break;
             case "normal_block":
                 if (hasRightTool){
-                    diceNum = ThreadLocalRandom.current().nextInt(5, 25 + 1);
+                    diceNum = ThreadLocalRandom.current().nextInt(0, 20 + 1);
                 }
                 break;
             case "m_block":

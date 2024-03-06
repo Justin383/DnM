@@ -19,7 +19,6 @@ public class PositiveEffects {
 
     }
 
-
     public /*TEMPORARILY PUBLIC*/ void ApplyEffectToPlayer(ServerWorld serverWorld, PlayerEntity player, int pDiceNum){
         World world = player.getWorld();
         //INIT EFFECTS
