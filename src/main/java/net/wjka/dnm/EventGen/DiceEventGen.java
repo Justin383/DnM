@@ -16,8 +16,7 @@ public class DiceEventGen {
     PlayerEntity player;
     String type;
     String DiceType;
-    NegativeEffects nE = new NegativeEffects(DiceNum, world, player);
-    ModifyingTerrain mt = new ModifyingTerrain();
+
 
     public DiceEventGen(ServerWorld pWorld, PlayerEntity pPlayer, String pType, int pDiceNum){
         this.world = pWorld;
@@ -56,7 +55,8 @@ public class DiceEventGen {
     //all events that might happen will be listed as methods in here. methods will be implemented in many other classes
 
     public void NegativeDiceEvent(int pRandomNum) {
-
+        NegativeEffects nE = new NegativeEffects(DiceNum, world, player);
+        ModifyingTerrain mt = new ModifyingTerrain();
 
         if(type != "normal_block"){
             switch(pRandomNum){
@@ -86,6 +86,8 @@ public class DiceEventGen {
     }
 
     public void NeutralDiceEvent(int pRandomNum) {
+        NegativeEffects nE = new NegativeEffects(DiceNum, world, player);
+        ModifyingTerrain mt = new ModifyingTerrain();
         if(type != "normal_block"){
             switch(pRandomNum){
                 case 0: nE.SpawnEntities(world, player); break;
@@ -114,6 +116,8 @@ public class DiceEventGen {
     }
 
     public void PositiveDiceEvent(int pRandomNum) {
+        NegativeEffects nE = new NegativeEffects(DiceNum, world, player);
+        ModifyingTerrain mt = new ModifyingTerrain();
         if(type != "normal_block"){
             switch(pRandomNum){
                 case 0: nE.SpawnEntities(world, player); break;
@@ -140,4 +144,5 @@ public class DiceEventGen {
             }
         }
     }
+
 }

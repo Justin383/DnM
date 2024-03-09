@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class NeutralDice extends Item {
 
 
-    DiceRoll dR = new DiceRoll();
+    //DiceRoll dR = new DiceRoll();
 
     public NeutralDice(Settings settings) {
         super(settings);
@@ -24,7 +24,7 @@ public class NeutralDice extends Item {
         if (!world.isClient && world instanceof ServerWorld) {
             ServerWorld serverWorld = (ServerWorld)world;
             // Pass serverWorld to the RollDice method
-            dR.RollDice("dice_neutral", serverWorld, user);
+            //dR.RollDice("dice_neutral", serverWorld, user);
         }
         return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
     }

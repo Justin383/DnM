@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class NegativeDice extends Item {
 
 
-    DiceRoll dR = new DiceRoll();
+
 
     public NegativeDice(Settings settings) {
         super(settings);
@@ -24,7 +24,8 @@ public class NegativeDice extends Item {
         if (!world.isClient && world instanceof ServerWorld) {
             ServerWorld serverWorld = (ServerWorld)world;
             // Pass serverWorld to the RollDice method
-            dR.RollDice("dice_negative", serverWorld, user);
+            DiceRoll dR = new DiceRoll("dice_negative",serverWorld, user);
+            dR.RollDice();
         }
         return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
     }

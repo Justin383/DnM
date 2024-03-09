@@ -35,9 +35,6 @@ public class NegativeEffects {
 
     public void ApplyEffectToPlayer(){
         seconds = ThreadLocalRandom.current().nextInt(5, 30 + 1) * DiceNum;
-        World world = player.getWorld();
-        //INIT EFFECTS
-        //10 = DiceNum * ThreadLocalRandom.current().nextInt(20, 60 + 1);
 
         StatusEffectInstance poison = new StatusEffectInstance(StatusEffects.POISON, 20 * seconds, 0); // 10 10 of Speed 1
         StatusEffectInstance lev = new StatusEffectInstance(StatusEffects.LEVITATION, 20 * seconds, 3); // 10 10 of Jump Boost 4
