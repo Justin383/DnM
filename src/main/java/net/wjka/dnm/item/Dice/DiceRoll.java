@@ -46,7 +46,7 @@ public class DiceRoll {
             diceNum = 0;
         }
 
-        deg.DecideEvent(diceNum, type, serverWorld, player); //gives the DiceEventGen the data in order for it to decide what should apply!
+        deg.DecideEvent(diceNum, type, serverWorld, player, type); //gives the DiceEventGen the data in order for it to decide what should apply!
 
         //add popup code here pwease :3
 

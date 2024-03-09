@@ -2,6 +2,7 @@ package net.wjka.dnm;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.wjka.dnm.EventGen.ModifyingTerrain;
 import net.wjka.dnm.item.ModdedItems;
 import org.slf4j.Logger;
@@ -24,6 +25,11 @@ public class DungeonsandMinecraft implements ModInitializer {
 		ModdedItems.InitRegisterItems(); //Registring of all Items will be done via this method!
 
 		MiningListener.register(); //registering the method which handles the identification of blocks being mined
+
+
+		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated, registryAccess) -> {
+			CommandClass.register(dispatcher);
+		});
 
 
 		LOGGER.info("Hello Fabric world!");

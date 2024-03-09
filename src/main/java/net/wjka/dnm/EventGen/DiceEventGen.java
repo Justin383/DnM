@@ -12,13 +12,16 @@ public class DiceEventGen {
 
     int DiceNum;
     int RandomNumber;
+    String type;
     String DiceType;
     ModifyingTerrain mt;
 
 
-    public void DecideEvent(int pDiceNum, String pDiceType, ServerWorld serverWorld, PlayerEntity player) {
+    public void DecideEvent(int pDiceNum, String pDiceType, ServerWorld serverWorld, PlayerEntity player, String pType) {
         this.DiceNum = pDiceNum;
-        RandomNumber = GenerateRandNum(); //will be used for chosing the event for events c:
+        RandomNumber = GenerateRandNum();
+        this.type = pType;
+        //will be used for chosing the event for events c:
         // Now pass serverWorld and player to the event methods
         if (pDiceType == "dice_neutral"){
             NeutralDiceEvent(serverWorld, player);
@@ -27,7 +30,7 @@ public class DiceEventGen {
             PositiveDiceEvent(serverWorld, player);
         }
         else if (pDiceType == "dice_negative") {
-            NegativeDiceEvent(serverWorld, player);
+            NegativeDiceEvent(serverWorld, player, RandomNumber, DiceNum);
         }
         else{
             DungeonsandMinecraft.LOGGER.info("ERROR, WRONG TYPE OF DICE!");
@@ -46,35 +49,36 @@ public class DiceEventGen {
 
     //all events that might happen will be listed as methods in here. methods will be implemented in many other classes
 
-    private void NegativeDiceEvent(ServerWorld serverWorld, PlayerEntity player) {
-        NegativeEffects nE = new NegativeEffects();
+    public void NegativeDiceEvent(ServerWorld serverWorld, PlayerEntity player, int pRandomNum, int pDiceNum) {
+        NegativeEffects nE = new NegativeEffects(pDiceNum);
         ModifyingTerrain mt = new ModifyingTerrain();
 
-        switch(RandomNumber){
-            case 0: mt.GatherPlayerPositionData(serverWorld, player); break;
-            case 1: mt.GatherPlayerPositionData(serverWorld, player); break;
-            case 2: mt.GatherPlayerPositionData(serverWorld, player); break;
-            case 3: mt.GatherPlayerPositionData(serverWorld, player); break;
-            case 4: mt.GatherPlayerPositionData(serverWorld, player); break;
-            case 5: mt.GatherPlayerPositionData(serverWorld, player); break;
-            case 6: mt.GatherPlayerPositionData(serverWorld, player); break;
-            case 7: mt.GatherPlayerPositionData(serverWorld, player); break;
-            case 8: mt.GatherPlayerPositionData(serverWorld, player); break;
-            case 9: mt.GatherPlayerPositionData(serverWorld, player); break;
-            case 10: mt.GatherPlayerPositionData(serverWorld, player); break;
-            case 11: mt.GatherPlayerPositionData(serverWorld, player); break;
-            case 12: mt.GatherPlayerPositionData(serverWorld, player); break;
-            /*case 13: code break;
-            case 14: code break;
-            case 15: code break;
-            case 16: code break;
-            case 17: code break;
-            case 18: code break;
-            case 19: code break;
-            case 20: code break;*/
-
-
+        if(type != "normal_block"){
+            switch(pRandomNum){
+                case 0: nE.SpawnEntities(serverWorld, player); break;
+                case 1: mt.GatherPlayerPositionData(serverWorld, player); break;
+                case 2: mt.GatherPlayerPositionData(serverWorld, player); break;
+                case 3: mt.GatherPlayerPositionData(serverWorld, player); break;
+                case 4: mt.GatherPlayerPositionData(serverWorld, player); break;
+                case 5: nE.SpawnEntities(serverWorld, player); break;
+                case 6: nE.SpawnEntities(serverWorld, player); break;
+                case 7: nE.SpawnEntities(serverWorld, player); break;
+                case 8: nE.ApplyEffectToPlayer(serverWorld, player); break;
+                case 9: nE.ApplyEffectToPlayer(serverWorld, player); break;
+                case 10: nE.ApplyEffectToPlayer(serverWorld, player); break;
+                case 11: nE.ApplyEffectToPlayer(serverWorld, player); break;
+                case 12: nE.ApplyEffectToPlayer(serverWorld, player); break;
+                case 13: nE.ApplyEffectToPlayer(serverWorld, player); break;
+                case 14: nE.SpawnEntities(serverWorld, player); break;
+                case 15: nE.SpawnEntities(serverWorld, player); break;
+                case 16: nE.SpawnEntities(serverWorld, player); break;
+                case 17: nE.SpawnEntities(serverWorld, player); break;
+                case 18: nE.SpawnEntities(serverWorld, player); break;
+                case 19: nE.SpawnEntities(serverWorld, player); break;
+                case 20: nE.SpawnEntities(serverWorld, player); break;
+            }
         }
+
 
 
 //        ModifyingTerrain mt = new ModifyingTerrain();
