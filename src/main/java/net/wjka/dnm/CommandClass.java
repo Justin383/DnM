@@ -45,9 +45,9 @@ public class CommandClass {
                                                 if ("negative".equals(type)) {
                                                     de.NegativeDiceEvent(randomNum); //calls negativeDiceEvent From DecideEventGen, bypassing all random number generators
                                                 } else if ("neutral".equals(type)) {
-                                                    //code
+                                                    de.NeutralDiceEvent(randomNum);
                                                 } else if ("positive".equals(type)) {
-                                                    //code
+                                                    de.PositiveDiceEvent(randomNum);
                                                 } else {
                                                     //throw error of type
                                                     source.sendError(Text.literal("Type must be one of the following: [negative] [neutral] [positive]"));
