@@ -12,7 +12,7 @@ public class DiceRoll {
     String type;
     boolean hasRightTool;
 
-    DiceEventGen deg = new DiceEventGen();
+
 
     public void RollDice(String type, ServerWorld serverWorld, PlayerEntity player){
         this.type = type;
@@ -45,8 +45,8 @@ public class DiceRoll {
         } else if (diceNum < 0) {
             diceNum = 0;
         }
-
-        deg.DecideEvent(diceNum, type, serverWorld, player, type); //gives the DiceEventGen the data in order for it to decide what should apply!
+        DiceEventGen deg = new DiceEventGen(serverWorld, player, type, diceNum);
+        deg.DecideEvent(); //gives the DiceEventGen the data in order for it to decide what should apply!
 
         //add popup code here pwease :3
 

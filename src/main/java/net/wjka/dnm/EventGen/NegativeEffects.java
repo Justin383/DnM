@@ -3,9 +3,11 @@ package net.wjka.dnm.EventGen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.WitherEntity;
+import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.*;
+import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -19,14 +21,19 @@ import java.util.concurrent.ThreadLocalRandom;
 public class NegativeEffects {
     private int DiceNum;
     private int seconds;
+    private ServerWorld world;
+    private PlayerEntity player;
 
 
 
-    public NegativeEffects(int pDiceNum){
+    public NegativeEffects(int pDiceNum, ServerWorld pWorld, PlayerEntity pPlayer){
         this.DiceNum = pDiceNum;
+        this.world = pWorld;
+        this.player = pPlayer;
+
     }
 
-    public void ApplyEffectToPlayer(ServerWorld serverWorld, PlayerEntity player){
+    public void ApplyEffectToPlayer(){
         seconds = ThreadLocalRandom.current().nextInt(5, 30 + 1) * DiceNum;
         World world = player.getWorld();
         //INIT EFFECTS
@@ -37,7 +44,7 @@ public class NegativeEffects {
         StatusEffectInstance blind = new StatusEffectInstance(StatusEffects.BLINDNESS, 20 * seconds); // 10 10 of Blindness
         StatusEffectInstance fatigue = new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 20 * seconds, 19); // 10 10 of Haste 20
         StatusEffectInstance wither = new StatusEffectInstance(StatusEffects.WITHER, 20 * seconds / 2);
-            StatusEffectInstance weak = new StatusEffectInstance(StatusEffects.WEAKNESS, 20 * seconds, 19); // 10 10 of Haste 20
+        StatusEffectInstance weak = new StatusEffectInstance(StatusEffects.WEAKNESS, 20 * seconds, 19); // 10 10 of Haste 20
         StatusEffectInstance nausea = new StatusEffectInstance(StatusEffects.NAUSEA, 20 * seconds, 19); // 10 10 of Haste 20
         StatusEffectInstance hungwy = new StatusEffectInstance(StatusEffects.HUNGER, 20 * seconds, 19); // 10 10 of Haste 20
         StatusEffectInstance bado = new StatusEffectInstance(StatusEffects.BAD_OMEN, 20 * seconds); // 10 10 of Haste 20
@@ -70,6 +77,11 @@ public class NegativeEffects {
 
         }
     }
+
+    public void SpawnCage(ServerWorld world, PlayerEntity player){
+        SpawnCage sc = new SpawnCage();
+        sc.GatherPlayerPositionData(world, player);
+    }
     public void SpawnEntities(ServerWorld world, PlayerEntity player){
         //get player coords
         double x = player.getX();
@@ -86,7 +98,15 @@ public class NegativeEffects {
         WitherSkeletonEntity wskeleton = EntityType.WITHER_SKELETON.create(world);
         MagmaCubeEntity magmaslime = EntityType.MAGMA_CUBE.create(world);
         WolfEntity wolf = EntityType.WOLF.create(world);
-
+        SilverfishEntity sfish = EntityType.SILVERFISH.create(world);
+        GiantEntity gz = EntityType.GIANT.create(world);
+        WardenEntity warden = EntityType.WARDEN.create(world);
+        EndermanEntity ender = EntityType.ENDERMAN.create(world);
+        BlazeEntity blaze = EntityType.BLAZE.create(world);
+        BeeEntity abees = EntityType.BEE.create(world);
+        EnderDragonEntity dragon = EntityType.ENDER_DRAGON.create(world);
+        PhantomEntity phantom = EntityType.PHANTOM.create(world);
+        VindicatorEntity vindicator = EntityType.VINDICATOR.create(world);
 
         switch(DiceNum){
             //zombie
@@ -106,29 +126,29 @@ public class NegativeEffects {
             //angry wolf
             case 7: wolf.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(wolf); wolf.setTarget(player); break;
             //siverfish
-            case 8: wskeleton.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(wskeleton); break;
-            //enderman
-            case 9: wskeleton.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(wskeleton); break;
+            case 8: for (int i = 0; i < 3; i++){sfish.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(sfish);} break;
+            //Giant Zombie
+            case 9: gz.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(gz); break;
             //end dragon :o
-            case 10: zombie.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(zombie); break;
+            case 10: dragon.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(dragon); break;
             //angry bees
-            case 11: zombie.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(zombie); break;
+            case 11: for (int i = 0; i < 3; i++){abees.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(abees); abees.setTarget(player);} break;
             //blazes
-            case 12: zombie.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(zombie); break;
-            //
-            case 13: zombie.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(zombie); break;
-            //
-            case 14: zombie.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(zombie); break;
-            //
-            case 15: zombie.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(zombie); break;
-            //
-            case 16: zombie.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(zombie); break;
-            //
-            case 17: zombie.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(zombie); break;
-            //wither
-            case 18: wither.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(wither); break;
-            //
-            case 19: wither.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(wither); break;
+            case 12: blaze.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(blaze); break;
+            //enderman
+            case 13: ender.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(ender); break;
+            //warden
+            case 14: warden.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(warden); break;
+            //phantom horde
+            case 15: for (int i = 0; i < 2; i++){phantom.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(phantom);} break;
+            //zombie horde
+            case 16: for (int i = 0; i < 4; i++){zombie.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(zombie);} break;
+            //creeper horde
+            case 17: for (int i = 0; i < 2; i++){creeper.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(creeper);} break;
+            //skeleton horde
+            case 18: for (int i = 0; i < 2; i++){skeleton.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(skeleton);} break;
+            //vindikator
+            case 19: vindicator.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(vindicator); break;
             //wither
             case 20: wither.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(wither); break;
         }
