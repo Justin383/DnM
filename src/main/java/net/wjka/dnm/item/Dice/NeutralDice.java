@@ -11,7 +11,6 @@ import net.minecraft.world.World;
 
 public class NeutralDice extends Item {
 
-
     DiceRoll dR = new DiceRoll();
 
     public NeutralDice(Settings settings) {

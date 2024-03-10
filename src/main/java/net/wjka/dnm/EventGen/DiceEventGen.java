@@ -1,11 +1,8 @@
 package net.wjka.dnm.EventGen;
 
-import net.minecraft.entity.passive.PandaEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.wjka.dnm.DungeonsandMinecraft;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class DiceEventGen {

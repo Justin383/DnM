@@ -11,7 +11,6 @@ import net.minecraft.world.World;
 
 public class PositiveDice extends Item {
 
-
     DiceRoll dR = new DiceRoll();
 
     public PositiveDice(Settings settings) {

@@ -20,6 +20,11 @@ public class NegativeDice extends Item {
     }
 
     @Override
+    public int getMaxUseTime(ItemStack stack) {
+        return 1;
+    }
+
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         if (!world.isClient && world instanceof ServerWorld) {
@@ -29,4 +34,5 @@ public class NegativeDice extends Item {
         }
         return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
     }
+
 }

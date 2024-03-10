@@ -2,8 +2,8 @@ package net.wjka.dnm.item.Dice;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.wjka.dnm.DungeonsandMinecraft;
 import net.wjka.dnm.EventGen.DiceEventGen;
+import net.wjka.dnm.DungeonsandMinecraft;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -51,8 +51,7 @@ public class DiceRoll {
 
         //add popup code here pwease :3
 
-        //opens GUI upon right-click:
-        //MinecraftClient.getInstance().setScreen(new Screen(new Gui()));   ----> doesn't work rn 3: Caused by: java.lang.UnsupportedOperationException
+
 
         DungeonsandMinecraft.LOGGER.info(type + ": " + diceNum); //Logging for the console...
     }

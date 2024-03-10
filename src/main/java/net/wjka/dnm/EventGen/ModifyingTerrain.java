@@ -1,25 +1,9 @@
 package net.wjka.dnm.EventGen;
 
-import com.google.common.collect.Lists;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.Position;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.chunk.Chunk;
-import net.wjka.dnm.DungeonsandMinecraft;
-import org.apache.logging.log4j.core.jmx.Server;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class ModifyingTerrain {
     private int radius;
