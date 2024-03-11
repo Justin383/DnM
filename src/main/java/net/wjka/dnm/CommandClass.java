@@ -8,6 +8,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.wjka.dnm.EventGen.DiceEventGen;
+import net.wjka.dnm.EventGen.NegativeEffects;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -48,6 +49,10 @@ public class CommandClass {
                                                     de.NeutralDiceEvent(randomNum);
                                                 } else if ("positive".equals(type)) {
                                                     de.PositiveDiceEvent(randomNum);
+                                                } //DEBUG ONLY
+                                                  else if("time".equals(type)){
+                                                    NegativeEffects ne = new NegativeEffects(diceNum, world, player);
+                                                    ne.ChangeTime();
                                                 } else {
                                                     //throw error of type
                                                     source.sendError(Text.literal("Type must be one of the following: [negative] [neutral] [positive]"));
@@ -56,6 +61,7 @@ public class CommandClass {
                                                 context.getSource().sendFeedback(() -> Text.literal("§l§9RandomNum: §l§f" + diceNum + "§l§8 | §l§4DiceNum: §l§f" + randomNum + "§l§8 | §l§6Type: §l§f" + type), false);
 
                                             }
+
 
                                             else {
                                                     source.sendError(Text.literal("diceNum and randNum must be in range: 0-20!"));

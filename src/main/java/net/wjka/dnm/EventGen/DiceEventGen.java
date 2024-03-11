@@ -56,91 +56,93 @@ public class DiceEventGen {
 
     public void NegativeDiceEvent(int pRandomNum) {
         NegativeEffects nE = new NegativeEffects(DiceNum, world, player);
-        ModifyingTerrain mt = new ModifyingTerrain();
+        ModifyingTerrain mt = new ModifyingTerrain(world, player);
+        SpawnCage sc = new SpawnCage(world, player);
 
         if(type != "normal_block"){
             switch(pRandomNum){
-                case 0: nE.SpawnEntities(world, player); break;
-                case 1: mt.GatherPlayerPositionData(world, player); break;
-                case 2: mt.GatherPlayerPositionData(world, player); break;
-                case 3: mt.GatherPlayerPositionData(world, player); break;
-                case 4: mt.GatherPlayerPositionData(world, player); break;
-                case 5: nE.SpawnEntities(world, player); break;
-                case 6: nE.SpawnEntities(world, player); break;
-                case 7: nE.SpawnEntities(world, player); break;
+                case 0: nE.SpawnEntities(); break;
+                case 1: sc.GatherPlayerPositionData(); break;
+                case 2: sc.GatherPlayerPositionData(); break;
+                case 3: nE.ChangeTime(); break;
+                case 4: mt.GatherPlayerPositionData(); break;
+                case 5: nE.SpawnEntities(); break;
+                case 6: nE.SpawnEntities(); break;
+                case 7: nE.SpawnEntities(); break;
                 case 8: nE.ApplyEffectToPlayer(); break;
                 case 9: nE.ApplyEffectToPlayer(); break;
                 case 10: nE.ApplyEffectToPlayer(); break;
                 case 11: nE.ApplyEffectToPlayer(); break;
                 case 12: nE.ApplyEffectToPlayer(); break;
                 case 13: nE.ApplyEffectToPlayer(); break;
-                case 14: nE.SpawnEntities(world, player); break;
-                case 15: nE.SpawnEntities(world, player); break;
-                case 16: nE.SpawnEntities(world, player); break;
-                case 17: nE.SpawnEntities(world, player); break;
-                case 18: nE.SpawnEntities(world, player); break;
-                case 19: nE.SpawnEntities(world, player); break;
-                case 20: nE.SpawnEntities(world, player); break;
+                case 14: nE.SpawnEntities(); break;
+                case 15: nE.SpawnEntities(); break;
+                case 16: nE.SpawnEntities(); break;
+                case 17: nE.SpawnEntities(); break;
+                case 18: nE.SpawnEntities(); break;
+                case 19: nE.SpawnEntities(); break;
+                case 20: nE.SpawnEntities(); break;
             }
         }
     }
 
     public void NeutralDiceEvent(int pRandomNum) {
         NegativeEffects nE = new NegativeEffects(DiceNum, world, player);
-        ModifyingTerrain mt = new ModifyingTerrain();
+        ModifyingTerrain mt = new ModifyingTerrain(world, player);
+        SpawnCage sc = new SpawnCage(world, player);
         if(type != "normal_block"){
             switch(pRandomNum){
-                case 0: nE.SpawnEntities(world, player); break;
-                case 1: mt.GatherPlayerPositionData(world, player); break;
-                case 2: mt.GatherPlayerPositionData(world, player); break;
-                case 3: mt.GatherPlayerPositionData(world, player); break;
-                case 4: mt.GatherPlayerPositionData(world, player); break;
-                case 5: nE.SpawnEntities(world, player); break;
-                case 6: nE.SpawnEntities(world, player); break;
-                case 7: nE.SpawnEntities(world, player); break;
+                case 0: nE.SpawnEntities(); break;
+                case 1: mt.GatherPlayerPositionData(); break;
+                case 2: mt.GatherPlayerPositionData(); break;
+                case 3: mt.GatherPlayerPositionData(); break;
+                case 4: mt.GatherPlayerPositionData(); break;
+                case 5: nE.SpawnEntities(); break;
+                case 6: nE.SpawnEntities(); break;
+                case 7: nE.SpawnEntities(); break;
                 case 8: nE.ApplyEffectToPlayer(); break;
                 case 9: nE.ApplyEffectToPlayer(); break;
                 case 10: nE.ApplyEffectToPlayer(); break;
                 case 11: nE.ApplyEffectToPlayer(); break;
                 case 12: nE.ApplyEffectToPlayer(); break;
                 case 13: nE.ApplyEffectToPlayer(); break;
-                case 14: nE.SpawnEntities(world, player); break;
-                case 15: nE.SpawnEntities(world, player); break;
-                case 16: nE.SpawnEntities(world, player); break;
-                case 17: nE.SpawnEntities(world, player); break;
-                case 18: nE.SpawnEntities(world, player); break;
-                case 19: nE.SpawnEntities(world, player); break;
-                case 20: nE.SpawnEntities(world, player); break;
+                case 14: nE.SpawnEntities(); break;
+                case 15: nE.SpawnEntities(); break;
+                case 16: nE.SpawnEntities(); break;
+                case 17: nE.SpawnEntities(); break;
+                case 18: nE.SpawnEntities(); break;
+                case 19: nE.SpawnEntities(); break;
+                case 20: nE.SpawnEntities(); break;
             }
         }
     }
 
     public void PositiveDiceEvent(int pRandomNum) {
         NegativeEffects nE = new NegativeEffects(DiceNum, world, player);
-        ModifyingTerrain mt = new ModifyingTerrain();
+        ModifyingTerrain mt = new ModifyingTerrain(world, player);
         if(type != "normal_block"){
             switch(pRandomNum){
-                case 0: nE.SpawnEntities(world, player); break;
-                case 1: mt.GatherPlayerPositionData(world, player); break;
-                case 2: mt.GatherPlayerPositionData(world, player); break;
-                case 3: mt.GatherPlayerPositionData(world, player); break;
-                case 4: mt.GatherPlayerPositionData(world, player); break;
-                case 5: nE.SpawnEntities(world, player); break;
-                case 6: nE.SpawnEntities(world, player); break;
-                case 7: nE.SpawnEntities(world, player); break;
+                case 0: nE.SpawnEntities(); break;
+                case 1: mt.GatherPlayerPositionData(); break;
+                case 2: mt.GatherPlayerPositionData(); break;
+                case 3: mt.GatherPlayerPositionData(); break;
+                case 4: mt.GatherPlayerPositionData(); break;
+                case 5: nE.SpawnEntities(); break;
+                case 6: nE.SpawnEntities(); break;
+                case 7: nE.SpawnEntities(); break;
                 case 8: nE.ApplyEffectToPlayer(); break;
                 case 9: nE.ApplyEffectToPlayer(); break;
                 case 10: nE.ApplyEffectToPlayer(); break;
                 case 11: nE.ApplyEffectToPlayer(); break;
                 case 12: nE.ApplyEffectToPlayer(); break;
                 case 13: nE.ApplyEffectToPlayer(); break;
-                case 14: nE.SpawnEntities(world, player); break;
-                case 15: nE.SpawnEntities(world, player); break;
-                case 16: nE.SpawnEntities(world, player); break;
-                case 17: nE.SpawnEntities(world, player); break;
-                case 18: nE.SpawnEntities(world, player); break;
-                case 19: nE.SpawnEntities(world, player); break;
-                case 20: nE.SpawnEntities(world, player); break;
+                case 14: nE.SpawnEntities(); break;
+                case 15: nE.SpawnEntities(); break;
+                case 16: nE.SpawnEntities(); break;
+                case 17: nE.SpawnEntities(); break;
+                case 18: nE.SpawnEntities(); break;
+                case 19: nE.SpawnEntities(); break;
+                case 20: nE.SpawnEntities(); break;
             }
         }
     }

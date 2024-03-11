@@ -1,5 +1,6 @@
 package net.wjka.dnm.EventGen;
 
+import com.mojang.datafixers.types.templates.Check;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.WitherEntity;
@@ -15,6 +16,8 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
+import net.minecraft.world.level.ServerWorldProperties;
+import net.wjka.dnm.DungeonsandMinecraft;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -23,6 +26,13 @@ public class NegativeEffects {
     private int seconds;
     private ServerWorld world;
     private PlayerEntity player;
+    //weather specific
+    ServerWorldProperties properties;
+    boolean isRaining;
+    boolean isThunder;
+    //time specific
+    long time;
+    boolean isDay;
 
 
 
@@ -75,11 +85,7 @@ public class NegativeEffects {
         }
     }
 
-    public void SpawnCage(ServerWorld world, PlayerEntity player){
-        SpawnCage sc = new SpawnCage();
-        sc.GatherPlayerPositionData(world, player);
-    }
-    public void SpawnEntities(ServerWorld world, PlayerEntity player){
+    public void SpawnEntities(){
         //get player coords
         double x = player.getX();
         double y = player.getY();
@@ -142,7 +148,7 @@ public class NegativeEffects {
             case 16: for (int i = 0; i < 4; i++){zombie.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(zombie);} break;
             //creeper horde
             case 17: for (int i = 0; i < 2; i++){creeper.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(creeper);} break;
-            //skeleton horde
+            //skeleton horde //fix
             case 18: for (int i = 0; i < 2; i++){skeleton.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(skeleton);} break;
             //vindikator
             case 19: vindicator.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(vindicator); break;
@@ -150,6 +156,37 @@ public class NegativeEffects {
             case 20: wither.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(wither); break;
         }
     }
+
+    //not working. try to fix this later :c
+//    public void ChangeWeather(){
+//        isThunder = world.isThundering(); //checks if weather is storm
+//        isDay = world.isDay();
+//        DungeonsandMinecraft.LOGGER.info(Boolean.toString(isThunder));
+//        if(isThunder && isDay){
+//            ChangeTime();
+//        }
+//        if(!isThunder){
+//            //world.setWeather(1, -1, false, true); //sets infinite thunder
+//            world.setWeather(1, -1, false, true);
+//        }
+//    }
+
+    public void ChangeTime(){
+        isDay = world.isDay(); //mc func. if its day then it returns true
+        if(isDay){
+            world.setTimeOfDay(14000); //14000 ticks = beginning of night //mc considers 12542 as the first night tick -> for preferences its not dark enough
+        }
+        else { //if its already night then execute weather method
+//            ChangeWeather();
+        }
+
+
+    }
+
+
+
+
+
 
 
 }

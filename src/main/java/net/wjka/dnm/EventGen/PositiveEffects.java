@@ -13,8 +13,6 @@ import net.minecraft.world.World;
 public class PositiveEffects {
     private int DiceNum;
 
-
-
     public PositiveEffects(){
 
     }

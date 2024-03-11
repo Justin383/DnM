@@ -8,6 +8,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import net.wjka.dnm.DungeonsandMinecraft;
 
 public class NegativeDice extends Item {
 
@@ -18,6 +19,8 @@ public class NegativeDice extends Item {
         super(settings);
     }
 
+
+
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
@@ -26,6 +29,10 @@ public class NegativeDice extends Item {
             // Pass serverWorld to the RollDice method
             DiceRoll dR = new DiceRoll("dice_negative",serverWorld, user);
             dR.RollDice();
+        }
+        if(world.isClient){
+            DungeonsandMinecraft.LOGGER.info("hi mum");
+            //execute gwui code hwere
         }
         return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
     }
