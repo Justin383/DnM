@@ -26,7 +26,6 @@ public class VerifyMineable {
     }
 
     public boolean CheckIfRightToolIsInHand() {
-        this.handItem = handItem;
         this.block = minedBlock;
         if (handItem.getItem() instanceof AxeItem && isTaggedWith(AXE_MINEABLE)) {
             return true;
@@ -38,7 +37,7 @@ public class VerifyMineable {
             return true;
         }
         else {
-            return false; //if not then return false
+            return false; //if not then return false //not working as wanted!
         }
 
     }

@@ -26,15 +26,12 @@ public class ModifyingTerrain {
     private ServerWorld world;
     private BlockPos playerPos;
     private PlayerEntity player;
-//    PlayerEntity player = MinecraftClient.getInstance().player;
-
 
     public ModifyingTerrain(ServerWorld pWorld, PlayerEntity pPlayer){
         radius = 8;
         this.player = pPlayer;
         this.world = pWorld;
     }
-
 
 
     public void GatherPlayerPositionData() {
@@ -50,8 +47,7 @@ public class ModifyingTerrain {
                 for (int rY = height; rY <= height + 5; rY++) {
                     for (int rZ = -radius; rZ <= radius; rZ++) {
                         BlockPos targetBlock = new BlockPos(playerPos.getX() + rX, rY, playerPos.getZ() + rZ);
-                        // Use the ServerWorld instance to change the block state
-                        world.setBlockState(targetBlock, Blocks.AIR.getDefaultState(), 3); // Flag 3 needed for client update-
+                        world.setBlockState(targetBlock, Blocks.AIR.getDefaultState(), 3); // Flag 3 needed for client update
                     }
                 }
             }

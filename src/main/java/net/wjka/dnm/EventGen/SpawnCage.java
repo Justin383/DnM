@@ -29,7 +29,7 @@ public class SpawnCage {
     private void ChangeGameMode(ServerWorld world){
         if (player instanceof ServerPlayerEntity) { //check if player exists on server
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player; //get serverplayerentity from player
-            serverPlayer.changeGameMode(GameMode.ADVENTURE); //read from src code //changes gamemode
+            serverPlayer.changeGameMode(GameMode.ADVENTURE); //read from src code //changes gamemode -> implement gamemodechanger on death
         }
     }
 
@@ -58,11 +58,10 @@ public class SpawnCage {
             }
         }
         //clear the middle for cage
-        for (int height = 0; height <= 2; height++){
+        for (int height = 0; height <= 42; height++){
             BlockPos targetBlock = new BlockPos(playerPos.getX() , playerPos.getY() + height, playerPos.getZ());
             serverWorld.setBlockState(targetBlock, Blocks.AIR.getDefaultState(), 3);
         }
-
 
         //spawn anvil
         BlockPos targetBlock = new BlockPos(playerPos.getX() , playerPos.getY() + 40, playerPos.getZ());

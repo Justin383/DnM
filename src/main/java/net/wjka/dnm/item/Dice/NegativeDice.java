@@ -13,12 +13,9 @@ import net.wjka.dnm.DungeonsandMinecraft;
 public class NegativeDice extends Item {
 
 
-
-
     public NegativeDice(Settings settings) {
         super(settings);
     }
-
 
 
     @Override
@@ -32,7 +29,7 @@ public class NegativeDice extends Item {
         }
         if(world.isClient){
             DungeonsandMinecraft.LOGGER.info("hi mum");
-            //execute gwui code hwere
+            //execute gwui code hwere -> move in near future to other class
         }
         return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
     }

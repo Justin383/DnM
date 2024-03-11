@@ -41,25 +41,25 @@ public class CommandClass {
                                             int randomNum = IntegerArgumentType.getInteger(context, "randomNum"); //store first value
                                             int diceNum = IntegerArgumentType.getInteger(context, "diceNum"); //store second value
                                             String type = StringArgumentType.getString(context, "type"); //store third value
-                                            DiceEventGen de = new DiceEventGen(world, player, type, diceNum);
+                                            DiceEventGen de = new DiceEventGen(world, player, type, diceNum); //create obj of Diceeventgen
                                             if(diceNum >= 0 && diceNum <= 20 && randomNum >= 0 && randomNum <= 20) { //check if numbers are in range
                                                 if ("negative".equals(type)) {
                                                     de.NegativeDiceEvent(randomNum); //calls negativeDiceEvent From DecideEventGen, bypassing all random number generators
                                                 } else if ("neutral".equals(type)) {
-                                                    de.NeutralDiceEvent(randomNum);
+                                                    de.NeutralDiceEvent(randomNum); // same but neutral
                                                 } else if ("positive".equals(type)) {
-                                                    de.PositiveDiceEvent(randomNum);
+                                                    de.PositiveDiceEvent(randomNum); //same but positive
                                                 } //DEBUG ONLY
-                                                  else if("time".equals(type)){
+                                                  else if("time".equals(type)){ //TEMPORARY
                                                     NegativeEffects ne = new NegativeEffects(diceNum, world, player);
                                                     ne.ChangeTime();
                                                 } else {
                                                     //throw error of type
-                                                    source.sendError(Text.literal("Type must be one of the following: [negative] [neutral] [positive]"));
+                                                    source.sendError(Text.literal("Type must be one of the following: [negative] [neutral] [positive]")); //throwws error if dicetype isnt correct
                                                     return 0;
                                                 }
                                                 context.getSource().sendFeedback(() -> Text.literal("§l§9RandomNum: §l§f" + diceNum + "§l§8 | §l§4DiceNum: §l§f" + randomNum + "§l§8 | §l§6Type: §l§f" + type), false);
-
+                                                  //gives feedback on what was chosen
                                             }
 
 

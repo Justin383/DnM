@@ -18,20 +18,14 @@ public class DungeonsandMinecraft implements ModInitializer {
 
 
 	@Override
-	public void onInitialize() { //similiar to main();
-		/* This code runs as soon as Minecraft is in a mod-load-ready state.
-		   However, some things (like resources) may still be uninitialized.
-		   Proceed with mild caution.*/
+	public void onInitialize() { //similiar to main(); -> entry point for fabric
 		ModdedItems.InitRegisterItems(); //Registring of all Items will be done via this method!
-
 		MiningListener.register(); //registering the method which handles the identification of blocks being mined
-
-
-		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated, registryAccess) -> {
+		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated, registryAccess) -> { //custom command registration
 			CommandClass.register(dispatcher);
 		});
 
 
-		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("hi mum, i made a fabric mod :3");
 	}
 }

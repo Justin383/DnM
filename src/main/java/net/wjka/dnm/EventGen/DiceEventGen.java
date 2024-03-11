@@ -15,8 +15,6 @@ public class DiceEventGen {
     ServerWorld world;
     PlayerEntity player;
     String type;
-    String DiceType;
-
 
     public DiceEventGen(ServerWorld pWorld, PlayerEntity pPlayer, String pType, int pDiceNum){
         this.world = pWorld;
@@ -49,8 +47,6 @@ public class DiceEventGen {
          return calcrandnum;
 
     }
-
-
 
     //all events that might happen will be listed as methods in here. methods will be implemented in many other classes
 
@@ -146,5 +142,4 @@ public class DiceEventGen {
             }
         }
     }
-
 }

@@ -24,7 +24,8 @@ public class PositiveDice extends Item {
         if (!world.isClient && world instanceof ServerWorld) {
             ServerWorld serverWorld = (ServerWorld)world;
             // Pass serverWorld to the RollDice method
-            //dR.RollDice("dice_positive", serverWorld, user);
+            DiceRoll dR = new DiceRoll("dice_positive",serverWorld, user);
+            dR.RollDice();
         }
         return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
     }
