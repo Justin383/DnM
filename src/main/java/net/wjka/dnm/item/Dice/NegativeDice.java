@@ -44,4 +44,6 @@ public class NegativeDice extends Item {
         return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
     }
 
+
+
 }

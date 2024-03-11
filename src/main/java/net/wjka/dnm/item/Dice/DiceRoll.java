@@ -1,9 +1,14 @@
 package net.wjka.dnm.item.Dice;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.wjka.dnm.EventGen.DiceEventGen;
 import net.wjka.dnm.DungeonsandMinecraft;
+import net.wjka.dnm.GUI.CustomPopupScreen;
+import net.wjka.dnm.NetworkingManager;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -46,13 +51,10 @@ public class DiceRoll {
         } else if (diceNum < 0) {
             diceNum = 0;
         }
-
         deg.DecideEvent(diceNum, type, serverWorld, player); //gives the DiceEventGen the data in order for it to decide what should apply!
-
-        //add popup code here pwease :3
-
-
-
+        //send packet
+        ServerPlayerEntity sp = (ServerPlayerEntity)player; //get spe
+        NetworkingManager.sendDiceNumPacket(sp, diceNum);
         DungeonsandMinecraft.LOGGER.info(type + ": " + diceNum); //Logging for the console...
     }
 }
