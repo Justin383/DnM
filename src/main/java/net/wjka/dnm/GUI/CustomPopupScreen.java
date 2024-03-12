@@ -12,10 +12,10 @@ import net.wjka.dnm.NetworkingManager;
 
 @Environment(value = EnvType.CLIENT) // ------> siehe BookScreen class
 public class CustomPopupScreen extends Screen {
-    private static final int TEXTURE_WIDTH = 192;
-    private static final int TEXTURE_HEIGHT = 192;
+    //private static final int TEXTURE_WIDTH = 192;
+    //private static final int TEXTURE_HEIGHT = 192;
 
-    private int diceNum;
+    private final int diceNum;
 
     public CustomPopupScreen(Text title) {
         super(title);
@@ -70,5 +70,10 @@ public class CustomPopupScreen extends Screen {
 
 
         // Additional rendering code for displaying diceNum can go here
+    }
+
+    @Override
+    public boolean shouldPause() {
+        return false;               // ---> return true to pause
     }
 }
