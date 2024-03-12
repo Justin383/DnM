@@ -104,6 +104,10 @@ public class NegativeEffects {
 //        }
 //    }
 
+    public void ModifyDealtDamage(){
+
+    }
+
     public void ChangeTime(){
         isDay = world.isDay(); //mc func. if its day then it returns true
         if(isDay){

@@ -70,7 +70,7 @@ public class StatusEffectsList {
     //12-23 positive
     public StatusEffectInstance getStatusEffect(int num){
         return instance[num];
-    }
+    } //getter for the array :3
 }
 
 

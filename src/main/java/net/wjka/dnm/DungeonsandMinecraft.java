@@ -21,6 +21,7 @@ public class DungeonsandMinecraft implements ModInitializer {
 	public void onInitialize() { //similiar to main(); -> entry point for fabric
 		ModdedItems.InitRegisterItems(); //Registring of all Items will be done via this method!
 		MiningListener.register(); //registering the method which handles the identification of blocks being mined
+		HitEntityListener.register(); //registering the method which handles the identification of entities being hit
 		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated, registryAccess) -> { //custom command registration
 			CommandClass.register(dispatcher);
 		});

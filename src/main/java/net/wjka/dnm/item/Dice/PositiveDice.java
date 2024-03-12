@@ -27,6 +27,7 @@ public class PositiveDice extends Item {
             DiceRoll dR = new DiceRoll("dice_positive",serverWorld, user);
             dR.RollDice();
         }
+        itemStack.decrement(1); // reduces the stacksize by one -> if 0 then item gets removed
         return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
     }
 }

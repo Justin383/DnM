@@ -22,7 +22,7 @@ public class VerifyMineable {
 
     //create a boolean to check if block is in the Mineable with tool category
     public boolean isTaggedWith(TagKey<Block> tag) {
-        return block.getRegistryEntry().isIn(tag);
+        return block.getRegistryEntry().isIn(tag); //-> Deprecated function, but still wowks :3
     }
 
     public boolean CheckIfRightToolIsInHand() {

@@ -31,6 +31,7 @@ public class NegativeDice extends Item {
             DungeonsandMinecraft.LOGGER.info("hi mum");
             //execute gwui code hwere -> move in near future to other class
         }
+        itemStack.decrement(1); // reduces the stacksize by one -> if 0 then item gets removed
         return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
     }
 }
