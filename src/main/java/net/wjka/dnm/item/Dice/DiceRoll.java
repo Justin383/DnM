@@ -29,12 +29,11 @@ public class DiceRoll {
     public void RollDice(){
         this.type = type;
         switch(type){
-            case "dice_negative": diceNum = ThreadLocalRandom.current().nextInt( -5, 20 + 1); break;
-            case "dice_neutral": diceNum = ThreadLocalRandom.current().nextInt( 0, 20 + 1); break;
-            case "dice_positive": diceNum = ThreadLocalRandom.current().nextInt( 0, 25 + 1); break;
-            case "normal_block", "m_block": if (hasRightTool){ diceNum = ThreadLocalRandom.current().nextInt(0, 20 + 1); } break;
-            case "f_entity": /*code*/ break; //do
-            case "uf_entity": /*code*/ break; //do
+            case "dice_negative": diceNum = ThreadLocalRandom.current().nextInt( -5, 20 + 1); break; //call DisruptingDiceRoll
+            case "dice_neutral": diceNum = ThreadLocalRandom.current().nextInt( 0, 20 + 1); break; //call DisruptingDiceRoll
+            case "dice_positive": diceNum = ThreadLocalRandom.current().nextInt( 0, 25 + 1); break; //call DisruptingDiceRoll
+            case "normal_block", "m_block": if (hasRightTool){ diceNum = ThreadLocalRandom.current().nextInt(0, 20 + 1); } break; //call SilentDiceRoll
+            case "e_hit": diceNum = ThreadLocalRandom.current().nextInt(0, 20 + 1); break; //call SilentDiceRoll
             default: DungeonsandMinecraft.LOGGER.info("ERROR: UNKNOWN DICE PARAMETER"); break;
         }
 
@@ -47,6 +46,6 @@ public class DiceRoll {
         DiceEventGen deg = new DiceEventGen(world, player, type, diceNum);
         deg.DecideEvent(); //gives the DiceEventGen the data in order for it to decide what should apply!
 
-        DungeonsandMinecraft.LOGGER.info(type + ": " + String.valueOf(diceNum)); //Logging for the console...
+        DungeonsandMinecraft.LOGGER.info(type + ": " + String.valueOf(diceNum)); //Logging for the console... //remove before FINAL release
     }
 }

@@ -1,35 +1,62 @@
 package net.wjka.dnm;
 
-import net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.world.World;
+import net.wjka.dnm.EventGen.DiceEventGen;
+import net.wjka.dnm.item.Dice.DiceRoll;
+import org.apache.logging.log4j.core.jmx.Server;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 public class HitEntityListener {
 
     float damage;
+    private AtomicReference<Float> modifiedDamage = new AtomicReference<>(1f);
+    AtomicReference<Float> damageBase = new AtomicReference<>(1f); // need atomicreference for method below
 
 
     //fabric doesnt have a built in function for listening to hits :ccc
     public static void register(){ //registers the hit listener
         AttackEntityCallback.EVENT.register(((player, world, hand, entity, hitResult) -> {
             if(!world.isClient() && player instanceof PlayerEntity){ //check if player exists
-                DungeonsandMinecraft.LOGGER.info("Entity " + entity + " has been hit");
                 ItemStack stack = player.getStackInHand(hand); // Get the item in the players hand
-                float damageBase = 1f; // standart damage without weapons
-
-                if (!stack.isEmpty() && stack.getItem() instanceof ToolItem) {
-                    ToolItem toolItem = (ToolItem) stack.getItem();
-                    damageBase = toolItem.getMaterial().getAttackDamage();
-                    DungeonsandMinecraft.LOGGER.info("damage: " + damageBase);
-                }
+                HitEntityListener Hel = new HitEntityListener();
+                Hel.ModifyDamage(stack, world, player);
             }
             return ActionResult.PASS; //if successfull return PASS
         }));
+    }
+
+    private void ModifyDamage(ItemStack stack, World world, PlayerEntity player){
+        if (!stack.isEmpty() && stack.getItem() instanceof ToolItem) { //checks if player has tool in hand :3
+            stack.getAttributeModifiers(EquipmentSlot.MAINHAND).forEach((attribute, modifier) -> {
+                if (attribute == EntityAttributes.GENERIC_ATTACK_DAMAGE) {
+                    // Found the attack damage modifier, add its value to causedDamage
+                    damageBase.updateAndGet(v -> v + (float)modifier.getValue()); //grabs the damage val wowks :3
+                }
+            });
+            //roll dice from here
+            ServerWorld sWorld = (ServerWorld)world; //grab serverworld from current world
+            DiceRoll dR = new DiceRoll("e_hit", sWorld, player);
+            dR.RollDice(); //call diceroll
+            //then modify damage made :3
+            //here
+        }
+        DungeonsandMinecraft.LOGGER.info("damage: " + damageBase); //TEMP DEBUG PRINT -> prints out damage made
+    }
+
+
+
+    public void ModifyDealtDamage(float modifier){
+
     }
 
 

@@ -4,6 +4,7 @@ import net.minecraft.entity.passive.PandaEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.wjka.dnm.DungeonsandMinecraft;
+import net.wjka.dnm.HitEntityListener;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -34,6 +35,14 @@ public class DiceEventGen {
         }
         else if (type == "dice_negative") {
             NegativeDiceEvent(RandomNumber);
+        }
+        else if(type == "e_hit"){
+            //future method to decide how much damage should be dealt
+            float damageNum = ((float)DiceNum) / 10; //conv dicenum to float and div it by 10 to get 0.0-2.0 values
+            HitEntityListener hel = new HitEntityListener(); //create obj of hitentitylistener
+            hel.ModifyDealtDamage(damageNum); //call modifydealtdamage
+            //
+            //
         }
         else{
             DungeonsandMinecraft.LOGGER.info("ERROR, WRONG TYPE OF DICE!");
