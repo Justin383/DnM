@@ -3,7 +3,8 @@
 	"package": "net.wjka.dnm.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+		"PlayerDeathMixin",
+		"EntityHitMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

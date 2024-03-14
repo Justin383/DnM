@@ -1,13 +1,25 @@
 {
   "mappings": {
+    "net/wjka/dnm/mixin/EntityHitMixin": {
+      "attack": "Lnet/minecraft/class_3222;method_7324(Lnet/minecraft/class_1297;)V"
+    },
     "net/wjka/dnm/mixin/ExampleMixin": {
       "loadWorld": "Lnet/minecraft/server/MinecraftServer;method_3735()V"
+    },
+    "net/wjka/dnm/mixin/PlayerDeathMixin": {
+      "onDeath": "Lnet/minecraft/class_3222;method_6078(Lnet/minecraft/class_1282;)V"
     }
   },
   "data": {
     "named:intermediary": {
+      "net/wjka/dnm/mixin/EntityHitMixin": {
+        "attack": "Lnet/minecraft/class_3222;method_7324(Lnet/minecraft/class_1297;)V"
+      },
       "net/wjka/dnm/mixin/ExampleMixin": {
         "loadWorld": "Lnet/minecraft/server/MinecraftServer;method_3735()V"
+      },
+      "net/wjka/dnm/mixin/PlayerDeathMixin": {
+        "onDeath": "Lnet/minecraft/class_3222;method_6078(Lnet/minecraft/class_1282;)V"
       }
     }
   }

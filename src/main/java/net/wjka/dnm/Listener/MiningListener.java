@@ -1,4 +1,4 @@
-package net.wjka.dnm;
+package net.wjka.dnm.Listener;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback; //fabric api import, which gives us the ability to listen for specific minecraft events...
 //better than creating a linetracebychannel func. >:c
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
@@ -7,13 +7,14 @@ import net.minecraft.client.realms.dto.PlayerActivities;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
+import net.wjka.dnm.DungeonsandMinecraft;
 import net.wjka.dnm.EventGen.VerifyMineable;
 
 public class MiningListener {
 
 
     public static void register() {
-        AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
+        PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, entity) -> {
             if (!world.isClient) {
                 ItemStack heldItem = player.getMainHandStack(); //detect the item player is holding
                 Block blockBeingMined = world.getBlockState(pos).getBlock(); //detect the block being mined
@@ -24,7 +25,7 @@ public class MiningListener {
                 vm.CheckIfMineable();
 
             }
-            return ActionResult.PASS; // Return PASS to allow other events to process
+            // Return PASS to allow other events to process
         });
     }
 }
