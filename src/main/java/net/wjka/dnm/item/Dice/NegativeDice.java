@@ -1,7 +1,6 @@
 package net.wjka.dnm.item.Dice;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,10 +23,6 @@ public class NegativeDice extends Item {
         super(settings);
     }
 
-    @Override
-    public int getMaxUseTime(ItemStack stack) {
-        return 1;
-    }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {

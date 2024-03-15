@@ -1,13 +1,10 @@
 package net.wjka.dnm.item.Dice;
 
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
-import net.wjka.dnm.EventGen.DiceEventGen;
 import net.wjka.dnm.DungeonsandMinecraft;
-import net.wjka.dnm.GUI.CustomPopupScreen;
+import net.wjka.dnm.EventGen.DiceEventGen;
 import net.wjka.dnm.NetworkingManager;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -55,6 +52,7 @@ public class DiceRoll {
         //send packet
         ServerPlayerEntity sp = (ServerPlayerEntity)player; //get spe
         NetworkingManager.sendDiceNumPacket(sp, diceNum);
+        NetworkingManager.sendDiceTypePacket(sp, type);
         DungeonsandMinecraft.LOGGER.info(type + ": " + diceNum); //Logging for the console...
     }
 }

@@ -10,15 +10,26 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.wjka.dnm.GUI.CustomPopupScreen;
 
+import java.util.Objects;
+
 
 public class NetworkingManager{
     private static int diceNum;
+    private static String diceType;
     public static final Identifier DICE_NUM_PACKET_ID = new Identifier(DungeonsandMinecraft.MOD_ID, "highlight_block");
+    public static final Identifier DICE_TYPE_PACKET_ID = new Identifier(DungeonsandMinecraft.MOD_ID, "highlight_block");
     public static void sendDiceNumPacket(ServerPlayerEntity player, int diceNum) {
         PacketByteBuf buf = PacketByteBufs.create();
         buf.writeInt(diceNum); //stores the value in the buffer
 
         ServerPlayNetworking.send(player, DICE_NUM_PACKET_ID, buf); //sends the packet(buffer)
+    }
+
+    public static void sendDiceTypePacket(ServerPlayerEntity player, String diceType) {
+        PacketByteBuf buf = PacketByteBufs.create();
+        buf.writeString(Objects.requireNonNullElse(diceType, "")); // inteliJ said to replace, so I did
+
+        ServerPlayNetworking.send(player, DICE_TYPE_PACKET_ID, buf);
     }
 
     public static void registerPacketHandlers() {
@@ -35,10 +46,25 @@ public class NetworkingManager{
                     }
                 });
             });
+            ClientPlayNetworking.registerGlobalReceiver(DICE_TYPE_PACKET_ID, (client, handler, buf, responseSender) -> {
+                String packetType = buf.readString();
+                client.execute(() -> {
+                    diceType = packetType;
+
+                    if (client.currentScreen instanceof CustomPopupScreen){
+                        ((CustomPopupScreen) client.currentScreen).updateDiceType();
+                    }
+                });
+            });
         }
     }
 
+
     public static int getDiceNum(){
         return diceNum;
+    }
+
+    public static String getDiceType() {
+        return diceType;
     }
 }
