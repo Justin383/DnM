@@ -3,7 +3,6 @@ package net.wjka.dnm;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.wjka.dnm.Listener.MiningListener;
 import net.wjka.dnm.item.ModdedItems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,11 +19,10 @@ public class DungeonsandMinecraft implements ModInitializer {
 	@Override
 	public void onInitialize() { //similiar to main(); -> entry point for fabric
 		ModdedItems.InitRegisterItems(); //Registring of all Items will be done via this method!
-		MiningListener.register(); //registering the method which handles the identification of blocks being mined
-//		HitEntityListener.register(); //registering the method which handles the identification of entities being hit
 		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated, registryAccess) -> { //custom command registration
 			CommandClass.register(dispatcher);
 		});
+		//register another command here too
 
 
 		LOGGER.info("hi mum, i made a fabric mod :3");

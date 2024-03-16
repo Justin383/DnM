@@ -1,10 +1,16 @@
 {
   "mappings": {
+    "net/wjka/dnm/mixin/BlockBreakMixin": {
+      "tryBreakBlock": "Lnet/minecraft/class_3225;method_14266(Lnet/minecraft/class_2338;)Z"
+    },
+    "net/wjka/dnm/mixin/BlockBreakMixin$ServerPlayerInteractionManagerAccessor": {
+      "player": "field_14008:Lnet/minecraft/class_3222;"
+    },
     "net/wjka/dnm/mixin/EntityHitMixin": {
       "attack": "Lnet/minecraft/class_3222;method_7324(Lnet/minecraft/class_1297;)V"
     },
-    "net/wjka/dnm/mixin/ExampleMixin": {
-      "loadWorld": "Lnet/minecraft/server/MinecraftServer;method_3735()V"
+    "net/wjka/dnm/mixin/ItemDropMixin": {
+      "dropStack(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/item/ItemStack;)V": "Lnet/minecraft/class_2248;method_9577(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V"
     },
     "net/wjka/dnm/mixin/PlayerDeathMixin": {
       "onDeath": "Lnet/minecraft/class_3222;method_6078(Lnet/minecraft/class_1282;)V"
@@ -12,11 +18,17 @@
   },
   "data": {
     "named:intermediary": {
+      "net/wjka/dnm/mixin/BlockBreakMixin": {
+        "tryBreakBlock": "Lnet/minecraft/class_3225;method_14266(Lnet/minecraft/class_2338;)Z"
+      },
+      "net/wjka/dnm/mixin/BlockBreakMixin$ServerPlayerInteractionManagerAccessor": {
+        "player": "field_14008:Lnet/minecraft/class_3222;"
+      },
       "net/wjka/dnm/mixin/EntityHitMixin": {
         "attack": "Lnet/minecraft/class_3222;method_7324(Lnet/minecraft/class_1297;)V"
       },
-      "net/wjka/dnm/mixin/ExampleMixin": {
-        "loadWorld": "Lnet/minecraft/server/MinecraftServer;method_3735()V"
+      "net/wjka/dnm/mixin/ItemDropMixin": {
+        "dropStack(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/item/ItemStack;)V": "Lnet/minecraft/class_2248;method_9577(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V"
       },
       "net/wjka/dnm/mixin/PlayerDeathMixin": {
         "onDeath": "Lnet/minecraft/class_3222;method_6078(Lnet/minecraft/class_1282;)V"

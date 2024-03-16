@@ -8,12 +8,9 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.wjka.dnm.EventGen.DiceEventGen;
-import net.wjka.dnm.EventGen.NegativeEffects;
+import net.wjka.dnm.EventGen.Effects.NegativeEffects;
+import net.wjka.dnm.EventGen.Effects.NeutralEffects;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 import static net.minecraft.server.command.CommandManager.argument;
@@ -53,6 +50,9 @@ public class CommandClass {
                                                   else if("time".equals(type)){ //TEMPORARY
                                                     NegativeEffects ne = new NegativeEffects(diceNum, world, player);
                                                     ne.ChangeTime();
+                                                } else if("w".equals(type)){
+                                                    NeutralEffects neutral = new NeutralEffects(diceNum, world, player);
+                                                    neutral.ChangeWeather();
                                                 } else {
                                                     //throw error of type
                                                     source.sendError(Text.literal("Type must be one of the following: [negative] [neutral] [positive]")); //throwws error if dicetype isnt correct
@@ -61,8 +61,6 @@ public class CommandClass {
                                                 context.getSource().sendFeedback(() -> Text.literal("§l§9RandomNum: §l§f" + diceNum + "§l§8 | §l§4DiceNum: §l§f" + randomNum + "§l§8 | §l§6Type: §l§f" + type), false);
                                                   //gives feedback on what was chosen
                                             }
-
-
                                             else {
                                                     source.sendError(Text.literal("diceNum and randNum must be in range: 0-20!"));
                                             }

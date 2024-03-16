@@ -1,12 +1,12 @@
-package net.wjka.dnm.EventGen;
+package net.wjka.dnm.EventGen.Effects;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.TntEntity;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.mob.*;
-import net.minecraft.entity.passive.BeeEntity;
-import net.minecraft.entity.passive.WolfEntity;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -123,6 +123,90 @@ public class SpawnEntities {
         VindicatorEntity vindicator = new VindicatorEntity(EntityType.VINDICATOR, world);
         vindicator.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F); world.spawnEntity(vindicator);
     }
+
+    // Spawn a Sheep
+    public void spawnSheep() {
+        SheepEntity sheep = new SheepEntity(EntityType.SHEEP, world);
+        sheep.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(sheep);
+    }
+
+    // Spawn a Pig
+    public void spawnPig() {
+        PigEntity pig = new PigEntity(EntityType.PIG, world);
+        pig.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(pig);
+    }
+
+    // Spawn a Cow
+    public void spawnCow() {
+        CowEntity cow = new CowEntity(EntityType.COW, world);
+        cow.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(cow);
+    }
+
+    // Spawn a Villager
+    public void spawnVillager() {
+        VillagerEntity villager = new VillagerEntity(EntityType.VILLAGER, world);
+        villager.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(villager);
+    }
+
+    // Spawn an Axolotl
+    public void spawnAxolotl() {
+        AxolotlEntity axolotl = new AxolotlEntity(EntityType.AXOLOTL, world);
+        axolotl.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(axolotl);
+    }
+
+    // Spawn a Squid
+    public void spawnSquid() {
+        SquidEntity squid = new SquidEntity(EntityType.SQUID, world);
+        squid.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(squid);
+    }
+
+    // Spawn a Glow Squid
+    public void spawnGlowSquid() {
+        GlowSquidEntity glowSquid = new GlowSquidEntity(EntityType.GLOW_SQUID, world);
+        glowSquid.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(glowSquid);
+    }
+
+    // Spawn a Frog
+    public void spawnFrog() {
+        FrogEntity frog = new FrogEntity(EntityType.FROG, world);
+        frog.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(frog);
+    }
+
+    // Spawn a Bee
+    public void spawnFriendlyBee() {
+        BeeEntity bee = new BeeEntity(EntityType.BEE, world);
+        bee.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(bee);
+    }
+
+    // Spawn a Wolf
+    public void spawnFriendlyWolf() {
+        WolfEntity wolf = new WolfEntity(EntityType.WOLF, world);
+        wolf.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(wolf);
+    }
+
+    public void spawnChicken(){
+        ChickenEntity chicken = new ChickenEntity(EntityType.CHICKEN, world);
+        chicken.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(chicken);
+    }
+
+    public void spawnPrimedTNT(){
+        TntEntity tnt = new TntEntity(EntityType.TNT, world);
+        tnt.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(tnt);
+    }
+
+
 
 
 

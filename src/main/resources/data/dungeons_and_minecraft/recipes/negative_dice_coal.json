@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#C#",
+        "CRC",
+        "#C#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:cobblestone"
+        },
+        "C": {
+            "item": "minecraft:coal"
+        },
+        "R": {
+            "item": "minecraft:redstone"
+        }
+    },
+    "result": {
+        "item": "dungeons_and_minecraft:negative_dice",
+        "count": 5
+    }
+}

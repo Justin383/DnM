@@ -15,7 +15,7 @@ public class ModdedItemsDataGen extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
-        //leave empty for now
+        //DONT USER THIS FOR OUR PROJECT
 
     }
 }

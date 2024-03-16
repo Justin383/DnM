@@ -21,7 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class PlayerDeathMixin {
 
     @Unique
-    public String mIdentifier = "[MIXINS_DnM]";
     public DamageSource src;
 
     @Inject(at = @At("HEAD"), method = "onDeath")
@@ -32,16 +31,10 @@ public class PlayerDeathMixin {
         ServerPlayerEntity player = (ServerPlayerEntity) (Object) this; // cursed, but get the serverplayerentity from the object which was called within this mixin [in this case serverplayerentity]
         ServerWorld world = player.getServerWorld(); //get serverworld
         PlayerEntity pEntity = (PlayerEntity)player; //get playerentity from serverplayerentity
-        DungeonsandMinecraft.LOGGER.info("A player " + player.getName() + " presented their lack of skill"); //outputs debug to cons EVEN with genderneutral terms :3
         //much conversion :o
         SpawnCage sc = new SpawnCage(world, pEntity); //create obj
         sc.ChangeToSurvival(player); //cast it with serverplayerentity
     }
-
-
-
-
-
 }
 
 

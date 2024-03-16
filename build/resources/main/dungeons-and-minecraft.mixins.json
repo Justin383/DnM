@@ -3,8 +3,11 @@
 	"package": "net.wjka.dnm.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
+		"BlockBreakMixin",
+		"BlockBreakMixin$ServerPlayerInteractionManagerAccessor",
+		"EntityHitMixin",
 		"PlayerDeathMixin",
-		"EntityHitMixin"
+		"ItemDropMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

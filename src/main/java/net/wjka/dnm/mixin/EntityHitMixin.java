@@ -19,19 +19,17 @@ public class EntityHitMixin {
 
     @Inject(at = @At("HEAD"), method = "attack", cancellable = true)
     public void OnExecute(Entity target, CallbackInfo ci){
-        DungeonsandMinecraft.LOGGER.info("uwu has damawged a entitwy :c");
         ServerPlayerEntity sPlayer = (ServerPlayerEntity) (Object) this; //grab serverplayerentity
         PlayerEntity player = (PlayerEntity)sPlayer; //grab playerentity
         ServerWorld world = sPlayer.getServerWorld(); //grab serverworld
-        PlayerActions pA = new PlayerActions(player, world); //create obj
         ItemStack stack = sPlayer.getStackInHand(Hand.MAIN_HAND); //gets itemstack item from MAIN hand
-        pA.CalcDamageCaused(stack, world, player, target); //create obj
+        PlayerActions pA = new PlayerActions(player, world); //create obj
+        pA.CalcDamageCaused(stack); //create obj
         float modifiedDamage = pA.getDamageDealt(); //get damage
         DamageSource src = target.getDamageSources().playerAttack(player); //my brain died for this code
         //-> grab the damagesrc. player is in this case the damage source. DamageSource.PARAM didnt worked!
         //--> we get entity as the target, o we read the damagesources the entity can get and get the playerattack src
         //---> in this case we give the player over and we get the Damage src
-        DungeonsandMinecraft.LOGGER.info("modified Damage : " + modifiedDamage); //DEBUG
         target.damage(src, modifiedDamage); //applies new damage
         ci.cancel(); //cancel vanilla damage
     }

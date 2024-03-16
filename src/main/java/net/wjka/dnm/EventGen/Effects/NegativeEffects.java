@@ -1,24 +1,9 @@
-package net.wjka.dnm.EventGen;
+package net.wjka.dnm.EventGen.Effects;
 
-import com.mojang.datafixers.types.templates.Check;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.boss.WitherEntity;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.*;
-import net.minecraft.entity.passive.BeeEntity;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.world.World;
 import net.minecraft.world.level.ServerWorldProperties;
-import net.wjka.dnm.DungeonsandMinecraft;
-import net.wjka.dnm.EventGen.Effects.StatusEffectsList;
+import net.wjka.dnm.PlayerActions;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -30,11 +15,13 @@ public class NegativeEffects {
     ServerWorldProperties properties;
     boolean isClear;
     boolean isDay;
+    public PlayerActions playerActions;
 
     public NegativeEffects(int pDiceNum, ServerWorld pWorld, PlayerEntity pPlayer){
         this.DiceNum = pDiceNum;
         this.world = pWorld;
         this.player = pPlayer;
+        this.playerActions = new PlayerActions(player, world);
 
     }
 
@@ -66,7 +53,7 @@ public class NegativeEffects {
     public void SpawnEntities(){
         SpawnEntities sE = new SpawnEntities(player, world);
         switch(DiceNum){
-            case 0: sE.spawnZombie(); break;
+            case 0: sE.spawnPrimedTNT(); break;
             case 1: sE.spawnSkeleton(); break;
             case 2: sE.spawnSlime(); break;
             case 3: sE.spawnCreeper(); break;
@@ -79,39 +66,35 @@ public class NegativeEffects {
             case 10: sE.spawnEnderDragon(); break;
             case 11: for (int i = 0; i < 3; i++){sE.spawnBees();} break;
             case 12: sE.spawnBlaze(); break;
-            case 13: sE.spawnEnderman(); break;
+            case 13: sE.spawnPrimedTNT(); break;
             case 14: sE.spawnWarden(); break;
             case 15: for (int i = 0; i < 2; i++){sE.spawnPhantom();} break;
             case 16: for (int i = 0; i < 4; i++){sE.spawnZombie();} break;
             case 17: for (int i = 0; i < 2; i++){sE.spawnCreeper();} break;
-            case 18: for (int i = 0; i < 2; i++){sE.spawnSkeleton();} break;
+            case 18: for (int i = 0; i < 5; i++){sE.spawnPrimedTNT();} break;
             case 19: sE.spawnVindicator(); break;
             case 20: sE.spawnWither(); break;
         }
     }
 
-    //not working. try to fix this later :c
-//    public void ChangeWeather(){
-//        isThunder = world.isThundering(); //checks if weather is storm
-//        isDay = world.isDay();
-//        DungeonsandMinecraft.LOGGER.info(Boolean.toString(isThunder));
-//        if(isThunder && isDay){
-//            ChangeTime();
-//        }
-//        if(!isThunder){
-//            //world.setWeather(1, -1, false, true); //sets infinite thunder
-//            world.setWeather(1, -1, false, true);
-//        }
-//    }
-
-    public void ModifyDealtDamage(){
-
+    public void ChangeWeather() {
+        boolean weatherChanged = playerActions.getWeatherChangedToggle();
+        if(weatherChanged){
+            world.setWeather(10, 3200, true, false);
+        }
+        else {
+            ChangeTime();
+        }
     }
 
     public void ChangeTime(){
-        isDay = world.isDay(); //mc func. if its day then it returns true
-        if(isDay){
+        boolean timeChanged = playerActions.getTimeChangedToggle();
+        if(timeChanged){
             world.setTimeOfDay(14000); //14000 ticks = beginning of night //mc considers 12542 as the first night tick -> for preferences its not dark enough
+
+        }
+        else {
+            ChangeWeather();
         }
     }
 }
