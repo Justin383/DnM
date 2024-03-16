@@ -1,1 +1,2 @@
 v1	named	intermediary
+METHOD	net/wjka/dnm/mixin/ModelLoaderMixin	(Lnet/minecraft/client/util/ModelIdentifier;)V	addModel	method_4727
