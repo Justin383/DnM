@@ -1,0 +1,61 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+skinparam style strictuml
+title UML-Sequenzdiagramm presents: \n __"Chunk be gone"__
+
+actor Player
+participant Minecraft
+participant NegativeDice
+participant DiceRoll
+participant DiceEventGen
+participant ModifyingTerrain
+
+activate Minecraft
+
+Player -> Minecraft: rightClick
+note left: Spieler drückt mit der rechten Maustaste...
+
+Minecraft -> NegativeDice: TypedActionResult<ItemStack> use(world, user, hand)
+
+note left: ...gefolgt von rightClick() Funktion \nfür einen negativen Würfel.
+activate NegativeDice
+
+
+NegativeDice -> DiceRoll: RollDice("negative")
+activate DiceRoll
+note left: Diese Methode übersetzt unseren sekundären Klick,\nauf eine Weise, die Minecraft verstehen kann.\nDas Spiel weiß bereits, welcher Gegenstand \nbenutzt oder in der Hand gehalten wird.
+
+
+
+DiceRoll -> DiceEventGen:  DecideEvent(2, "negative")
+activate DiceEventGen
+note left: Die DiceRoll-Klasse entscheidet, welche Zahl vom Spieler "gewürfelt" wurde, \nabhängig von einem bestimmten Würfel. RollDice() gibt Informationen mit einer Zahl \nund einem Würfelnamen zur nächsten Sequenz.
+
+ DiceEventGen -> ModifyingTerrain: NegativeDiceEvent(serverWorld, player)
+ activate ModifyingTerrain
+
+alt randomNumber == 2
+    ModifyingTerrain -> Minecraft: RemoveBlocks(world, serverWorld, playerPos)
+    activate Minecraft
+    ModifyingTerrain <-- Minecraft
+    deactivate Minecraft
+    ModifyingTerrain --> DiceEventGen
+    deactivate ModifyingTerrain
+    note left: Wenn die zufällig generierte Zahl 2 ist, wird der Chunk \n/*oder vielmehr der ausgewählte Bereich*/ \nmit der RemoveBlocks() Funktion \ngelöscht und dann in unserer Minecraft Welt aktualisiert.
+
+else randomNumber
+    DiceEventGen -> Minecraft: DecideEvent(pDiceNum, "negative")
+    activate Minecraft
+    DiceEventGen <-- Minecraft
+    deactivate Minecraft
+    note left: Jede andere Zufallszahl (pDiceNum) bedeutet, \ndass ein anderes Ereignis mit den negativen Würfeln "gewürfelt" wird.
+    DiceEventGen --> DiceRoll
+    deactivate DiceEventGen
+    DiceRoll --> NegativeDice
+    deactivate DiceRoll
+    NegativeDice --> Minecraft
+    deactivate NegativeDice
+end
+
+@enduml

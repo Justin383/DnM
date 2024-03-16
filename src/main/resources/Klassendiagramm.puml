@@ -1,25 +1,32 @@
 @startuml
 skinparam classAttributeIconSize 0
+skinparam groupInheritance 1
+
 class DiceRoll {
 + diceNum : Int
+==
 + RollDice(type: String): void
 }
 
 abstract class Item <<abstract>> {
+==
 + {abstract} TypedActionResult<ItemStack> use(world: World, user: PlayerEntity, hand: Hand) <<abstract>>
 }
 
 class NegativeDice {
+==
 + NegativeDice(settings: Settings) <<constructor>>
 + {abstract} TypedActionResult<ItemStack> use(world: World, user: PlayerEntity, hand: Hand)
 }
 
 class PositiveDice {
+==
 + PositiveDice(settings: Settings) <<constructor>>
 + {abstract} TypedActionResult<ItemStack> use(world: World, user: PlayerEntity, hand: Hand)
 }
 
 class NeutralDice {
+==
 + NegativeDice(settings: Settings) <<constructor>>
 + {abstract} TypedActionResult<ItemStack> use(world: World, user: PlayerEntity, hand: Hand)
 
@@ -29,37 +36,96 @@ class ModdedItems {
 + {field} {static} NEUTRALDICE: Item = registerItems("neutral_dice", new NeutralDice(new FabricItemSettings())) {readOnly}
 + {field} {static} NEGATIVEDICE: Item = registerItems("neutral_dice", new NeutralDice(new FabricItemSettings())) {readOnly}
 + {field} {static} POSITIVEDICE: Item = registerItems("neutral_dice", new NeutralDice(new FabricItemSettings())) {readOnly}
+==
 - {static} registerItems(name: String, item: Item): Item
 - {static} addItemsToCreativeInv(entries: FabricItemGroupEntries): void
 + {static} InitRegisterItems(): void
 }
 
 interface ModInitializer <<interface>> {
+==
 + onInitialize(): void
 }
 
 class DungeonsandMinecraft {
 + {field} {static} MOD_ID: String = "dungeons_and_minecraft"
 + {field} {static} LOGGER: Logger = LoggerFactory.getLogger(MOD_ID)
+==
 + onInitialize(): void
 }
 
 interface DataGeneratorEntrypoint <<interface>> {
+==
 + onInitializeDataGenerator(fabricDataGenerator: FabricDataGenerator): void
 }
 
 class DungeonsandMinecraftDataGenerator {
+==
 + onInitializeDataGenerator(fabricDataGenerator: FabricDataGenerator): void
 }
 
-Item "0..*" <|-- "0..*" NegativeDice
-Item "0..*     " <|-- "0..*" PositiveDice
-Item "0..*" <|-- "0..*      " NeutralDice
-Item "0..*" <--> " 0..*" ModdedItems
+class ModifyingTerrain {
+- {field} playerX: Int, playerY: Int, playerZ: Int
+- {field} radius: Int
+- {field} rX: Int, rY: Int, rZ: Int
+{field} player: PlayerEntity
+==
++ ModifyingTerrain() <<constructor>>
++ GatherPlayerPositionData(): void
+- GatherAreaData(): void
+- GenerateBlockArena(playerX: Int, playerY: Int, playerZ: Int, radius: Int): BlockBox
+- RemoveBlocks(world: World, playerPos: BlockPos): void
+}
 
-DiceRoll <-- Item
+class DiceEventGen {
+{field} DiceNum: Int
+{field} DiceType: String
+==
++ DecideEvent(pDiceNum: Int, pDiceType: String): void
+- NegativeDiceEvent(): void
+- NeutralDiceEvent(): void
+- PositiveDiceEvent(): void
+}
+
+Item "0..*               "              <|-- "0..*"         NegativeDice
+Item "0..*  "                           <|-- "0..*"         PositiveDice
+Item "                       0..*"      <|-- "0..*        " NeutralDice
+
+Item "0..*" <-right-> " 0..*" ModdedItems
+
+DiceRoll "1  " <-- "0..*" Item
 
 DungeonsandMinecraft "1  " ..|> "1  " ModInitializer
 
 DungeonsandMinecraftDataGenerator "1  " ..|> "1  " DataGeneratorEntrypoint
+
+DiceEventGen "1 " <--> "1 " DiceRoll
+
+DiceEventGen "1   " --> "1 " ModifyingTerrain
+
+class DiceRoll
+note left: Diese Klasse erzeugt \neine Zufallszahl zwischen 0-20.
+
+class Item
+note left: Diese Klasse ist eine abstrakte Klasse, \ndie direkt aus Minecraft stammt.
+
+note bottom of PositiveDice: Dies ist unsere benutzerdefinierte Würfel Klasse, \ndie unsere die Hauptfunktion unseres Spiels darstellt. \nSie erben die Attribute und Funktionen von Minecraft-Items.
+
+class ModdedItems
+note bottom: Diese Klasse registriert unsere \nbenutzerdefinierten Items als Minecraft-Items.
+
+interface ModInitializer
+note left: Dies ist eine funktionale Schnittstelle. \nEs ist ein Teil von Fabric.
+
+class DungeonsandMinecraft
+note left: Dieser Logger wird verwendet, um Text in die Konsole \nund die Protokolldatei zu schreiben. Es läuft, sobald Minecraft \nin einem mod-load-ready Zustand ist.
+
+interface DataGeneratorEntrypoint
+note bottom: Es ist ein Einstiegspunkt \nfür die Datengenerierung.
+
+class ModifyingTerrain
+note left: Die Aufgabe dieser Klasse ist es, die Minecraft-Welt zu verändern. \nIm Moment löscht sie ein ganzes Stück bei der Verwendung von Würfeln.
+class DiceEventGen
+note left: Erzeugt zufällige Ereignisse /*wie Chunk-Löschung*/ \nentsprechend der Würfelart und -zahl.
+
 @enduml

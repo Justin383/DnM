@@ -1,16 +1,20 @@
 package net.wjka.dnm.item.Dice;
 
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
 import net.wjka.dnm.DungeonsandMinecraft;
+import net.wjka.dnm.GUI.PopUpScreen;
 
 public class PositiveDice extends Item {
 
@@ -30,10 +34,10 @@ public class PositiveDice extends Item {
             DiceRoll dR = new DiceRoll("dice_positive",serverWorld, user);
             dR.RollDice();
         }
-        if(world.isClient){
-            DungeonsandMinecraft.LOGGER.info("hi mum");
-            //execute gwui code hwere -> move in near future to other class
+        if (world.isClient) {
+            MinecraftClient.getInstance().setScreen(new PopUpScreen());
         }
+
         if (!world.isClient && user instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) user;
             // store gamemode of player -> interactionManager is from mc

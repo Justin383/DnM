@@ -1,10 +1,12 @@
 package net.wjka.dnm.item.Dice;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -30,8 +32,8 @@ public class NeutralDice extends Item {
             dR.RollDice();
         }
         if(world.isClient){
-            DungeonsandMinecraft.LOGGER.info("hi mum");
-            //execute gwui code hwere -> move in near future to other class
+//            CustomPopupScreen cps = new CustomPopupScreen(Text.literal("hi mum"));
+//            MinecraftClient.getInstance().setScreen(cps); // executes gui
         }
         if (!world.isClient && user instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) user;

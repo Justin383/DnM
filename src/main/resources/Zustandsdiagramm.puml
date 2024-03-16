@@ -8,15 +8,25 @@ state EntscheideEreignis
 state MarkiereBereich
 state EntferneBloeke
 state AndereEreignisse
-state choice <<choice>>
 
-start -right-> LeseEvent :onInitialize
-LeseEvent --> Interaktion :Rechtsklick
-Interaktion --> GeneriereZufallsZahl :TypedActionResult<ItemStack>use(world, user, hand);
-GeneriereZufallsZahl --> EntscheideEreignis :EntscheideEreignis(pZufallsZahl, ServerWelt);
-EntscheideEreignis --> choice
-choice --> MarkiereBereich : [ZufallsZahl == 2]
-choice --> AndereEreignisse :[ZufallsZahl != 2]
+start -right-> LeseEvent: onInitialize()
+LeseEvent --> Interaktion: rechtsklick()
+Interaktion --> GeneriereZufallsZahl
+GeneriereZufallsZahl --> EntscheideEreignis
+EntscheideEreignis --> MarkiereBereich: [ZufallsZahl == 2]
+EntscheideEreignis -right-> AndereEreignisse:[ZufallsZahl != 2]
+AndereEreignisse -left-> LeseEvent: /anderesEreignis()
 MarkiereBereich --> EntferneBloeke
-EntferneBloeke -left-> LeseEvent
+EntferneBloeke --> LeseEvent: böckeEntfernt
+
+LeseEvent: do/ warten()
+Interaktion: do/ LeseEvent(ItemStack)
+GeneriereZufallsZahl: entry/ rollDice()
+GeneriereZufallsZahl: do/ GeneriereZufallsZahl(pDiceNum: Int)
+EntscheideEreignis: entry/ ZufallsZahlGeneriert
+EntscheideEreignis: do/ EntscheideEreignis(pZufallsZahl: Int, ServerWelt: ServerWelt)
+AndereEreignisse: do/ anotherEvent()
+MarkiereBereich: do/ GenerateBlockArena(playerPos: BlockPos, radius: Int)
+EntferneBloeke: do/ RemoveBlocks(world: World, playerPos: BlockPos)
+
 @enduml

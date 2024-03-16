@@ -19,10 +19,11 @@ public class DungeonsandMinecraft implements ModInitializer {
 	@Override
 	public void onInitialize() { //similiar to main(); -> entry point for fabric
 		ModdedItems.InitRegisterItems(); //Registring of all Items will be done via this method!
+		NetworkingManager.registerTypePacketHandlers();
+		NetworkingManager.registerNumPacketHandlers();
 		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated, registryAccess) -> { //custom command registration
 			CommandClass.register(dispatcher);
 		});
-		//register another command here too
 
 
 		LOGGER.info("hi mum, i made a fabric mod :3");
