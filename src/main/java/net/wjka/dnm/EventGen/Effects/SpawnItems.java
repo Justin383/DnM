@@ -68,7 +68,7 @@ public class SpawnItems {
 
     private void SpawnItems(){
         // Select a random item from list, with its size (dynamic)
-        Item randomItem = items.get(ThreadLocalRandom.current().nextInt(items.size() ));
+        Item randomItem = items.get(ThreadLocalRandom.current().nextInt(items.size() - 1));
         //saves the chosen item in a itemstack with the count of 16
         ItemStack stack = new ItemStack(randomItem, 16);
         //creates a new itemEntity with this, uses the playerCoords and the item we chose
@@ -103,20 +103,20 @@ public class SpawnItems {
     }
 
     private void SpawnBlocks(){
-        /**
-         * Block[] block = new Block[5];
-         * block[0] = Blocks.STONE;
-         * block[1] = Blocks.GRASS_BLOCK;
-         * ...
-         * we can create as many as we want with the array too
-         * -> List and array fullfill the same purpose
-         * --> but list just looks better
+        /*
+          Block[] block = new Block[5];
+          block[0] = Blocks.STONE;
+          block[1] = Blocks.GRASS_BLOCK;
+          ...
+          we can create as many as we want with the array too
+          -> List and array fullfill the same purpose
+          --> but list just looks better
          */
 
 
 
         // Chose what Block from the list will be used
-        Item randomBlock = blocks.get(ThreadLocalRandom.current().nextInt(items.size() ));
+        Item randomBlock = blocks.get(ThreadLocalRandom.current().nextInt(items.size() - 1));
 
         // create itemstack from block from list
         ItemStack stack = new ItemStack(randomBlock, 64);

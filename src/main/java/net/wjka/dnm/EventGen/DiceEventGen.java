@@ -107,12 +107,12 @@ public class DiceEventGen {
         PositiveEffects positive = new PositiveEffects(DiceNum, world, player);
         ModifyingTerrain mt = new ModifyingTerrain(world, player);
         switch(pRandomNum){
-            case 0: positive.SpawnEntities(); break;
+            case 0: positive.ApplyEffectToPlayer(); break;
             case 1: positive.ChangeWeather(); break;
             case 2: positive.SpawnItems(); break;
-            case 3: positive.ChangeTime(); break;
+            case 3: positive.SpawnItems(); break;
             case 4: positive.ChangeTime(); break;
-            case 5: positive.SpawnEntities(); break;
+            case 5: positive.ApplyEffectToPlayer(); break;
             case 6: positive.SpawnItems(); break;
             case 7: positive.SpawnEntities(); break;
             case 8: positive.ApplyEffectToPlayer(); break;
@@ -122,12 +122,12 @@ public class DiceEventGen {
             case 12: positive.SpawnItems(); break;
             case 13: positive.ApplyEffectToPlayer(); break;
             case 14: positive.SpawnEntities(); break;
-            case 15: positive.SpawnEntities(); break;
+            case 15: positive.SpawnItems(); break;
             case 16: positive.SpawnEntities(); break;
             case 17: positive.SpawnItems(); break;
-            case 18: positive.SpawnEntities(); break;
+            case 18: positive.ApplyEffectToPlayer(); break;
             case 19: positive.SpawnItems(); break;
-            case 20: positive.SpawnEntities(); break;
+            case 20: positive.ApplyEffectToPlayer(); break;
             }
     }
 
