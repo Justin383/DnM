@@ -22,10 +22,9 @@ public class DungeonsandMinecraft implements ModInitializer {
 		NetworkingManager.registerTypePacketHandlers();
 		NetworkingManager.registerNumPacketHandlers();
 		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated, registryAccess) -> { //custom command registration
-			CommandClass.registerCheatSheet(dispatcher);
+			CommandClass.registerCheatSheet(dispatcher); //register cheatsheet command
+			CommandClass.registerGUIToggle(dispatcher); //register guitoggle command
 		});
-
-
 		LOGGER.info("hi mum, i made a fabric mod :3");
 	}
 }

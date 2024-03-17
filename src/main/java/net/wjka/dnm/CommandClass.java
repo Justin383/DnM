@@ -7,11 +7,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.wjka.dnm.EventGen.DiceEventGen;
 import net.wjka.dnm.EventGen.Effects.NegativeEffects;
 import net.wjka.dnm.EventGen.Effects.NeutralEffects;
 import net.wjka.dnm.item.Dice.NeutralDice;
 
+import java.awt.*;
 import java.util.stream.Stream;
 
 import static net.minecraft.server.command.CommandManager.argument;
@@ -71,16 +73,32 @@ public class CommandClass {
 
     public static void registerGUIToggle(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(literal("gwui") //create command with the command name
-                .then(argument("toggle", IntegerArgumentType.integer()) //first arg
+                .then(argument("toggle", StringArgumentType.word())// third arg
                         .suggests((context, builder) -> {
                             // adds autocomplete and suggestions to type
                             Stream.of("small", "large").forEach(builder::suggest); //builder is the imported class we need to use the built in autocomplete and suggestions!
                             return builder.buildFuture();
                         })
-                        .executes(context -> { //execute our code
-                            //NeutralDice neutral = new NeutralDice();
+                            .executes(context -> { //execute our code
+                                ServerCommandSource source = context.getSource();
+                                PlayerEntity player = source.getPlayer();
+                                if (!(source.getEntity() instanceof PlayerEntity)) { //check if code is being run by a player
+                                    source.sendError(Text.literal("This command can only be executed by a Player!")); //throw error
+                                    return 0; //cancel this command if it is not from a player
+                                }
+                                String toggle = StringArgumentType.getString(context, "toggle"); //store the cmd val
+                                PlayerActions playerActions = new PlayerActions(player);
+                                if("small".equals(toggle)){
+                                    playerActions.changeGuiType(true);
+                                    context.getSource().sendFeedback(() -> Text.literal("The GUI will now be displayed as the" + toggle + "variant"), false);
+                                } else if ("large".equals(toggle)){
+                                    playerActions.changeGuiType(false);
+                                    context.getSource().sendFeedback(() -> Text.literal("The GUI will now be displayed as the" + toggle + "variant"), false);
+                                } else {
+                                    source.sendError(Text.literal("only small or large are allowed types!"));
+                                }
                                             return 1; //PASS
-                        })));
+                            })));
     }
 }
 

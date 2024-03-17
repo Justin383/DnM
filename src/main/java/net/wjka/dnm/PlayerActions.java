@@ -51,6 +51,9 @@ public class PlayerActions {
         this.dR = new DiceRoll("e_hit", world, player);
         damageMultiplier = 0.65f;
     }
+    public PlayerActions(PlayerEntity pPlayer){
+        this.player = pPlayer;
+    }
 
     public boolean getTimeChangedToggle(){
         timeChanged =! timeChanged;
@@ -145,6 +148,7 @@ public class PlayerActions {
         isSilentGUI = mod;
     }
     public void CallGUI(){
+//        isSilentGUI = true; //temp
         if(isSilentGUI){
             boolean isExistent = DiceToast.isExistent;
             if(!isExistent){
