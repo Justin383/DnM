@@ -41,7 +41,9 @@ public class PlayerActions {
     private static DiceRoll dR;
     public static boolean timeChanged;
     public static boolean weatherChanged;
-    private static boolean isSilentGUI = false;
+    private static boolean isSilentGUI = true;
+    private static boolean lastBlockIsBrokenByPlayer;
+    public static boolean hasRightTool;
 
     public static boolean lastMinedMineable;
 
@@ -54,6 +56,8 @@ public class PlayerActions {
     public PlayerActions(PlayerEntity pPlayer){
         this.player = pPlayer;
     }
+
+    public PlayerActions(){ }
 
     public boolean getTimeChangedToggle(){
         timeChanged =! timeChanged;
@@ -81,7 +85,7 @@ public class PlayerActions {
         else{
             damageDealt = 0.2f; //if no tool in hand
         }
-        DungeonsandMinecraft.LOGGER.info("damage dealt: " + damageDealt); //TEMP DEBUG PRINT -> prints out damage made
+//        DungeonsandMinecraft.LOGGER.info("damage dealt: " + damageDealt); //TEMP DEBUG PRINT -> prints out damage made
     }
 
     public float getDamageDealt(){ //float method to read the val from other classes that need it
@@ -92,7 +96,7 @@ public class PlayerActions {
         int pDiceNum = dR.getDiceNum(); //get dicenum
         float modifier = (float)pDiceNum / 10 * damageMultiplier; //divs the (float)DiceNum by ten to get modifier values
         damageDealt = (damageBase * modifier); //modify damage
-        DungeonsandMinecraft.LOGGER.info("diceNum from playerActions: " + modifier);
+//        DungeonsandMinecraft.LOGGER.info("diceNum from playerActions: " + modifier);
     }
 
     public void BlockMined(Block pBlock, ItemStack pStack){
@@ -102,20 +106,25 @@ public class PlayerActions {
         lastMinedMineable = isMineable;
         DiceRoll dR = new DiceRoll("block", world, player); //create obj
         dR.RollDice(); //rolls dice
-        DungeonsandMinecraft.LOGGER.info("is Mineable? :" + isMineable); //DEBUG
+//        DungeonsandMinecraft.LOGGER.info("is Mineable? :" + isMineable); //DEBUG
     }
 
     private boolean CheckIfRIghtToolIsInHand(){
         if (stack.getItem() instanceof AxeItem && isTaggedWith(AXE_MINEABLE)) {
+            hasRightTool = true;
             return true;
         } else if (stack.getItem() instanceof PickaxeItem && isTaggedWith(PICKAXE_MINEABLE)) {
+            hasRightTool = true;
             return true;
         } else if (stack.getItem() instanceof ShovelItem && isTaggedWith(SHOVEL_MINEABLE)) {
+            hasRightTool = true;
             return true;
         } else if (stack.getItem() instanceof HoeItem && isTaggedWith(HOE_MINEABLE)) {
+            hasRightTool = true;
             return true;
         }
         else {
+            hasRightTool = false;
             return false; //if not then return false //not working as wanted!
         }
     }
@@ -140,7 +149,7 @@ public class PlayerActions {
             case 18,19,20: multipler = 3; break;
             default: multipler = 0; DungeonsandMinecraft.LOGGER.info("unkown dicenum"); break;
         }
-        DungeonsandMinecraft.LOGGER.info("getspawnMult: " + diceNum);
+//        DungeonsandMinecraft.LOGGER.info("getspawnMult: " + diceNum);
         return multipler;
     }
 
@@ -161,6 +170,20 @@ public class PlayerActions {
         if(!isSilentGUI){
             MinecraftClient.getInstance().setScreen(new PopUpScreen());
         }
+    }
+
+    public void setLastBlockBrokeByPlayer(boolean pLastBlockIsBrokenByPlayer){
+        lastBlockIsBrokenByPlayer = pLastBlockIsBrokenByPlayer;
+//        DungeonsandMinecraft.LOGGER.info("broke by player IN SETTER: " + lastBlockIsBrokenByPlayer);
+    }
+
+    public boolean getLastBlockBrokeByPlayer(){
+//        DungeonsandMinecraft.LOGGER.info("broke by player IN RETURN: " + lastBlockIsBrokenByPlayer);
+        return lastBlockIsBrokenByPlayer;
+    }
+
+    public boolean getIfRightTool(){
+        return hasRightTool;
     }
 
 

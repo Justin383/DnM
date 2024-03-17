@@ -7,6 +7,7 @@ import net.wjka.dnm.EventGen.Effects.NegativeEffects;
 import net.wjka.dnm.EventGen.Effects.NeutralEffects;
 import net.wjka.dnm.EventGen.Effects.PositiveEffects;
 import net.wjka.dnm.PlayerActions;
+import net.wjka.dnm.item.Dice.NeutralDice;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -28,12 +29,17 @@ public class DiceEventGen {
 
     public void DecideEvent() {
         RandomNumber = GenerateRandNum();
-        DungeonsandMinecraft.LOGGER.info("Random Num: " + RandomNumber);
+//        DungeonsandMinecraft.LOGGER.info("Random Num: " + RandomNumber);
         switch(type){
             case "dice_neutral": NeutralDiceEvent(RandomNumber); break;
             case "dice_positive": PositiveDiceEvent(RandomNumber); break;
             case "dice_negative": NegativeDiceEvent(RandomNumber); break;
-            case "block": BlockBreakEvent(RandomNumber); break;
+            case "block" :
+                boolean hasTool = PlayerActions.hasRightTool;
+                if(!hasTool){
+                    NeutralDiceEvent(RandomNumber);
+                }
+                break;
             default: DungeonsandMinecraft.LOGGER.info("a error occured during the type..."); break;
         }
     }
@@ -131,8 +137,4 @@ public class DiceEventGen {
             }
     }
 
-    public void BlockBreakEvent(int pRandomNum){
-
-
-    }
 }

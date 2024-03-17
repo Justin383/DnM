@@ -26,7 +26,7 @@ public class NetworkingManager{
     }
 
     public static void sendDiceTypePacket(ServerPlayerEntity player, String diceType) {
-        DungeonsandMinecraft.LOGGER.info("DICETYPE at beginning of NM: " + diceType); //PASS
+//        DungeonsandMinecraft.LOGGER.info("DICETYPE at beginning of NM: " + diceType); //PASS
         PacketByteBuf buf2 = PacketByteBufs.create();
         buf2.writeString(diceType); //stores the value in the buffer
 
@@ -48,7 +48,7 @@ public class NetworkingManager{
                         DiceToast dT = new DiceToast();
                         dT.UpdateDiceInfos();
                     }
-                    DungeonsandMinecraft.LOGGER.info("NM diceNum: " + diceNum);
+//                    DungeonsandMinecraft.LOGGER.info("NM diceNum: " + diceNum);
                 });
             });
         }
@@ -69,7 +69,7 @@ public class NetworkingManager{
                         DiceToast dT = new DiceToast();
                         dT.UpdateDiceInfos();
                     }
-                    DungeonsandMinecraft.LOGGER.info("NM diceType: " + diceType);
+//                    DungeonsandMinecraft.LOGGER.info("NM diceType: " + diceType);
                 });
             });
         }

@@ -51,7 +51,7 @@ public class PositiveDice extends Item {
             if(gameMode != GameMode.CREATIVE){
                 itemStack.decrement(1); // reduces the stacksize by one -> if 0 then item gets removed
             }
-            DungeonsandMinecraft.LOGGER.info("Player game mode: " + gameMode); //DEBUG LOG
+//            DungeonsandMinecraft.LOGGER.info("Player game mode: " + gameMode); //DEBUG LOG
         }
         return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
     }

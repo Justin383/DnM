@@ -25,14 +25,19 @@ public class SpawnCage {
 
     public void GatherPlayerPositionData() {
         BlockPos playerPos = player.getBlockPos();
-        ChangeGameMode(world);
+        ChangeGameMode();
         SpawnCageAroundPlayer(world, playerPos);
     }
 
-    private void ChangeGameMode(ServerWorld world){
+    private void ChangeGameMode(){
         if (player instanceof ServerPlayerEntity) { //check if player exists on server
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player; //get serverplayerentity from player
             prevGameMode = serverPlayer.interactionManager.getGameMode(); //stores last gamemode to change it back upon death
+//            DungeonsandMinecraft.LOGGER.info("Gamemode: " + prevGameMode);
+            if(prevGameMode == GameMode.ADVENTURE){
+                prevGameMode = GameMode.DEFAULT; //sets player into the serverworld default gamemode if this has been called twice before he died
+            }
+
             serverPlayer.changeGameMode(GameMode.ADVENTURE); //read from src code //changes gamemode -> implement gamemodechanger on death
             hasSummonedCage = true; //set val to check if gamemode should be changed upon death
         }
@@ -74,9 +79,9 @@ public class SpawnCage {
 
     }
 
-    public void ChangeToSurvival(ServerPlayerEntity serverPlayer){
+    public void ChangeToPrevGamemode(ServerPlayerEntity serverPlayer){
         if(hasSummonedCage){
-            DungeonsandMinecraft.LOGGER.info("callChangeGamemode");
+//            DungeonsandMinecraft.LOGGER.info("callChangeGamemode");
             serverPlayer.changeGameMode(prevGameMode); //changes it to previous gamemode
             hasSummonedCage = false;
         }

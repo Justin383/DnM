@@ -44,7 +44,7 @@ public class DiceToast implements Toast {
                 case "dice_neutral": context.drawTexture(T_NEUTRAL, dPosX, dPosY, 0, 0.0f, 0.0f, dWidth, dHeight, dWidth, dHeight); break;
                 case "dice_positive": context.drawTexture(T_POSITIVE, dPosX, dPosY, 0, 0.0f, 0.0f, dWidth, dHeight, dWidth, dHeight); break;
             }
-            DungeonsandMinecraft.LOGGER.info("time: " + startTime);
+//            DungeonsandMinecraft.LOGGER.info("time: " + startTime);
 
 
         if(startTime < endTime){
@@ -62,8 +62,8 @@ public class DiceToast implements Toast {
         diceNum = nm.getDiceNum();
         diceType = nm.getDiceType();
 
-        DungeonsandMinecraft.LOGGER.info("Updated dice num: " + diceNum);
-        DungeonsandMinecraft.LOGGER.info("Updated dice type: " + diceType);
+//        DungeonsandMinecraft.LOGGER.info("Updated dice num: " + diceNum);
+//        DungeonsandMinecraft.LOGGER.info("Updated dice type: " + diceType);
     }
 
 }

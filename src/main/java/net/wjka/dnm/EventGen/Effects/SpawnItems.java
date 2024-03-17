@@ -61,7 +61,7 @@ public class SpawnItems {
             case 11,12,13,14,15,16,17,18,19,20: SpawnBlocks(); break;
 
         }
-        DungeonsandMinecraft.LOGGER.info("DuceNum from spawnItems: " + num);
+//        DungeonsandMinecraft.LOGGER.info("DuceNum from spawnItems: " + num);
 
     }
 

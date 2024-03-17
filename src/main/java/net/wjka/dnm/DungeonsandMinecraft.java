@@ -1,7 +1,6 @@
 package net.wjka.dnm;
 
 import net.fabricmc.api.ModInitializer;
-
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.wjka.dnm.item.ModdedItems;
 import org.slf4j.Logger;
@@ -25,6 +24,6 @@ public class DungeonsandMinecraft implements ModInitializer {
 			CommandClass.registerCheatSheet(dispatcher); //register cheatsheet command
 			CommandClass.registerGUIToggle(dispatcher); //register guitoggle command
 		});
-		LOGGER.info("hi mum, i made a fabric mod :3");
+		LOGGER.info("hi mum, i made a fabric mod c:");
 	}
 }

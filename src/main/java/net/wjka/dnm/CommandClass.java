@@ -21,7 +21,7 @@ import static net.minecraft.server.command.CommandManager.literal;
 
 public class CommandClass {
     public static void registerCheatSheet(CommandDispatcher<ServerCommandSource> dispatcher) {
-        dispatcher.register(literal("Cheatsheet") //create command with the command name
+        dispatcher.register(literal("cheatsheet") //create command with the command name
                 .then(argument("randomNum", IntegerArgumentType.integer()) //first arg
                         .then(argument("diceNum", IntegerArgumentType.integer()) //second arg
                                 .then(argument("type", StringArgumentType.word())// third arg
@@ -72,7 +72,7 @@ public class CommandClass {
     }
 
     public static void registerGUIToggle(CommandDispatcher<ServerCommandSource> dispatcher) {
-        dispatcher.register(literal("gwui") //create command with the command name
+        dispatcher.register(literal("dicegui") //create command with the command name
                 .then(argument("toggle", StringArgumentType.word())// third arg
                         .suggests((context, builder) -> {
                             // adds autocomplete and suggestions to type

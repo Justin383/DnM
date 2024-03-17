@@ -84,8 +84,8 @@ public class PopUpScreen extends Screen {
 
         //this.diceType = NetworkingManager.getDiceType();
         //DungeonsandMinecraft.LOGGER.info("Updated dice type: " + NetworkingManager.getDiceType());
-        DungeonsandMinecraft.LOGGER.info("Updated dice num: " + diceNum);
-        DungeonsandMinecraft.LOGGER.info("Updated dice type: " + diceType);
+//        DungeonsandMinecraft.LOGGER.info("Updated dice num: " + diceNum);
+//        DungeonsandMinecraft.LOGGER.info("Updated dice type: " + diceType);
     }
 
     @Override

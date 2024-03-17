@@ -37,11 +37,12 @@ public class BlockBreakMixin {
         BlockState blockState = world.getBlockState(pos);
         Block minedBlock = blockState.getBlock();
         ItemStack stack = player.getMainHandStack();
-        DungeonsandMinecraft.LOGGER.info("player broke a blocc" + minedBlock);
+//        DungeonsandMinecraft.LOGGER.info("player broke a blocc" + minedBlock);
         //call playerActions class
         PlayerActions pA = new PlayerActions(player, sWorld);
         //call PlayerActions GetBlock Method
         pA.BlockMined(minedBlock, stack);
+        pA.setLastBlockBrokeByPlayer(true);
         //now prevent the Block from dropping
     }
 }

@@ -33,7 +33,7 @@ public class PlayerDeathMixin {
         PlayerEntity pEntity = (PlayerEntity)player; //get playerentity from serverplayerentity
         //much conversion :o
         SpawnCage sc = new SpawnCage(world, pEntity); //create obj
-        sc.ChangeToSurvival(player); //cast it with serverplayerentity
+        sc.ChangeToPrevGamemode(player); //cast it with serverplayerentity
     }
 }
 
