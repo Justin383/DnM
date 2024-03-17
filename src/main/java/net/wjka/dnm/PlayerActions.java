@@ -3,6 +3,8 @@ package net.wjka.dnm;
 import com.sun.jna.platform.win32.Winspool;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.toast.ToastManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -13,6 +15,8 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.wjka.dnm.GUI.DiceToast;
+import net.wjka.dnm.GUI.PopUpScreen;
 import net.wjka.dnm.item.Dice.DiceRoll;
 
 import static net.minecraft.block.Block.dropStack;
@@ -37,6 +41,7 @@ public class PlayerActions {
     private static DiceRoll dR;
     public static boolean timeChanged;
     public static boolean weatherChanged;
+    private static boolean isSilentGUI = false;
 
     public static boolean lastMinedMineable;
 
@@ -134,6 +139,24 @@ public class PlayerActions {
         }
         DungeonsandMinecraft.LOGGER.info("getspawnMult: " + diceNum);
         return multipler;
+    }
+
+    public void changeGuiType(boolean mod){
+        isSilentGUI = mod;
+    }
+    public void CallGUI(){
+        if(isSilentGUI){
+            boolean isExistent = DiceToast.isExistent;
+            if(!isExistent){
+                MinecraftClient client = MinecraftClient.getInstance();
+                ToastManager toastManager = client.getToastManager();
+                DiceToast toast = new DiceToast();
+                toastManager.add(toast); //call toast
+            }
+        }
+        if(!isSilentGUI){
+            MinecraftClient.getInstance().setScreen(new PopUpScreen());
+        }
     }
 
 

@@ -8,12 +8,14 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+import net.wjka.dnm.GUI.DiceToast;
 import net.wjka.dnm.GUI.PopUpScreen;
 
 
 public class NetworkingManager{
     private static int diceNum;
     private static String diceType;
+
     public static final Identifier DICE_NUM_PACKET_ID = new Identifier(DungeonsandMinecraft.MOD_ID, "highlight_num");
     public static final Identifier DICE_TYPE_PACKET_ID = new Identifier(DungeonsandMinecraft.MOD_ID, "highlight_type");
     public static void sendDiceNumPacket(ServerPlayerEntity player, int diceNum) {
@@ -43,6 +45,8 @@ public class NetworkingManager{
                     // Check if the current screen is CustomPopupScreen and update it
                     if (client.currentScreen instanceof PopUpScreen) {
                         ((PopUpScreen) client.currentScreen).UpdateDiceInfos();
+                        DiceToast dT = new DiceToast();
+                        dT.UpdateDiceInfos();
                     }
                     DungeonsandMinecraft.LOGGER.info("NM diceNum: " + diceNum);
                 });
@@ -62,12 +66,16 @@ public class NetworkingManager{
                     // Check if the current screen is CustomPopupScreen and update it
                     if (client.currentScreen instanceof PopUpScreen) {
                         ((PopUpScreen) client.currentScreen).UpdateDiceInfos();
+                        DiceToast dT = new DiceToast();
+                        dT.UpdateDiceInfos();
                     }
                     DungeonsandMinecraft.LOGGER.info("NM diceType: " + diceType);
                 });
             });
         }
     }
+
+
 
     public int getDiceNum(){
         return diceNum;

@@ -206,6 +206,24 @@ public class SpawnEntities {
         world.spawnEntity(tnt);
     }
 
+    public void spawnFox(){
+        FoxEntity fox = new FoxEntity(EntityType.FOX, world);
+        fox.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(fox);
+    }
+
+    public void spawnRabbit(){
+        RabbitEntity rabbit = new RabbitEntity(EntityType.RABBIT, world);
+        rabbit.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(rabbit);
+    }
+
+    public void spawnCat(){
+        CatEntity cat = new CatEntity(EntityType.CAT, world);
+        cat.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
+        world.spawnEntity(cat);
+    }
+
 
 
 

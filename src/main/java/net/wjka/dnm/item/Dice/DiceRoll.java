@@ -15,11 +15,13 @@ public class DiceRoll {
     public PlayerEntity player;
     public ServerWorld world;
 
+
     public DiceRoll(String pType, ServerWorld pWorld, PlayerEntity pPlayer){
         this.world = pWorld;
         this.type = pType;
         this.player = pPlayer;
     }
+
 
     public int getDiceNum(){
         return diceNum;
@@ -56,8 +58,6 @@ public class DiceRoll {
     private void sendPackets(){
         ServerPlayerEntity sp = (ServerPlayerEntity)player; //get spe
         NetworkingManager.sendDiceNumPacket(sp, diceNum);
-        DungeonsandMinecraft.LOGGER.info("Type in DR: " + type); //PASS
-        NetworkingManager.sendDiceTypePacket(sp, type); //PASS
-        DungeonsandMinecraft.LOGGER.info(type + "in NM: " + diceNum); //Logging for the console...
+        NetworkingManager.sendDiceTypePacket(sp, type);
     }
 }

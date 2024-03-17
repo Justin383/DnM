@@ -22,7 +22,7 @@ public class DungeonsandMinecraft implements ModInitializer {
 		NetworkingManager.registerTypePacketHandlers();
 		NetworkingManager.registerNumPacketHandlers();
 		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated, registryAccess) -> { //custom command registration
-			CommandClass.register(dispatcher);
+			CommandClass.registerCheatSheet(dispatcher);
 		});
 
 

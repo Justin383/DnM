@@ -1,6 +1,7 @@
 package net.wjka.dnm.item.Dice;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.toast.ToastManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,10 +14,13 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
 import net.wjka.dnm.DungeonsandMinecraft;
+import net.wjka.dnm.GUI.DiceToast;
+import net.wjka.dnm.GUI.PopUpScreen;
+import net.wjka.dnm.PlayerActions;
 
 public class NeutralDice extends Item {
 
-
+    private static boolean isSilentGUI;
 
     public NeutralDice(Settings settings) {
         super(settings);
@@ -25,15 +29,15 @@ public class NeutralDice extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
+        ServerWorld serverWorld = (ServerWorld)world;
         if (!world.isClient && world instanceof ServerWorld) {
-            ServerWorld serverWorld = (ServerWorld)world;
             // Pass serverWorld to the RollDice method
             DiceRoll dR = new DiceRoll("dice_neutral",serverWorld, user);
             dR.RollDice();
         }
         if(world.isClient){
-//            CustomPopupScreen cps = new CustomPopupScreen(Text.literal("hi mum"));
-//            MinecraftClient.getInstance().setScreen(cps); // executes gui
+            PlayerActions playerActions = new PlayerActions(user, serverWorld);
+            playerActions.CallGUI();
         }
         if (!world.isClient && user instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) user;

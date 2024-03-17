@@ -10,6 +10,7 @@ import net.minecraft.text.Text;
 import net.wjka.dnm.EventGen.DiceEventGen;
 import net.wjka.dnm.EventGen.Effects.NegativeEffects;
 import net.wjka.dnm.EventGen.Effects.NeutralEffects;
+import net.wjka.dnm.item.Dice.NeutralDice;
 
 import java.util.stream.Stream;
 
@@ -17,7 +18,7 @@ import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
 public class CommandClass {
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+    public static void registerCheatSheet(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(literal("Cheatsheet") //create command with the command name
                 .then(argument("randomNum", IntegerArgumentType.integer()) //first arg
                         .then(argument("diceNum", IntegerArgumentType.integer()) //second arg
@@ -66,6 +67,20 @@ public class CommandClass {
                                             }
                                             return 1;
                                         })))));
+    }
+
+    public static void registerGUIToggle(CommandDispatcher<ServerCommandSource> dispatcher) {
+        dispatcher.register(literal("gwui") //create command with the command name
+                .then(argument("toggle", IntegerArgumentType.integer()) //first arg
+                        .suggests((context, builder) -> {
+                            // adds autocomplete and suggestions to type
+                            Stream.of("small", "large").forEach(builder::suggest); //builder is the imported class we need to use the built in autocomplete and suggestions!
+                            return builder.buildFuture();
+                        })
+                        .executes(context -> { //execute our code
+                            //NeutralDice neutral = new NeutralDice();
+                                            return 1; //PASS
+                        })));
     }
 }
 

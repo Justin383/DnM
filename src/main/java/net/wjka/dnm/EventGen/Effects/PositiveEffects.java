@@ -53,8 +53,8 @@ public class PositiveEffects {
             case 0: sE.spawnVillager(); break;
             case 1: sE.spawnAxolotl(); break;
             case 2: sE.spawnGlowSquid(); break;
-            case 3: sE.spawnCreeper(); break;
-            case 4: sE.spawnAxolotl(); break;
+            case 3: sE.spawnFox(); break;
+            case 4: sE.spawnRabbit(); break;
             case 5: sE.spawnCow(); break;
             case 6: sE.spawnPig(); break;
             case 7: sE.spawnFriendlyWolf(); break;
@@ -63,10 +63,10 @@ public class PositiveEffects {
             case 10: sE.spawnPig(); break;
             case 11: for (int i = 0; i < 3; i++){sE.spawnFriendlyWolf();} break;
             case 12: sE.spawnFrog(); break;
-            case 13: sE.spawnVillager(); break;
+            case 13: sE.spawnCat(); break;
             case 14: sE.spawnFriendlyWolf(); break;
             case 15: for (int i = 0; i < 2; i++){sE.spawnCow();} break;
-            case 16: for (int i = 0; i < 4; i++){sE.spawnCreeper();} break;
+            case 16: for (int i = 0; i < 4; i++){sE.spawnFox();} break;
             case 17: for (int i = 0; i < 2; i++){sE.spawnChicken();} break;
             case 18: for (int i = 0; i < 2; i++){sE.spawnVillager();} break;
             case 19: sE.spawnGlowSquid(); break;
