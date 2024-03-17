@@ -46,7 +46,7 @@ public class PopUpScreen extends Screen {
         super.render(context, mouseX, mouseY, delta);
         if (System.currentTimeMillis() - rollDelay >= delay) { //wait for a brief moment then render ->
             UpdateDiceInfos();
-            context.drawCenteredTextWithShadow(textRenderer, Text.literal("DiceNum: " + diceNum), (width /2) + 155, height / 2, 0xffffff);
+            context.drawCenteredTextWithShadow(textRenderer, Text.literal("DiceNum: " + diceNum), (width /2) + 155, height / 2, 0xffffff); //draw text with number of OUR dice
             switch (diceType){
                 case "dice_negative": context.drawTexture(T_NEGATIVE, dPosX, dPosY, 0, 0.0f, 0.0f, dWidth, dHeight, 100, 100); break;
                 case "dice_neutral": context.drawTexture(T_NEUTRAL, dPosX, dPosY, 0, 0.0f, 0.0f, dWidth, dHeight, 100, 100); break;
