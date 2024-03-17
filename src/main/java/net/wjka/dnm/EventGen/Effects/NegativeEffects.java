@@ -9,12 +9,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class NegativeEffects {
     private int DiceNum;
-    private int seconds;
     private ServerWorld world;
     private PlayerEntity player;
-    ServerWorldProperties properties;
-    boolean isClear;
-    boolean isDay;
     public PlayerActions playerActions;
 
     public NegativeEffects(int pDiceNum, ServerWorld pWorld, PlayerEntity pPlayer){
@@ -22,11 +18,10 @@ public class NegativeEffects {
         this.world = pWorld;
         this.player = pPlayer;
         this.playerActions = new PlayerActions(player, world);
-
     }
 
     public void ApplyEffectToPlayer(){
-        seconds = ThreadLocalRandom.current().nextInt(5, 30 + 1) * DiceNum;
+        int seconds = ThreadLocalRandom.current().nextInt(5, 30 + 1) * DiceNum;
         int hungerR = ThreadLocalRandom.current().nextInt(1, 2 + 1);
         StatusEffectsList sL = new StatusEffectsList(seconds);
         int eventNum = DiceNum / 2;

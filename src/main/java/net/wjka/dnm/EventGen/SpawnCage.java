@@ -14,6 +14,7 @@ public class SpawnCage {
     private PlayerEntity player;
     private ServerWorld world;
     private int radius;
+    private BlockPos playerPos;
     private static boolean hasSummonedCage; //bool to check if gamemode should be changed
     private static GameMode prevGameMode; //static var to store gamemode before the cage event
 
@@ -24,7 +25,7 @@ public class SpawnCage {
     }
 
     public void GatherPlayerPositionData() {
-        BlockPos playerPos = player.getBlockPos();
+        this.playerPos = player.getBlockPos();
         ChangeGameMode();
         SpawnCageAroundPlayer(world, playerPos);
     }

@@ -1,7 +1,9 @@
 package net.wjka.dnm.EventGen;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.GameMode;
 import net.wjka.dnm.DungeonsandMinecraft;
 import net.wjka.dnm.EventGen.Effects.NegativeEffects;
 import net.wjka.dnm.EventGen.Effects.NeutralEffects;
@@ -15,9 +17,9 @@ public class DiceEventGen {
 
     int DiceNum;
     int RandomNumber;
-    ServerWorld world;
-    PlayerEntity player;
-    String type;
+    private ServerWorld world;
+    private PlayerEntity player;
+    private String type;
 
     public DiceEventGen(ServerWorld pWorld, PlayerEntity pPlayer, String pType, int pDiceNum){
         this.world = pWorld;
@@ -25,7 +27,6 @@ public class DiceEventGen {
         this.type = pType;
         this.DiceNum = pDiceNum;
     }
-
 
     public void DecideEvent() {
         RandomNumber = GenerateRandNum();
@@ -36,9 +37,14 @@ public class DiceEventGen {
             case "dice_negative": NegativeDiceEvent(RandomNumber); break;
             case "block" :
                 boolean hasTool = PlayerActions.hasRightTool;
-                if(!hasTool){
-                    NeutralDiceEvent(RandomNumber);
+                ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+                GameMode playerGameMode = serverPlayer.interactionManager.getGameMode();
+                if(playerGameMode != GameMode.CREATIVE){
+                    if(!hasTool){
+                        NeutralDiceEvent(RandomNumber);
+                    }
                 }
+
                 break;
             default: DungeonsandMinecraft.LOGGER.info("a error occured during the type..."); break;
         }
@@ -60,7 +66,7 @@ public class DiceEventGen {
             case 1: sc.GatherPlayerPositionData(); break;
             case 2: sc.GatherPlayerPositionData(); break;
             case 3: negative.ChangeTime(); break;
-            case 4: mt.GatherPlayerPositionData(); break;
+            case 4: mt.RemoveBlocks(); break;
             case 5: negative.SpawnEntities(); break;
             case 6: negative.SpawnEntities(); break;
             case 7: negative.SpawnEntities(); break;

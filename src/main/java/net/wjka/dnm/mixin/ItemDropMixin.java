@@ -19,8 +19,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Block.class)
 public class ItemDropMixin {
 
-    @Unique
+    @Unique //unique parameter is neccessary to every variable not directly involved in the Inject
     private static int multiplier;
+    @Unique
     private static boolean isBrokenByPlayer; //var to check if current block is broken by player
 
     @Inject(method = "dropStack(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/item/ItemStack;)V", at = @At("HEAD"), cancellable = true)
@@ -31,16 +32,17 @@ public class ItemDropMixin {
             boolean isMineable = PlayerActions.lastMinedMineable;
 //            DungeonsandMinecraft.LOGGER.info("block drop mineable: " + isMineable);
             if(isMineable){
-                //implement this tmr
                 int multiplier = PlayerActions.getSpawnMultiplier();
 //                DungeonsandMinecraft.LOGGER.info("how many will be dropped: " + multiplier);
                 double d = (double)EntityType.ITEM.getHeight() / 2.0;
-                double e = (double)pos.getX() + 0.5 + MathHelper.nextDouble(world.random, -0.25, 0.25);
-                double f = (double)pos.getY() + 0.5 + MathHelper.nextDouble(world.random, -0.25, 0.25) - d;
-                double g = (double)pos.getZ() + 0.5 + MathHelper.nextDouble(world.random, -0.25, 0.25);
+                double x = (double)pos.getX() + 0.5 + MathHelper.nextDouble(world.random, -0.25, 0.25);
+                double y = (double)pos.getY() + 0.5 + MathHelper.nextDouble(world.random, -0.25, 0.25) - d;
+                double z = (double)pos.getZ() + 0.5 + MathHelper.nextDouble(world.random, -0.25, 0.25);
+                //the 4 above specify the slightly modified spawn coords for th item. this code is read from the mc src code which has the same for the item spawn coords
+                // -> dropStack(World world, BlockPos pos, ItemStack stack) method in Block.class
                 if(multiplier != 0){
                     for (int i = 0; i < multiplier - 1; i++){
-                        ItemEntity itemEntity = new ItemEntity(world, e, f, g, stack);//create new item entity
+                        ItemEntity itemEntity = new ItemEntity(world, x, y, z, stack);//create new item entity
                         world.spawnEntity(itemEntity); //spawns it
                         ci.cancel(); //need to cancel or minecraft will drop a item by itself
                     }
@@ -54,9 +56,5 @@ public class ItemDropMixin {
         }
         playerActions.setLastBlockBrokeByPlayer(false); //sets the var in playerActions to false
 
-        // Check if the block at the given position should not drop items
-
-
-        // This could be based on the block type, metadata, or custom logic
     }
 }

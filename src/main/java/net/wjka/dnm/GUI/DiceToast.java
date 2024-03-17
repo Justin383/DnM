@@ -20,11 +20,6 @@ public class DiceToast implements Toast {
     private static final Identifier T_POSITIVE = new Identifier(DungeonsandMinecraft.MOD_ID, "textures/item/positive_dice.png");
     private static final Identifier T_NEUTRAL = new Identifier(DungeonsandMinecraft.MOD_ID, "textures/item/neutral_dice.png");
     private static final Identifier T_NEGATIVE = new Identifier(DungeonsandMinecraft.MOD_ID, "textures/item/negative_dice.png");
-    private final int dWidth = 20;
-    private final int dHeight = 20;
-    private final int dPosX = 5;
-    private final int dPosY = 6;
-    private static final long delay = 1000;
     public static boolean isExistent = false;
 
     @Override
@@ -39,7 +34,12 @@ public class DiceToast implements Toast {
             case "dice_positive": text.setStyle(text.getStyle().withBold(true).withColor(Formatting.DARK_GREEN)); break;
         }
             context.drawText(manager.getClient().textRenderer, text, 30, 12, -16777216, false);
-            switch (diceType) {
+        //dice PNG pos values:
+        int dWidth = 20;
+        int dHeight = 20;
+        int dPosX = 5;
+        int dPosY = 6;
+        switch (diceType) {
                 case "dice_negative": context.drawTexture(T_NEGATIVE, dPosX, dPosY, 0, 0.0f, 0.0f, dWidth, dHeight, dWidth, dHeight); break;
                 case "dice_neutral": context.drawTexture(T_NEUTRAL, dPosX, dPosY, 0, 0.0f, 0.0f, dWidth, dHeight, dWidth, dHeight); break;
                 case "dice_positive": context.drawTexture(T_POSITIVE, dPosX, dPosY, 0, 0.0f, 0.0f, dWidth, dHeight, dWidth, dHeight); break;

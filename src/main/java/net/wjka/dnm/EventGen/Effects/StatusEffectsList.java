@@ -13,17 +13,17 @@ public class StatusEffectsList {
         this.seconds = pSeconds;
 
 
-        StatusEffectInstance poison = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.POISON, 20 * seconds, 0); // 10 10 of Speed 1
-        StatusEffectInstance lev = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.LEVITATION, 20 * seconds, 3); // 10 10 of Jump Boost 4
-        StatusEffectInstance blind = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.BLINDNESS, 20 * seconds); // 10 10 of Blindness
-        StatusEffectInstance fatigue = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.MINING_FATIGUE, 20 * seconds, 19); // 10 10 of Haste 20
-        StatusEffectInstance wither = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.WITHER, 20 * seconds / 2);
-        StatusEffectInstance weak = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.WEAKNESS, 20 * seconds, 19); // 10 10 of Haste 20
-        StatusEffectInstance nausea = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.NAUSEA, 20 * seconds, 19); // 10 10 of Haste 20
-        StatusEffectInstance hungwy = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.HUNGER, 20 * seconds, 19); // 10 10 of Haste 20
-        StatusEffectInstance bado = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.BAD_OMEN, 20 * seconds); // 10 10 of Haste 20
-        StatusEffectInstance dark = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.DARKNESS, 20 * seconds, 19); // 10 10 of Haste 20
-        StatusEffectInstance idam = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.INSTANT_DAMAGE); // 10 10 of Haste 20
+        StatusEffectInstance poison = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.POISON, 20 * seconds, 0);
+        StatusEffectInstance lev = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.LEVITATION, 20 * seconds, 3);
+        StatusEffectInstance blind = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.BLINDNESS, 20 * seconds, 1);
+        StatusEffectInstance fatigue = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.MINING_FATIGUE, 20 * seconds, 19);
+        StatusEffectInstance wither = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.WITHER, 20 * seconds / 2, 2);
+        StatusEffectInstance weak = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.WEAKNESS, 20 * seconds, 19);
+        StatusEffectInstance nausea = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.NAUSEA, 20 * seconds, 19);
+        StatusEffectInstance hungwy = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.HUNGER, 20 * seconds, 19);
+        StatusEffectInstance bado = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.BAD_OMEN, 20 * seconds, 1);
+        StatusEffectInstance dark = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.DARKNESS, 20 * seconds, 19);
+        StatusEffectInstance idam = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.INSTANT_DAMAGE);
         //more positive ones
         StatusEffectInstance lucc = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.LUCK);
         StatusEffectInstance heal = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.REGENERATION, 20 * seconds, 2);
@@ -39,7 +39,7 @@ public class StatusEffectsList {
         StatusEffectInstance nvision = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.NIGHT_VISION, 20 * seconds, 1);
         StatusEffectInstance bluck = new StatusEffectInstance(StatusEffects.UNLUCK, 20 * seconds, 1);
 
-        //assigns effect the arrau
+        //assigns effect for the array
         instance[0] = poison;
         instance[1] = lev;
         instance[2] = blind;

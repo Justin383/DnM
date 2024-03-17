@@ -33,15 +33,8 @@ public class ModifyingTerrain {
         this.world = pWorld;
     }
 
-
-    public void GatherPlayerPositionData() {
+    public void RemoveBlocks() {
         playerPos = player.getBlockPos();
-        // Now pass the ServerWorld to the RemoveBlocks method
-        RemoveBlocks();
-    }
-
-
-    private void RemoveBlocks() {
         for (int height = -64; height <= 320; height += 5) {
             for (int rX = -radius; rX <= radius; rX++) {
                 for (int rY = height; rY <= height + 5; rY++) {

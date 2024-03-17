@@ -12,9 +12,6 @@ public class NeutralEffects {
     private int seconds;
     private ServerWorld world;
     private PlayerEntity player;
-    ServerWorldProperties properties;
-    boolean isThundering;
-    boolean isDay;
     PlayerActions playerActions;
 
     public NeutralEffects(int pDiceNum, ServerWorld pWorld, PlayerEntity pPlayer){

@@ -40,7 +40,7 @@ public class PositiveDice extends Item {
         }
         if (world.isClient) {
             PlayerActions playerActions = new PlayerActions(user);
-            playerActions.CallGUI();
+            playerActions.CallGUI(); //call GUI request in playerActions
         }
 
         if (!world.isClient && user instanceof ServerPlayerEntity) {
@@ -53,6 +53,6 @@ public class PositiveDice extends Item {
             }
 //            DungeonsandMinecraft.LOGGER.info("Player game mode: " + gameMode); //DEBUG LOG
         }
-        return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
+        return new TypedActionResult<>(ActionResult.SUCCESS, itemStack); //required return by the use method from minecraft
     }
 }

@@ -13,6 +13,20 @@ import net.wjka.dnm.GUI.PopUpScreen;
 
 
 public class NetworkingManager{
+
+    /*
+    The NetworkingManager is a class containing all important code which is used to send data between the client and server in our mod
+    Minecraft is Built with a Server and Client Architecture, which means it splits (simplified) its tasks between a server running in the background [the world]
+    and the client running as everything visible and the player. Those two run on independent threads [Server thread], [Render thread]
+    meaning if one is overloaded and needs more time to calculate thus being unresponsive, the other one can still run fine.
+    \\NOTE, if one thread is unresponsive for too long, they close the connection between them.
+    This brings many benefits, for example if the server is overloaded, for example a large ammount of data needs to be handled.
+    -> can be visualized by changing the int radius in the ModifyTerrain class to a ridiciolous large number (150) and seeing how the world is frozen and no entity or updates in
+    the world are made while the server calculates this task in the BG, but the player is still able to move freely
+    [may be teleported back once the server is responsive again due to discrepancy in position data].
+
+    We use the NetworkingManager to send Data between client side applications and server side applications, since our gui can only run on client-side and the rest of the code runs on the server-side
+     */
     private static int diceNum;
     private static String diceType;
 
@@ -27,10 +41,10 @@ public class NetworkingManager{
 
     public static void sendDiceTypePacket(ServerPlayerEntity player, String diceType) {
 //        DungeonsandMinecraft.LOGGER.info("DICETYPE at beginning of NM: " + diceType); //PASS
-        PacketByteBuf buf2 = PacketByteBufs.create();
-        buf2.writeString(diceType); //stores the value in the buffer
+        PacketByteBuf buf = PacketByteBufs.create();
+        buf.writeString(diceType); //stores the value in the buffer
 
-        ServerPlayNetworking.send(player, DICE_TYPE_PACKET_ID, buf2); //sends the packet(buffer)
+        ServerPlayNetworking.send(player, DICE_TYPE_PACKET_ID, buf); //sends the packet(buffer)
     }
 
     public static void registerNumPacketHandlers(){

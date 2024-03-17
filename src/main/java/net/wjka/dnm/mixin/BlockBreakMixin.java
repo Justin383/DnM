@@ -31,18 +31,18 @@ public class BlockBreakMixin {
     public void onExecute(BlockPos pos, CallbackInfoReturnable<Boolean> cir){
         ServerPlayerInteractionManager manager = (ServerPlayerInteractionManager) (Object) this;
 
-        ServerPlayerEntity player = ((ServerPlayerInteractionManagerAccessor)this).getPlayer();
-        World world = player.getWorld();
-        ServerWorld sWorld = player.getServerWorld();
-        BlockState blockState = world.getBlockState(pos);
-        Block minedBlock = blockState.getBlock();
-        ItemStack stack = player.getMainHandStack();
+        ServerPlayerEntity player = ((ServerPlayerInteractionManagerAccessor)this).getPlayer(); //get player
+        World world = player.getWorld(); //get world
+        ServerWorld sWorld = player.getServerWorld(); //get serverworld
+        BlockState blockState = world.getBlockState(pos); //get blockstate of block in coords pos
+        Block minedBlock = blockState.getBlock(); //get block from the blockstate
+        ItemStack stack = player.getMainHandStack(); //get stack -> current item held
 //        DungeonsandMinecraft.LOGGER.info("player broke a blocc" + minedBlock);
         //call playerActions class
-        PlayerActions pA = new PlayerActions(player, sWorld);
+        PlayerActions pA = new PlayerActions(player, sWorld); //create obj
         //call PlayerActions GetBlock Method
-        pA.BlockMined(minedBlock, stack);
-        pA.setLastBlockBrokeByPlayer(true);
+        pA.BlockMined(minedBlock, stack); //call the method, that a block was mined
+        pA.setLastBlockBrokeByPlayer(true); //give back feedback that the last block mined was mined by a player so we can decide if the block should drop items later
         //now prevent the Block from dropping
     }
 }

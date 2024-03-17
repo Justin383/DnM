@@ -20,16 +20,15 @@ public class EntityHitMixin {
     @Inject(at = @At("HEAD"), method = "attack", cancellable = true)
     public void OnExecute(Entity target, CallbackInfo ci){
         ServerPlayerEntity sPlayer = (ServerPlayerEntity) (Object) this; //grab serverplayerentity
-        PlayerEntity player = (PlayerEntity)sPlayer; //grab playerentity
         ServerWorld world = sPlayer.getServerWorld(); //grab serverworld
         ItemStack stack = sPlayer.getStackInHand(Hand.MAIN_HAND); //gets itemstack item from MAIN hand
-        PlayerActions pA = new PlayerActions(player, world); //create obj
+        PlayerActions pA = new PlayerActions((PlayerEntity)sPlayer, world); //create obj with playerentity
         pA.CalcDamageCaused(stack); //create obj
         float modifiedDamage = pA.getDamageDealt(); //get damage
-        DamageSource src = target.getDamageSources().playerAttack(player); //my brain died for this code
-        //-> grab the damagesrc. player is in this case the damage source. DamageSource.PARAM didnt worked!
-        //--> we get entity as the target, o we read the damagesources the entity can get and get the playerattack src
-        //---> in this case we give the player over and we get the Damage src
+        DamageSource src = target.getDamageSources().playerAttack((PlayerEntity)sPlayer); //does the thing mentioned below \\ grabs playerentity from serverplayerentity in ()
+        //-> grab the damagesrc. player is in this case the damage source.
+        //--> we get entity as the target and we read the damagesources the entity can get and get the playerattack src
+        //---> in this case we give the player over as the damage src, so custom damage STILL applies knockback and other minecraft related stuff from the player
         target.damage(src, modifiedDamage); //applies new damage
         ci.cancel(); //cancel vanilla damage
     }

@@ -7,23 +7,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DungeonsandMinecraft implements ModInitializer {
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final String MOD_ID = "dungeons_and_minecraft"; //MOD ID String. DON'T EDIT
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID); //setup of the Logger, similar to System.out.println but its considered to be used for mc mod developement.
+	// -> System.out.println wont show any output in the MC console after the project has been built and exported into a .jar MOD file
 
 
 	@Override
 	public void onInitialize() { //similiar to main(); -> entry point for fabric
 		ModdedItems.InitRegisterItems(); //Registring of all Items will be done via this method!
-		NetworkingManager.registerTypePacketHandlers();
-		NetworkingManager.registerNumPacketHandlers();
+		NetworkingManager.registerTypePacketHandlers(); //register the handlers for dice type packets
+		NetworkingManager.registerNumPacketHandlers(); //register the handlers for dice number packets
 		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated, registryAccess) -> { //custom command registration
 			CommandClass.registerCheatSheet(dispatcher); //register cheatsheet command
 			CommandClass.registerGUIToggle(dispatcher); //register guitoggle command
 		});
-		LOGGER.info("hi mum, i made a fabric mod c:");
+		LOGGER.info("hi mum, i made a fabric mod c:"); //shows when the mod loads c:
 	}
 }

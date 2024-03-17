@@ -1,5 +1,6 @@
 package net.wjka.dnm.EventGen.Effects;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.TntEntity;
@@ -12,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
 
 public class SpawnEntities {
 
@@ -19,15 +21,14 @@ public class SpawnEntities {
     private ServerWorld world;
     private PlayerEntity player;
 
-    private double x;
-    private double z;
-    private double y;
+    private double x, y, z;
+
     public SpawnEntities(PlayerEntity pPlayer, ServerWorld pWorld){
         this.player = pPlayer;
         this.world = pWorld;
-        x = player.getX();
-        y = player.getY();
-        z = player.getZ();
+        this.x = player.getX();
+        this.y = player.getY();
+        this.z = player.getZ();
     }
 
 
@@ -201,9 +202,21 @@ public class SpawnEntities {
     }
 
     public void spawnPrimedTNT(){
-        TntEntity tnt = new TntEntity(EntityType.TNT, world);
-        tnt.refreshPositionAndAngles(x, y, z, 0.0F, 0.0F);
-        world.spawnEntity(tnt);
+        int radius = 4;
+        int pHeight = (int)player.getY() + 2;
+        BlockPos playerPos = player.getBlockPos();
+        for (int height = pHeight; height <= pHeight; height++) {
+            for (int rX = -radius; rX <= radius; rX++) {
+                for (int rY = height; rY <= height; rY++) {
+                    for (int rZ = -radius; rZ <= radius; rZ++) {
+                        BlockPos targetBlock = new BlockPos(playerPos.getX() + rX, rY, playerPos.getZ() + rZ);
+                        TntEntity tnt = new TntEntity(EntityType.TNT, world);
+                        tnt.refreshPositionAndAngles(targetBlock, 0.0F, 0.0F);
+                        world.spawnEntity(tnt);
+                    }
+                }
+            }
+        }
     }
 
     public void spawnFox(){

@@ -2,10 +2,14 @@ package net.wjka.dnm.EventGen.Effects;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.command.WeatherCommand;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.wjka.dnm.PlayerActions;
 
+import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class PositiveEffects {
@@ -83,7 +87,7 @@ public class PositiveEffects {
     public void ChangeWeather() {
         boolean weatherChanged = playerActions.getWeatherChangedToggle();
         if(weatherChanged){
-            world.setWeather(10, 3200, false, false);
+            world.setWeather(0, 0, false, false);
         }
         else {
             ChangeTime();

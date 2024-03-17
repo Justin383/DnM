@@ -39,31 +39,14 @@ public class PopUpScreen extends Screen {
     protected void init() {
         this.openTime = System.currentTimeMillis(); // captures the time when the screen is opened
         this.rollDelay = System.currentTimeMillis();
-
-        //diceNum = NetworkingManager.getDiceNum();
-//        diceType = NetworkingManager.getDiceType();
-        /*
-        button1 = ButtonWidget.builder(Text.literal("Close"), button -> {
-                    DungeonsandMinecraft.LOGGER.info("closed the popup");
-                    close();
-                })
-                .dimensions(width / 2 - 205, 20, 200, 20)
-                .tooltip(Tooltip.of(Text.literal("Close the Interface")))
-                .build();
-
-        addDrawableChild(button1);
-        */
     }
 
-
-    // For versions 1.20 and after
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
         if (System.currentTimeMillis() - rollDelay >= delay) { //wait for a brief moment then render ->
             UpdateDiceInfos();
             context.drawCenteredTextWithShadow(textRenderer, Text.literal("DiceNum: " + diceNum), (width /2) + 155, height / 2, 0xffffff);
-            //context.drawCenteredTextWithShadow(textRenderer, Text.literal("DiceType: " + diceType), (width /2) + 100, height / 2 - 20, 0xffffff);
             switch (diceType){
                 case "dice_negative": context.drawTexture(T_NEGATIVE, dPosX, dPosY, 0, 0.0f, 0.0f, dWidth, dHeight, 100, 100); break;
                 case "dice_neutral": context.drawTexture(T_NEUTRAL, dPosX, dPosY, 0, 0.0f, 0.0f, dWidth, dHeight, 100, 100); break;
@@ -81,9 +64,7 @@ public class PopUpScreen extends Screen {
         NetworkingManager nm = new NetworkingManager();
         this.diceNum = nm.getDiceNum();
         this.diceType = nm.getDiceType();
-
-        //this.diceType = NetworkingManager.getDiceType();
-        //DungeonsandMinecraft.LOGGER.info("Updated dice type: " + NetworkingManager.getDiceType());
+//        DungeonsandMinecraft.LOGGER.info("Updated dice type: " + NetworkingManager.getDiceType());
 //        DungeonsandMinecraft.LOGGER.info("Updated dice num: " + diceNum);
 //        DungeonsandMinecraft.LOGGER.info("Updated dice type: " + diceType);
     }

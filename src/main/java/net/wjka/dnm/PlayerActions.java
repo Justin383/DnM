@@ -25,29 +25,26 @@ import static net.minecraft.registry.tag.BlockTags.*;
 
 public class PlayerActions {
     //DESC
-    //PlayerActions is a class which contains various actions that the player can perform and events related to those actions
-    //PlayerACtions should be called ONLY from mixins!
 
-
+    /*
+    PlayerActions is the class which stores all neccessary information about the player and its actions.
+     */
     private ServerWorld world;
     private PlayerEntity player;
     private static float damageDealt;
     private static float damageBase;
     private static float damageMultiplier;
-    //block attributes
     private Block block;
     private ItemStack stack;
-    private boolean isMineable;
     private static DiceRoll dR;
     public static boolean timeChanged;
     public static boolean weatherChanged;
     private static boolean isSilentGUI = true;
     private static boolean lastBlockIsBrokenByPlayer;
     public static boolean hasRightTool;
-
     public static boolean lastMinedMineable;
 
-    public PlayerActions(PlayerEntity pPlayer, ServerWorld pWorld){
+    public PlayerActions(PlayerEntity pPlayer, ServerWorld pWorld){ //constructor for accessibility through server-side code
         this.player = pPlayer;
         this.world = pWorld;
         this.dR = new DiceRoll("e_hit", world, player);
@@ -55,9 +52,9 @@ public class PlayerActions {
     }
     public PlayerActions(PlayerEntity pPlayer){
         this.player = pPlayer;
-    }
+    } //constructor for accessibility through non server-side code
 
-    public PlayerActions(){ }
+    public PlayerActions(){ } //constructor for cmd class
 
     public boolean getTimeChangedToggle(){
         timeChanged =! timeChanged;
@@ -102,8 +99,7 @@ public class PlayerActions {
     public void BlockMined(Block pBlock, ItemStack pStack){
         this.block = pBlock;
         this.stack = pStack;
-        isMineable = CheckIfRIghtToolIsInHand();
-        lastMinedMineable = isMineable;
+        lastMinedMineable = CheckIfRIghtToolIsInHand();
         DiceRoll dR = new DiceRoll("block", world, player); //create obj
         dR.RollDice(); //rolls dice
 //        DungeonsandMinecraft.LOGGER.info("is Mineable? :" + isMineable); //DEBUG
@@ -135,7 +131,7 @@ public class PlayerActions {
 
     //method to with booelan return to check if block CAN be mined with tool (more efficiently)
     private boolean isTaggedWith(TagKey<Block> tag){
-        return block.getRegistryEntry().isIn(tag);
+        return block.getRegistryEntry().isIn(tag); //DEPRECATED
         //-> getRegistryEntry is DEPRECATED, but still works /-> replace in future
     }
 
