@@ -13,7 +13,7 @@ public class StatusEffectsList {
     StatusEffectInstance[] instance = new StatusEffectInstance[25];
 
     public StatusEffectsList(){
-        seconds = ThreadLocalRandom.current().nextInt(20, 150 + 1);
+        seconds = ThreadLocalRandom.current().nextInt(20, 150 + 1); //generates randiom duration number
 
 
         StatusEffectInstance poison = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.POISON, 20 * seconds, 0);
