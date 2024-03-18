@@ -93,7 +93,4 @@ public class NegativeEffects {
         }
     }
 
-    public void TeleportPlayerToNether(){
-        playerActions.TeleportToNether();
-    }
 }

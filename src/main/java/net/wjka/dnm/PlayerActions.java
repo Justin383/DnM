@@ -186,14 +186,6 @@ public class PlayerActions {
         return hasRightTool;
     }
 
-    public void TeleportToNether(){
-        MinecraftServer server = player.getServer();
-        ServerWorld netherWorld = server.getWorld(World.NETHER);
-        DungeonsandMinecraft.LOGGER.info("moved player to: " + netherWorld);
-        player.moveToWorld(netherWorld);
-
-    }
-
 }
 
 
