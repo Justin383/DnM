@@ -2,15 +2,18 @@ package net.wjka.dnm.EventGen.Effects;
 
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.wjka.dnm.DungeonsandMinecraft;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class StatusEffectsList {
 
     public int seconds;
 
-    StatusEffectInstance[] instance = new StatusEffectInstance[24];
+    StatusEffectInstance[] instance = new StatusEffectInstance[25];
 
-    public StatusEffectsList(int pSeconds){
-        this.seconds = pSeconds;
+    public StatusEffectsList(){
+        seconds = ThreadLocalRandom.current().nextInt(20, 150 + 1);
 
 
         StatusEffectInstance poison = new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.POISON, 20 * seconds, 0);
@@ -58,17 +61,19 @@ public class StatusEffectsList {
         instance[15] = speed2;
         instance[16] = jump1;
         instance[17] = jump2;
-        instance[18] = haste;
+        instance[18] = hungwy;
         instance[19] = fresistance;
         instance[20] = resistance;
         instance[21] = saturation;
         instance[22] = nvision;
         instance[23] = lucc;
+        instance[24] = haste;
     }
 
     //0-11 negative
     //12-23 positive
     public StatusEffectInstance getStatusEffect(int num){
+        DungeonsandMinecraft.LOGGER.info("given the effect " + instance[num]);
         return instance[num];
     } //getter for the array :3
 }

@@ -42,7 +42,7 @@ public class CommandClass {
                                             int diceNum = IntegerArgumentType.getInteger(context, "diceNum"); //store second value
                                             String type = StringArgumentType.getString(context, "type"); //store third value
                                             DiceEventGen de = new DiceEventGen(world, player, type, diceNum); //create obj of Diceeventgen
-                                            if(diceNum >= 0 && diceNum <= 20 && randomNum >= 0 && randomNum <= 20) { //check if numbers are in range
+                                            if(diceNum >= 0 && diceNum <= 50 && randomNum >= 0 && randomNum <= 20) { //check if numbers are in range
                                                 if ("negative".equals(type)) {
                                                     de.NegativeDiceEvent(randomNum); //calls negativeDiceEvent From DecideEventGen, bypassing all random number generators
                                                 } else if ("neutral".equals(type)) {

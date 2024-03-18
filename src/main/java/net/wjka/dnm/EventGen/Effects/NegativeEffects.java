@@ -23,7 +23,7 @@ public class NegativeEffects {
     public void ApplyEffectToPlayer(){
         int seconds = ThreadLocalRandom.current().nextInt(5, 30 + 1) * DiceNum;
         int hungerR = ThreadLocalRandom.current().nextInt(1, 2 + 1);
-        StatusEffectsList sL = new StatusEffectsList(seconds);
+        StatusEffectsList sL = new StatusEffectsList();
         int eventNum = DiceNum / 2;
         if(DiceNum == 8){
             if(hungerR == 1){
