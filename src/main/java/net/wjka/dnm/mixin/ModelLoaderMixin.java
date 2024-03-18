@@ -18,6 +18,8 @@ import java.util.Map;
 
 @Mixin(ModelLoader.class)
 public abstract class ModelLoaderMixin {
+    //@Shadow is used to indicate a Mixin class member which is acting as a placeholder
+    //for a method or field in the target class
     @Shadow
     protected abstract void addModel(ModelIdentifier modelId);
 
