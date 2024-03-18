@@ -26,8 +26,8 @@ public class DiceToast implements Toast {
     public Toast.Visibility draw(DrawContext context, ToastManager manager, long startTime) {
             UpdateDiceInfos();
             this.startTime = startTime;
-            context.drawTexture(TEXTURE, 0, 0, 0, 32, this.getWidth(), this.getHeight());
-            MutableText text = Text.literal("DiceNum: " + diceNum);
+            context.drawTexture(TEXTURE, 0, 0, 0, 64, this.getWidth(), this.getHeight());
+            MutableText text = Text.literal("Dice Number: " + diceNum);
         switch (diceType) {
             case "dice_negative": text.setStyle(text.getStyle().withBold(true).withColor(Formatting.DARK_RED)); break;
             case "dice_neutral": text.setStyle(text.getStyle().withBold(true).withColor(Formatting.DARK_BLUE)); break;
@@ -37,7 +37,7 @@ public class DiceToast implements Toast {
         //dice PNG pos values:
         int dWidth = 20;
         int dHeight = 20;
-        int dPosX = 5;
+        int dPosX = 130;
         int dPosY = 6;
         switch (diceType) {
                 case "dice_negative": context.drawTexture(T_NEGATIVE, dPosX, dPosY, 0, 0.0f, 0.0f, dWidth, dHeight, dWidth, dHeight); break;
