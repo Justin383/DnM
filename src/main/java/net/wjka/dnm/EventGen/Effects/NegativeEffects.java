@@ -92,4 +92,8 @@ public class NegativeEffects {
             ChangeWeather();
         }
     }
+
+    public void TeleportPlayerToNether(){
+        playerActions.TeleportToNether();
+    }
 }

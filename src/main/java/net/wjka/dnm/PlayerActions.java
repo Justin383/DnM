@@ -12,8 +12,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 import net.wjka.dnm.GUI.DiceToast;
 import net.wjka.dnm.GUI.PopUpScreen;
@@ -139,10 +142,11 @@ public class PlayerActions {
         int diceNum = dR.getDiceNum();
         int multipler;
         switch(diceNum){
-            case 0,1,2,3: multipler = 0; break;
-            case 4,5,6,7,8,9,10: multipler = 1; break;
-            case 11,12,13,14,15,16,17: multipler = 2;
-            case 18,19,20: multipler = 3; break;
+            case 0,1,2: multipler = 0; break;
+            case 3,4,5,6,7: multipler = 1; break;
+            case 8,9,10,11,12,13,14: multipler = 2; break;
+            case 15,16,17,18: multipler = 3; break;
+            case 19, 20: multipler = 4; break;
             default: multipler = 0; DungeonsandMinecraft.LOGGER.info("unkown dicenum"); break;
         }
 //        DungeonsandMinecraft.LOGGER.info("getspawnMult: " + diceNum);
@@ -182,5 +186,14 @@ public class PlayerActions {
         return hasRightTool;
     }
 
+    public void TeleportToNether(){
+        MinecraftServer server = player.getServer();
+        ServerWorld netherWorld = server.getWorld(World.NETHER);
+        DungeonsandMinecraft.LOGGER.info("moved player to: " + netherWorld);
+        player.moveToWorld(netherWorld);
+
+    }
 
 }
+
+

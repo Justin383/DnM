@@ -28,8 +28,8 @@ public class ItemDropMixin {
     private static void onDropStack(World world, BlockPos pos, ItemStack stack, CallbackInfo ci) {
         PlayerActions playerActions = new PlayerActions();
         isBrokenByPlayer = playerActions.getLastBlockBrokeByPlayer();
-        if(isBrokenByPlayer){
-            boolean isMineable = PlayerActions.lastMinedMineable;
+        if(isBrokenByPlayer){ //used to check if block was broken by player to find out if block broke because of something else -> for example explosion
+            boolean isMineable = playerActions.getIfRightTool();
 //            DungeonsandMinecraft.LOGGER.info("block drop mineable: " + isMineable);
             if(isMineable){
                 int multiplier = PlayerActions.getSpawnMultiplier();

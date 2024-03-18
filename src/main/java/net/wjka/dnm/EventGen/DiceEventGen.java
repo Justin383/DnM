@@ -67,7 +67,7 @@ public class DiceEventGen {
             case 2: sc.GatherPlayerPositionData(); break;
             case 3: negative.ChangeTime(); break;
             case 4: mt.RemoveBlocks(); break;
-            case 5: negative.SpawnEntities(); break;
+            case 5: negative.TeleportPlayerToNether(); break;
             case 6: negative.SpawnEntities(); break;
             case 7: negative.SpawnEntities(); break;
             case 8: negative.ApplyEffectToPlayer(); break;
@@ -76,7 +76,7 @@ public class DiceEventGen {
             case 11: negative.ApplyEffectToPlayer(); break;
             case 12: negative.ApplyEffectToPlayer(); break;
             case 13: negative.ApplyEffectToPlayer(); break;
-            case 14: negative.SpawnEntities(); break;
+            case 14: negative.TeleportPlayerToNether(); break;
             case 15: negative.SpawnEntities(); break;
             case 16: negative.SpawnEntities(); break;
             case 17: negative.SpawnEntities(); break;
