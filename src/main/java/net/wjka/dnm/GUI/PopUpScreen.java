@@ -17,10 +17,6 @@ public class PopUpScreen extends Screen {
         super(Text.literal("Pwo pwap :3"));
     }
 
-
-    //public ButtonWidget button1;
-    //public ButtonWidget button2;
-    //public IconWidget diceImage;
     private static final Identifier T_POSITIVE = new Identifier(DungeonsandMinecraft.MOD_ID, "textures/item/positive_dice.png");
     private static final Identifier T_NEUTRAL = new Identifier(DungeonsandMinecraft.MOD_ID, "textures/item/neutral_dice.png");
     private static final Identifier T_NEGATIVE = new Identifier(DungeonsandMinecraft.MOD_ID, "textures/item/negative_dice.png");

@@ -23,7 +23,7 @@ public class NetworkingManager{
     This brings many benefits, for example if the server is overloaded, for example a large ammount of data needs to be handled.
     -> can be visualized by changing the int radius in the ModifyTerrain class to a ridiciolous large number (150) and seeing how the world is frozen and no entity or updates in
     the world are made while the server calculates this task in the BG, but the player is still able to move freely
-    [may be teleported back once the server is responsive again due to discrepancy in position data].
+    [may be teleported back once the server is responsive again due to discrepancy in position data]
 
     We use the NetworkingManager to send Data between client side applications and server side applications, since our gui can only run on client-side and the rest of the code runs on the server-side
      */

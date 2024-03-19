@@ -15,12 +15,12 @@ public class DungeonsandMinecraft implements ModInitializer {
 
 	@Override
 	public void onInitialize() { //similiar to main(); -> entry point for fabric
-		ModdedItems.InitRegisterItems(); //Registring of all Items will be done via this method!
+		ModdedItems.InitRegisterItems(); //Registring of all Items
 		NetworkingManager.registerTypePacketHandlers(); //register the handlers for dice type packets
 		NetworkingManager.registerNumPacketHandlers(); //register the handlers for dice number packets
 		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated, registryAccess) -> { //custom command registration
 			CommandClass.registerCheatSheet(dispatcher); //register cheatsheet command
-			CommandClass.registerGUIToggle(dispatcher); //register guitoggle command
+			CommandClass.registerGUIToggle(dispatcher); //register dicegui command
 		});
 		LOGGER.info("hi mum, i made a fabric mod c:"); //shows when the mod loads c:
 	}
