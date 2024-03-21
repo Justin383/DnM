@@ -7,13 +7,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.wjka.dnm.EventGen.DiceEventGen;
 import net.wjka.dnm.EventGen.Effects.NegativeEffects;
 import net.wjka.dnm.EventGen.Effects.NeutralEffects;
-import net.wjka.dnm.item.Dice.NeutralDice;
 
-import java.awt.*;
 import java.util.stream.Stream;
 
 import static net.minecraft.server.command.CommandManager.argument;

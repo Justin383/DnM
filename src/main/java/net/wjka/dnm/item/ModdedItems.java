@@ -9,9 +9,10 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.wjka.dnm.DungeonsandMinecraft;
-import net.wjka.dnm.item.Dice.NegativeDice;
-import net.wjka.dnm.item.Dice.NeutralDice;
-import net.wjka.dnm.item.Dice.PositiveDice;
+import net.wjka.dnm.item.Items.NegativeDice;
+import net.wjka.dnm.item.Items.NeutralDice;
+import net.wjka.dnm.item.Items.PositiveDice;
+import net.wjka.dnm.item.Items.Randomizer;
 //lots of imports :0
 
 public class ModdedItems {
@@ -24,6 +25,8 @@ public class ModdedItems {
     public static final Item NEGATIVEDICE = registerItems("negative_dice", new NegativeDice(new FabricItemSettings()));
     public static final Item POSITIVEDICE = registerItems("positive_dice", new PositiveDice(new FabricItemSettings()));
 
+    public static final Item RANDOMIZER = registerItems("randomizer", new Randomizer(new FabricItemSettings()));
+
 
     private static Item registerItems(String name, Item item){ //handles registering our items, so we don't need to write this manually for every item
         return Registry.register(Registries.ITEM, new Identifier(DungeonsandMinecraft.MOD_ID, name), item);
@@ -31,7 +34,7 @@ public class ModdedItems {
 
     private static void addItemsToCreativeInv(FabricItemGroupEntries entries){ //is used to add them to the player (creative) inventory
        //make items available for the creative player inventory
-        entries.add(NEUTRALDICE); entries.add(NEGATIVEDICE); entries.add(POSITIVEDICE);
+        entries.add(NEUTRALDICE); entries.add(NEGATIVEDICE); entries.add(POSITIVEDICE); entries.add(RANDOMIZER);
     }
 
     public static void InitRegisterItems(){

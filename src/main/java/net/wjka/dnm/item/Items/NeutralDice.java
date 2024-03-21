@@ -1,4 +1,4 @@
-package net.wjka.dnm.item.Dice;
+package net.wjka.dnm.item.Items;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.toast.ToastManager;
@@ -17,6 +17,7 @@ import net.wjka.dnm.DungeonsandMinecraft;
 import net.wjka.dnm.GUI.DiceToast;
 import net.wjka.dnm.GUI.PopUpScreen;
 import net.wjka.dnm.PlayerActions;
+import net.wjka.dnm.item.Dice.DiceRoll;
 
 public class NeutralDice extends Item {
 

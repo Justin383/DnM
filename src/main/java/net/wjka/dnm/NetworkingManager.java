@@ -27,6 +27,8 @@ public class NetworkingManager{
 
     We use the NetworkingManager to send Data between client side applications and server side applications, since our gui can only run on client-side and the rest of the code runs on the server-side
      */
+
+    //Will be rewritten to dynamically send data
     private static int diceNum;
     private static String diceType;
 

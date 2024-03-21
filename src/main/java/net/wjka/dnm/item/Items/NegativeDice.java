@@ -1,7 +1,6 @@
-package net.wjka.dnm.item.Dice;
+package net.wjka.dnm.item.Items;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -18,15 +17,15 @@ import net.wjka.dnm.DungeonsandMinecraft;
 import net.wjka.dnm.GUI.DiceToast;
 import net.wjka.dnm.GUI.PopUpScreen;
 import net.wjka.dnm.PlayerActions;
+import net.wjka.dnm.item.Dice.DiceRoll;
 
-public class PositiveDice extends Item {
+public class NegativeDice extends Item {
 
 
-    private static boolean isSilentGUI;
-
-    public PositiveDice(Settings settings) {
+    public NegativeDice(Settings settings) {
         super(settings);
     }
+
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -35,14 +34,13 @@ public class PositiveDice extends Item {
         if (!world.isClient && world instanceof ServerWorld) {
             ServerWorld serverWorld = (ServerWorld)world;
             // Pass serverWorld to the RollDice method
-            DiceRoll dR = new DiceRoll("dice_positive",serverWorld, user);
+            DiceRoll dR = new DiceRoll("dice_negative",serverWorld, user);
             dR.RollDice();
         }
-        if (world.isClient) {
+        if(world.isClient){
             PlayerActions playerActions = new PlayerActions(user);
             playerActions.CallGUI(); //call GUI request in playerActions
         }
-
         if (!world.isClient && user instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) user;
             // store gamemode of player -> interactionManager is from mc
@@ -53,6 +51,7 @@ public class PositiveDice extends Item {
             }
 //            DungeonsandMinecraft.LOGGER.info("Player game mode: " + gameMode); //DEBUG LOG
         }
+
         return new TypedActionResult<>(ActionResult.SUCCESS, itemStack); //required return by the use method from minecraft
     }
 }

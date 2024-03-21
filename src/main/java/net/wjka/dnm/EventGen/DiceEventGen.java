@@ -9,7 +9,6 @@ import net.wjka.dnm.EventGen.Effects.NegativeEffects;
 import net.wjka.dnm.EventGen.Effects.NeutralEffects;
 import net.wjka.dnm.EventGen.Effects.PositiveEffects;
 import net.wjka.dnm.PlayerActions;
-import net.wjka.dnm.item.Dice.NeutralDice;
 
 import java.util.concurrent.ThreadLocalRandom;
 

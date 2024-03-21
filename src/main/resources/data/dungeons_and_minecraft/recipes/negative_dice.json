@@ -10,14 +10,14 @@
             "item": "minecraft:cobblestone"
         },
         "C": {
-            "item": "minecraft:charcoal"
+            "item": "minecraft:coal"
         },
         "R": {
-            "item": "minecraft:redstone"
+            "item": "dungeons_and_minecraft:randomizer"
         }
     },
     "result": {
         "item": "dungeons_and_minecraft:negative_dice",
-        "count": 4
+        "count": 5
     }
 }
