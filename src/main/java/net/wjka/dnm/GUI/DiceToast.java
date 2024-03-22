@@ -8,7 +8,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.wjka.dnm.DungeonsandMinecraft;
-import net.wjka.dnm.NetworkingManager;
+import net.wjka.dnm.Player.NetworkingManager;
 
 public class DiceToast implements Toast {
     private static long startTime;

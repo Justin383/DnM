@@ -8,8 +8,9 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.wjka.dnm.EventGen.DiceEventGen;
-import net.wjka.dnm.EventGen.Effects.NegativeEffects;
-import net.wjka.dnm.EventGen.Effects.NeutralEffects;
+import net.wjka.dnm.Effects.NegativeEffects;
+import net.wjka.dnm.Effects.NeutralEffects;
+import net.wjka.dnm.Player.PlayerActions;
 
 import java.util.stream.Stream;
 

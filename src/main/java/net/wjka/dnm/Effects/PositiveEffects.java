@@ -1,15 +1,10 @@
-package net.wjka.dnm.EventGen.Effects;
+package net.wjka.dnm.Effects;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.command.WeatherCommand;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
-import net.wjka.dnm.PlayerActions;
+import net.wjka.dnm.Player.PlayerActions;
 
-import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class PositiveEffects {

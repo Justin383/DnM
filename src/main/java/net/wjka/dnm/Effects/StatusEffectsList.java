@@ -1,4 +1,4 @@
-package net.wjka.dnm.EventGen.Effects;
+package net.wjka.dnm.Effects;
 
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;

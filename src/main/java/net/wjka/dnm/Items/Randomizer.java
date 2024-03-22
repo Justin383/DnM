@@ -1,4 +1,4 @@
-package net.wjka.dnm.item.Items;
+package net.wjka.dnm.Items;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

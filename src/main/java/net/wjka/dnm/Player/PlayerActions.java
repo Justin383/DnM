@@ -1,26 +1,18 @@
-package net.wjka.dnm;
+package net.wjka.dnm.Player;
 
-import com.sun.jna.platform.win32.Winspool;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.toast.ToastManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.TeleportTarget;
-import net.minecraft.world.World;
+import net.wjka.dnm.DungeonsandMinecraft;
 import net.wjka.dnm.GUI.DiceToast;
 import net.wjka.dnm.GUI.PopUpScreen;
-import net.wjka.dnm.item.Dice.DiceRoll;
+import net.wjka.dnm.Effects.DiceRoll;
 
 import static net.minecraft.block.Block.dropStack;
 import static net.minecraft.registry.tag.BlockTags.*;

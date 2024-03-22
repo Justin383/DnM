@@ -8,7 +8,7 @@ import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.wjka.dnm.DungeonsandMinecraft;
-import net.wjka.dnm.item.ModdedItems;
+import net.wjka.dnm.Items.ModdedItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;

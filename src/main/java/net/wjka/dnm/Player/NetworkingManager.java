@@ -1,4 +1,4 @@
-package net.wjka.dnm;
+package net.wjka.dnm.Player;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -8,6 +8,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+import net.wjka.dnm.DungeonsandMinecraft;
 import net.wjka.dnm.GUI.DiceToast;
 import net.wjka.dnm.GUI.PopUpScreen;
 

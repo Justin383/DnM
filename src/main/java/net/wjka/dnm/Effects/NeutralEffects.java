@@ -1,19 +1,19 @@
-package net.wjka.dnm.EventGen.Effects;
+package net.wjka.dnm.Effects;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.level.ServerWorldProperties;
-import net.wjka.dnm.PlayerActions;
+import net.wjka.dnm.Player.PlayerActions;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class NegativeEffects {
+public class NeutralEffects {
     private int DiceNum;
+    private int seconds;
     private ServerWorld world;
     private PlayerEntity player;
-    public PlayerActions playerActions;
+    PlayerActions playerActions;
 
-    public NegativeEffects(int pDiceNum, ServerWorld pWorld, PlayerEntity pPlayer){
+    public NeutralEffects(int pDiceNum, ServerWorld pWorld, PlayerEntity pPlayer){
         this.DiceNum = pDiceNum;
         this.world = pWorld;
         this.player = pPlayer;
@@ -21,16 +21,15 @@ public class NegativeEffects {
     }
 
     public void ApplyEffectToPlayer(){
-        int seconds = ThreadLocalRandom.current().nextInt(5, 30 + 1) * DiceNum;
         int hungerR = ThreadLocalRandom.current().nextInt(1, 2 + 1);
         StatusEffectsList sL = new StatusEffectsList();
-        int eventNum = DiceNum / 2;
+        int eventNum = (DiceNum / 2) + 5;
         if(DiceNum == 8){
             if(hungerR == 1){
                 player.addStatusEffect(sL.getStatusEffect(8));
             }
             else {
-                player.getHungerManager().setSaturationLevel(0);
+                player.getHungerManager().setSaturationLevel(10);
             }
         }
         else if(DiceNum == 18){
@@ -38,7 +37,7 @@ public class NegativeEffects {
                 player.addStatusEffect(sL.getStatusEffect(8));
             }
             else {
-                player.getHungerManager().setSaturationLevel(0);
+                player.getHungerManager().setSaturationLevel(10);
             }
         } else {
             player.addStatusEffect(sL.getStatusEffect(eventNum));
@@ -48,34 +47,34 @@ public class NegativeEffects {
     public void SpawnEntities(){
         SpawnEntities sE = new SpawnEntities(player, world);
         switch(DiceNum){
-            case 0: sE.spawnPrimedTNT(); break;
-            case 1: sE.spawnSkeleton(); break;
-            case 2: sE.spawnSlime(); break;
+            case 0: sE.spawnSkeleton(); break;
+            case 1: sE.spawnCow(); break;
+            case 2: sE.spawnSheep(); break;
             case 3: sE.spawnCreeper(); break;
             case 4: sE.spawnWitch(); break;
-            case 5: sE.spawnMagmaCube(); break;
-            case 6: sE.spawnWitherSkeleton(); break;
+            case 5: sE.spawnAxolotl(); break;
+            case 6: sE.spawnCreeper(); break;
             case 7: sE.spawnWolf(); break;
             case 8: for (int i = 0; i < 3; i++){sE.spawnSilverfish();} break;
-            case 9: sE.spawnGiantZombie(); break;
-            case 10: sE.spawnEnderDragon(); break;
+            case 9: sE.spawnGlowSquid(); break;
+            case 10: sE.spawnCreeper(); break;
             case 11: for (int i = 0; i < 3; i++){sE.spawnBees();} break;
-            case 12: sE.spawnBlaze(); break;
-            case 13: sE.spawnPrimedTNT(); break;
-            case 14: sE.spawnWarden(); break;
+            case 12: sE.spawnSquid(); break;
+            case 13: sE.spawnEnderman(); break;
+            case 14: sE.spawnFrog(); break;
             case 15: for (int i = 0; i < 2; i++){sE.spawnPhantom();} break;
-            case 16: for (int i = 0; i < 4; i++){sE.spawnZombie();} break;
-            case 17: for (int i = 0; i < 2; i++){sE.spawnCreeper();} break;
-            case 18: for (int i = 0; i < 5; i++){sE.spawnPrimedTNT();} break;
-            case 19: sE.spawnVindicator(); break;
-            case 20: sE.spawnWither(); break;
+            case 16: for (int i = 0; i < 4; i++){sE.spawnSkeleton();} break;
+            case 17: for (int i = 0; i < 2; i++){sE.spawnFriendlyWolf();} break;
+            case 18: for (int i = 0; i < 2; i++){sE.spawnChicken();} break;
+            case 19: sE.spawnPig(); break;
+            case 20: sE.spawnSkeleton(); break;
         }
     }
 
     public void ChangeWeather() {
         boolean weatherChanged = playerActions.getWeatherChangedToggle();
         if(weatherChanged){
-            world.setWeather(10, 3200, true, false);
+            world.setWeather(10, 3200, false, false);
         }
         else {
             ChangeTime();
@@ -85,7 +84,7 @@ public class NegativeEffects {
     public void ChangeTime(){
         boolean timeChanged = playerActions.getTimeChangedToggle();
         if(timeChanged){
-            world.setTimeOfDay(14000); //14000 ticks = beginning of night //mc considers 12542 as the first night tick -> for preferences its not dark enough
+            world.setTimeOfDay(0); //14000 ticks = beginning of night //mc considers 12542 as the first night tick -> for preferences its not dark enough
 
         }
         else {

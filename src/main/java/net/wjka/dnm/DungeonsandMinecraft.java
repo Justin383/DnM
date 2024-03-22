@@ -2,7 +2,8 @@ package net.wjka.dnm;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.wjka.dnm.item.ModdedItems;
+import net.wjka.dnm.Items.ModdedItems;
+import net.wjka.dnm.Player.NetworkingManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

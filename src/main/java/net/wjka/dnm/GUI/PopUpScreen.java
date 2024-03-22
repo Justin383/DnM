@@ -7,7 +7,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.wjka.dnm.DungeonsandMinecraft;
-import net.wjka.dnm.NetworkingManager;
+import net.wjka.dnm.Player.NetworkingManager;
 
 @Environment(EnvType.CLIENT)
 public class PopUpScreen extends Screen {

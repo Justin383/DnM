@@ -1,4 +1,4 @@
-package net.wjka.dnm.item.Dice;
+package net.wjka.dnm.Effects;
 import java.util.concurrent.ThreadLocalRandom;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -6,7 +6,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.wjka.dnm.DungeonsandMinecraft;
 import net.wjka.dnm.EventGen.DiceEventGen;
-import net.wjka.dnm.NetworkingManager;
+import net.wjka.dnm.Player.NetworkingManager;
 
 public class DiceRoll {
 

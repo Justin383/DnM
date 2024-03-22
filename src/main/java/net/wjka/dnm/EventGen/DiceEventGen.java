@@ -5,10 +5,10 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.GameMode;
 import net.wjka.dnm.DungeonsandMinecraft;
-import net.wjka.dnm.EventGen.Effects.NegativeEffects;
-import net.wjka.dnm.EventGen.Effects.NeutralEffects;
-import net.wjka.dnm.EventGen.Effects.PositiveEffects;
-import net.wjka.dnm.PlayerActions;
+import net.wjka.dnm.Effects.NegativeEffects;
+import net.wjka.dnm.Effects.NeutralEffects;
+import net.wjka.dnm.Effects.PositiveEffects;
+import net.wjka.dnm.Player.PlayerActions;
 
 import java.util.concurrent.ThreadLocalRandom;
 
