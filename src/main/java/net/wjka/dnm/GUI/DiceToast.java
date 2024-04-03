@@ -16,17 +16,17 @@ public class DiceToast implements Toast {
     private static int diceNum;
     private static String diceType;
 
-    private static final Identifier TEXTURE = new Identifier("textures/gui/toasts.png");
+    private static final Identifier TEXTURE = new Identifier("toast/recipe");
+
     private static final Identifier T_POSITIVE = new Identifier(DungeonsandMinecraft.MOD_ID, "textures/item/positive_dice.png");
     private static final Identifier T_NEUTRAL = new Identifier(DungeonsandMinecraft.MOD_ID, "textures/item/neutral_dice.png");
     private static final Identifier T_NEGATIVE = new Identifier(DungeonsandMinecraft.MOD_ID, "textures/item/negative_dice.png");
     public static boolean isExistent = false;
 
-    @Override
     public Toast.Visibility draw(DrawContext context, ToastManager manager, long startTime) {
             UpdateDiceInfos();
             this.startTime = startTime;
-            context.drawTexture(TEXTURE, 0, 0, 0, 64, this.getWidth(), this.getHeight());
+            context.drawGuiTexture(TEXTURE, 0, 0, this.getWidth(), this.getHeight());
             MutableText text = Text.literal("Dice Number: " + diceNum);
         switch (diceType) {
             case "dice_negative": text.setStyle(text.getStyle().withBold(true).withColor(Formatting.DARK_RED)); break;
