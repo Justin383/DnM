@@ -67,7 +67,7 @@ public class NegativeEffects {
             case 17: for (int i = 0; i < 2; i++){sE.spawnCreeper();} break;
             case 18: for (int i = 0; i < 5; i++){sE.spawnPrimedTNT();} break;
             case 19: sE.spawnVindicator(); break;
-            case 20: sE.spawnWither(); break; //hi
+            case 20: sE.spawnWither(); break; //hi bye
         }
     }
 
