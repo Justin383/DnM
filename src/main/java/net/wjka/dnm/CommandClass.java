@@ -73,7 +73,7 @@ public class CommandClass {
         dispatcher.register(literal("dicegui") //create command with the command name
                 .then(argument("toggle", StringArgumentType.word())// third arg
                         .suggests((context, builder) -> {
-                            // adds autocomplete and suggestions to type
+                            // adds autocomplete and suggestions to type.
                             Stream.of("small", "large").forEach(builder::suggest); //builder is the imported class we need to use the built in autocomplete and suggestions!
                             return builder.buildFuture();
                         })
