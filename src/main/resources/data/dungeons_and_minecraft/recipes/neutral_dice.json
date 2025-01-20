@@ -1,23 +1,23 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "#i#",
-        "iLi",
-        "#i#"
-    ],
-    "key": {
-        "#": {
-            "item": "minecraft:basalt"
-        },
-        "i": {
-            "item": "minecraft:iron_ingot"
-        },
-        "L": {
-            "item": "dungeons_and_minecraft:randomizer"
-        }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#i#",
+    "iLi",
+    "#i#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:basalt"
     },
-    "result": {
-        "item": "dungeons_and_minecraft:neutral_dice",
-        "count": 3
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "L": {
+      "item": "dungeons_and_minecraft:randomizer"
     }
+  },
+  "result": {
+    "item": "dungeons_and_minecraft:neutral_dice",
+    "count": 3
+  }
 }

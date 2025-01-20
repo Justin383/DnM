@@ -1,0 +1,22 @@
+{
+  //What structures to pick to try and spawn if a spot passes the placement check
+  "structures": [
+    {
+      "structure": "dungeons_and_minecraft:dungeons",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    //Make sure this is unique and does not match any other structure set's salt
+    "salt": 1642136474,
+
+    //The average distance apart in chunks for spawn attempts
+    "spacing": 20,
+
+    //Minimum distance apart in chunks for spawn attempts; MUST BE LOWER THAN spacing ABOVE
+    "separation": 6,
+
+    //What kind of placement to use
+    "type": "minecraft:random_spread"
+  }
+}

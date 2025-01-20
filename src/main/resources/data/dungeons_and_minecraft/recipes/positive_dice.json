@@ -1,23 +1,23 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "#g#",
-        "gEg",
-        "#g#"
-    ],
-    "key": {
-        "#": {
-            "item": "minecraft:end_stone"
-        },
-        "g": {
-            "item": "minecraft:gold_ingot"
-        },
-        "E": {
-            "item": "dungeons_and_minecraft:randomizer"
-        }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#g#",
+    "gEg",
+    "#g#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:end_stone"
     },
-    "result": {
-        "item": "dungeons_and_minecraft:positive_dice",
-        "count": 1
+    "g": {
+      "item": "minecraft:gold_ingot"
+    },
+    "E": {
+      "item": "dungeons_and_minecraft:randomizer"
     }
+  },
+  "result": {
+    "item": "dungeons_and_minecraft:positive_dice",
+    "count": 1
+  }
 }

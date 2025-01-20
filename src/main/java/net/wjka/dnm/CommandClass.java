@@ -95,8 +95,7 @@ public class CommandClass {
                                 } else {
                                     source.sendError(Text.literal("only small or large are allowed types!"));
                                 }
-                                            return 1; //PASS
+                                return 1; //PASS
                             })));
     }
 }
-
