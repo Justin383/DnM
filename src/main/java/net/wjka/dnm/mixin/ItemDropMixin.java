@@ -49,7 +49,7 @@ public class ItemDropMixin {
                 }
 
             } else {
-                ci.cancel(); //cancel if no or wrong tool in hand
+                ci.cancel(); //cancel if no or wrong tool in hand test
             }
         }
         playerActions.setLastBlockBrokeByPlayer(false); //sets the var in playerActions to false
