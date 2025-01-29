@@ -17,9 +17,9 @@ public class PopUpScreen extends Screen {
         super(Text.literal("Pwo pwap :3"));
     }
 
-    private static final Identifier T_POSITIVE = new Identifier(DungeonsandMinecraft.MOD_ID, "textures/item/positive_dice.png");
-    private static final Identifier T_NEUTRAL = new Identifier(DungeonsandMinecraft.MOD_ID, "textures/item/neutral_dice.png");
-    private static final Identifier T_NEGATIVE = new Identifier(DungeonsandMinecraft.MOD_ID, "textures/item/negative_dice.png");
+    private static final Identifier T_POSITIVE = new Identifier(DungeonsandMinecraft.MOD_ID, "assets/dungeons_and_minecraft/textures/item/positive_dice.png");
+    private static final Identifier T_NEUTRAL = new Identifier(DungeonsandMinecraft.MOD_ID, "assets/dungeons_and_minecraft/textures/item/neutral_dice.png");
+    private static final Identifier T_NEGATIVE = new Identifier(DungeonsandMinecraft.MOD_ID, "assets/dungeons_and_minecraft/textures/item/negative_dice.png");
     private final int dWidth = 192;
     private final int dHeight = 100;
     private final int dPosX = 320;
@@ -66,7 +66,6 @@ public class PopUpScreen extends Screen {
     }
 
     @Override
-    public boolean shouldPause() {
-        return false;               // ---> return true to pause
+    public boolean shouldPause() { return false;                // ---> return true to pause
     }
 }

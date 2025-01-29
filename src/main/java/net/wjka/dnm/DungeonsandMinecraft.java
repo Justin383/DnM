@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DungeonsandMinecraft implements ModInitializer {
-	public static final String MOD_ID = "dungeons_and_minecraft"; //MOD ID String. DON'T EDIT
+	public static final String MOD_ID = "assets/dungeons_and_minecraft"; //MOD ID String. DON'T EDIT
 
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID); //setup of the Logger, similar to System.out.println but its considered to be used for mc mod developement.
 	// -> System.out.println wont show any output in the MC console after the project has been built and exported into a .jar MOD file
